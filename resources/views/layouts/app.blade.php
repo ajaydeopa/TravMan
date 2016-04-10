@@ -157,6 +157,7 @@
 
 <!--Start sidebar links -->
             <ul class="main-menu">
+                <li><a href="{{URL::to('/')}}"><i class="zmdi zmdi-calendar-note"></i>Dashboard</a></li>
                 <li><a href="{{ url('booking')}}"><i class="zmdi zmdi-calendar-note"></i>Booking</a></li>
                 <li><a href="{{ url('create') }}"><i class="zmdi zmdi-account-add"></i>Create Member</a></li>
                 <li class="sub-menu">
@@ -238,19 +239,18 @@
             </div>
         <![endif]-->
 
-    @yield('footer')
+   @yield('footer')
     <!-- Javascript Libraries -->
     <script src="{{URL::to('assets')}}/vendors/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-    <!--  <script src="{{URL::to('assets')}}/vendors/bower_components/flot/jquery.flot.js"></script>
+     <script src="{{URL::to('assets')}}/vendors/bower_components/flot/jquery.flot.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bower_components/flot/jquery.flot.resize.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bower_components/flot.curvedlines/curvedLines.js"></script>
 
     <script src="{{URL::to('assets')}}/vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
--->
     <script src="{{URL::to('assets')}}/vendors/sparklines/jquery.sparkline.min.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bower_components/moment/min/moment.min.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bower_components/fullcalendar/dist/fullcalendar.min.js "></script>
@@ -311,7 +311,7 @@
             });
         }
     </script>
-
+@yield('footer')
 </body>
 
 </html>

@@ -1,13 +1,17 @@
-@extends('templates.first')
-
-@section('content')
+@extends('layouts.app') @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                main page
+               In all new pages we have to now use this
 
-                need a lot details
+               <h1>extends('layouts.app',['link' => 'Add URL'])</h1>
+                now we have to extend app.blade
+                not template.first
+                <br><br>
+               <h3> and please define in comment where there is ajax call and other function</h3>
+
+               <h2>run composer install and composer update </h2>
             </div>
         </div>
     </div>

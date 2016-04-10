@@ -1,62 +1,85 @@
-@extends('templates.first')
-
+@extends('layouts.app',['link' => 'Add URL'])
 @section('content')
+
+<div class="container">
+    <div class="card">
+        <div class="card-header bgm-blue">
+            <h2>Add Member<small>Please Fill Details</small></h2>
+        </div>
+        <div class="card-body card-padding">
     <div style="text-align:center">
         <h4 id="message"></h4>
     </div>
     <form class="form-horizontal" role="form" method="POST" onsubmit="return false" id="member_form">
                 {!! csrf_field() !!}
                 <!-- User Name -->
+        <div class="form-group fg-float">
                 <div class="input-group m-b-20 ">
                     <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
                     <div class="fg-line {{ $errors->has('user_name') ? ' has-error' : '' }}">
-                        <input type="text" class="form-control" placeholder="Full Name" name="user_name" value="{{ old('user_name') }}">
+                        <input type="text" class="form-control" name="user_name" value="{{ old('user_name') }}">
+                        <label class="fg-label">Full Name</label>
                     </div>
                     <p>
                         <strong class="c-red" id="error_name"></strong>
                     </p>
                 </div>
-                
-                <!-- Email -->
-                <div class="input-group m-b-20 ">
-                    <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+        </div>
+       <!-- Email -->
+                <div class="form-group fg-float">
+                    <div class="input-group m-b-20 ">
+                    <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
                     <div class="fg-line {{ $errors->has('email') ? ' has-error' : '' }}">
-                        <input type="text" class="form-control" placeholder="E-Mail Address" name="email" value="{{ old('email') }}">
+                        <input type="text" class="form-control"  name="email" value="{{ old('email') }}">
+                        <label class="fg-label">E-Mail Address</label>
                     </div>
                     <p>
                         <strong class="c-red" id="error_email"></strong>
                     </p>
                 </div>
+        </div>
 
                 <!-- password -->
+         <div class="form-group fg-float">
                 <div class="input-group m-b-20 ">
-                    <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+                    <span class="input-group-addon"><i class="zmdi zmdi-lock"></i></span>
                     <div class="fg-line {{ $errors->has('password') ? ' has-error' : '' }}">
-                        <input type="password" class="form-control" placeholder="Password" name="password">
+                        <input type="password" class="form-control" name="password">
+                        <label class="fg-label">Password</label>
                     </div>
                     <p>
                         <strong class="c-red" id="error_password"></strong>
                     </p>
+             </div>
                 </div>
                 
                 <!-- Confirm password -->
+         <div class="form-group fg-float">
                 <div class="input-group m-b-20 ">
-                    <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+                    <span class="input-group-addon"><i class="zmdi zmdi-lock"></i></span>
                     <div class="fg-line {{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                        <input type="password" class="form-control" placeholder="Confirm Password" name="password_confirmation">
+                        <input type="password" class="form-control" name="password_confirmation">
+                        <label class="fg-label">Confirm Password</label>
                    </div>
                     <p>
                         <strong class="c-red" id="error_confirm"></strong>
                     </p>
                 </div>
+        </div>
                 
                 <div class="input-group m-b-20 ">
                     <span class="input-group-addon"></span>
                     <div class="fg-line">
-                        <input type="submit" value="Create Member" name="book" id="submit" />
+                          <button class="btn bgm-lightblue waves-effect" type="submit" name="book" id="submit"> Member</button>
+
                     </div>
                 </div>
             </form>
+    </div>
+    </div>
+</div>
+
+
 @endsection
 
 @section('footer')

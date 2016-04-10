@@ -1,7 +1,5 @@
 @extends('layouts.app', ['link' => 'Add URL'])
 @section('content')
-
-
 <div class="container">
         <body class="four-zero-content">
 <div class="four-zero p-absolute m-t-25" >

@@ -1,152 +1,202 @@
-
 <html>
 <!--[if IE 9 ]><html class="ie9"><![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>SEOPlus</title>
 
-        <!-- Vendor CSS -->
-        <link href="{{URL::to('assets')}}/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
-        <link href="{{URL::to('assets')}}/vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
-        <link href="{{URL::to('assets')}}/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
-        <link href="{{URL::to('assets')}}/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
-        <link href="{{URL::to('assets')}}/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@yield('title')</title>
 
-        <!-- CSS -->
-        <link href="{{URL::to('assets')}}/css/app.min.1.css" rel="stylesheet">
-<link  type="text/css" href="{{URL::to('assets')}}/js/plugins/export/export.css" rel="stylesheet">
+    <!-- Vendor CSS -->
+    <link href="{{URL::to('assets')}}/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
+    <link href="{{URL::to('assets')}}/vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+    <link href="{{URL::to('assets')}}/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
+    <link href="{{URL::to('assets')}}/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+    <link href="{{URL::to('assets')}}/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
 
-        <link href="{{URL::to('assets')}}/css/app.min.2.css" rel="stylesheet">
+    <!-- CSS -->
+    <link href="{{URL::to('assets')}}/css/app.min.1.css" rel="stylesheet">
+    <link href="{{URL::to('assets')}}/css/app.min.2.css" rel="stylesheet">
 
+</head>
 
-    </head>
-    <body>
-        <header id="header" class="clearfix" data-current-skin="blue">
+<body>
+    <!--Start Header-->
 
+    <header id="header" class="clearfix" data-current-skin="blue">
+        <ul class="header-inner">
+            @if( !Auth::guest() )
+            <li id="menu-trigger" data-trigger="#sidebar">
+                <div class="line-wrap">
+                    <div class="line top"></div>
+                    <div class="line center"></div>
+                    <div class="line bottom"></div>
+                </div>
+            </li>
+            @endif
+            <li class="logo hidden-xs">
+                <a href="{{URL::to('/')}}">Trav-Man</a>
+            </li>
 
+            <li class="pull-right">
+                <ul class="top-menu">
+                    @if( Auth::guest() )
+                    <li>
+                        <a href="{{ url('/login') }}"><span class="tm-label">Login</span></a>
+                    </li>
+                    <li>
+                        <a href="{{ url('/register') }}"><span class="tm-label">Register</span></a>
+                    </li>
+                    @else
+                    <!-- toggle-->
+                    <!--<li id="toggle-width">
+                        <div class="toggle-switch">
+                            <input id="tw-switch" type="checkbox" hidden="hidden">
+                            <label for="tw-switch" class="ts-helper"></label>
+                        </div>
+                    </li>-->
+                    <!-- toggle-->
+                    <!-- Search -->
+                    <!--      <li id="top-search">
+                        <a href=""><i class="tm-icon zmdi zmdi-search"></i></a>
+                    </li>-->
+                    <!-- End Search -->
 
+                    <!-- Notification -->
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" href="" id="notification">
+                            <i class="tm-icon zmdi zmdi-notifications-none"></i>
+                            <i class="tmn-counts" id="notification_count"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-lg pull-right">
+                            <div class="listview" id="notifications">
+                                <div class="lv-header">
+                                    Notification
 
+                                    <ul class="actions">
+                                        <li class="dropdown">
+                                            <a href="" data-clear="notification">
+                                                <i class="zmdi zmdi-check-all"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="lv-body" id="notification_list">
 
+                                </div>
 
-            <ul class="header-inner">
-
-
-                <li class="logo">
-                    <a href="{{URL::to('/dashboard')}}">Seo-Plus</a>
-                </li>
-
-             <!--   <li class="pull-right">
-                    <ul class="top-menu">
-                        <li id="top-search">
-                        @if (Auth::guest())
-                            <li><a href="{{ url('/login') }}">Login</a></li>
-                            <li><a href="{{ url('/register') }}">Register</a></li>
-                        @else
-
-                            <li><a href="{{ url('/dashboard') }}">{{ $link }}</a></li>
-                            @if($link != '')
-                                &nbsp;&nbsp;|&nbsp;&nbsp;
-                            @endif
-                            <li><a href="{{ url('/history') }}">History</a></li>
-                            &nbsp;&nbsp;|&nbsp;&nbsp;
-                            <li class="dropdown" style="margin-right:50px">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->user_name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li><a href="{{ url('/logout') }} " id="logout">Logout</a></li>
-                                </ul>
-                            </li>
-                        @endif
-                    </ul>
-                </li>-->
-
-
-
-
-
-                <li class="pull-right">
-                    <ul class="top-menu">
-
-                        @if (Auth::guest())
-                       <li >
-                            <a href="{{ url('/login') }}"><span class="tm-label">Login</span></a>
-                        </li>
-                         <li >
-                            <a href="{{ url('/register') }}"><span class="tm-label">Register</span></a>
-                        </li>
-                        @else
-                          <li >
-                            <a href="{{ url('/dashboard') }}"><span class="tm-label">{{ $link }}</span></a>
-                        </li>
-                        @if($link != '')
-                         @endif
-                                     <li >
-                            <a href="{{ url('/history') }}"><span class="tm-label">History</span></a>
-                        </li>
-
-
-                        <li class="dropdown">
-                            <a data-toggle="dropdown" href="">
-                                <span class="tm-label">{{ Auth::user()->user_name }}<span class="caret"></span> </span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-sm pull-right">
-
-                                     <div class="listview">
-
-                                        <a class="lv-item" href="{{ url('/logout') }}" id="logout"> Logout</a>
-
+                                <a class="lv-footer" href="">View Previous</a>
                             </div>
+
+                        </div>
+                        <!-- End Notification -->
+
+                    </li>
+
+
+
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" href="">
+                            <span class="tm-label text-uppercase">{{ Auth::user()->user_name }}<span class="caret"></span> </span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-sm pull-right">
+                            <div class="listview">
+                                <a class="lv-item" href="{{ url('/logout') }}" id="logout"> Logout</a>
                             </div>
-                        </li>
+                        </div>
+                    </li>
+                    @endif
 
-                        @endif
-
-
-                    </ul>
-                </li>
-
-
+                </ul>
+            </li>
+        </ul>
 
 
-
-
-
-            </ul>
-
-
-
-            <!-- Top Search Content -->
-
-        </header>
-
-        <section id="main" data-layout="layout-1">
-
-
-
-
-                    @yield('content')
-
-        </section>
-
-
-
-        <!-- Page Loader -->
-        <div class="page-loader">
-            <div class="preloader pls-blue">
-                <svg class="pl-circular" viewBox="25 25 50 50">
-                    <circle class="plc-path" cx="50" cy="50" r="20" />
-                </svg>
-
-                <p>Please wait...</p>
+        <!-- Top Search Content -->
+        <div id="top-search-wrap">
+            <div class="tsw-inner">
+                <i id="top-search-close" class="zmdi zmdi-arrow-left"></i>
+                <input type="text">
             </div>
         </div>
 
-        <!-- Older IE warning message -->
-        <!--[if lt IE 9]>
+        <!-- End Top Search Content -->
+    </header>
+    <!-- End Header -->
+
+    <!-- Start Sidebar-->
+    @if( !Auth::guest() )
+    <section>
+        <aside id="sidebar" class="sidebar c-overflow">
+            <div class="profile-menu">
+                <a href="">
+                    <div class="profile-pic">
+                        <img src="{{URL::to('assets')}}/img/profile-pics/2.jpg" alt="">
+                    </div>
+                    <div class="profile-info">
+                        @if( !Auth::guest() ) {{ Auth::user()->user_name }} @endif
+                        <i class="zmdi zmdi-caret-down"></i>
+                    </div>
+                </a>
+
+                <ul class="main-menu">
+                    <li>
+                        <a href="profile-about.html"><i class="zmdi zmdi-account"></i> View Profile</a>
+                    </li>
+                    <li>
+                        <a href=""><i class="zmdi zmdi-input-antenna"></i> Privacy Settings</a>
+                    </li>
+                    <li>
+                        <a href=""><i class="zmdi zmdi-settings"></i> Settings</a>
+                    </li>
+                    <li>
+                        <a href=""><i class="zmdi zmdi-time-restore"></i> Logout</a>
+                    </li>
+                </ul>
+            </div>
+
+<!--Start sidebar links -->
+            <ul class="main-menu">
+                <li><a href="{{ url('booking')}}"><i class="zmdi zmdi-calendar-note"></i>Booking</a></li>
+                <li><a href="{{ url('create') }}"><i class="zmdi zmdi-account-add"></i>Create Member</a></li>
+                <li class="sub-menu">
+                    <a href=""><i class="zmdi zmdi-view-compact"></i> Headers</a>
+
+                    <ul>
+                        <li><a href="textual-menu.html">Textual menu</a></li>
+                        <li><a href="image-logo.html">Image logo</a></li>
+                        <li><a href="top-mainmenu.html">Mainmenu on top</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- End sidebar links -->
+        </aside>
+
+        @endif
+        <input type="hidden" id="hidden" />
+
+
+    </section>
+     <!-- End Sidebar -->
+      <section id="main">
+
+            @yield('content')
+
+        </section>
+    <!-- Start Page Loader -->
+    <div class="page-loader">
+        <div class="preloader pls-blue">
+            <svg class="pl-circular" viewBox="25 25 50 50">
+                <circle class="plc-path" cx="50" cy="50" r="20" />
+            </svg>
+
+            <p>Please wait...</p>
+        </div>
+    </div>
+    <!--End Page Loader -->
+
+    <!-- Older IE warning message -->
+    <!--[if lt IE 9]>
             <div class="ie-warning">
                 <h1 class="c-white">Warning!!</h1>
                 <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
@@ -188,58 +238,80 @@
             </div>
         <![endif]-->
 
-        <!-- Javascript Libraries -->
-        <script src="{{URL::to('assets')}}/vendors/bower_components/jquery/dist/jquery.min.js"></script>
-        <script src="{{URL::to('assets')}}/js/bootstrap.min.js"></script>
-         <script src="{{URL::to('assets')}}/js/jquery.min.js"></script>
+    @yield('footer')
+    <!-- Javascript Libraries -->
+    <script src="{{URL::to('assets')}}/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="{{URL::to('assets')}}/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
+    <!--  <script src="{{URL::to('assets')}}/vendors/bower_components/flot/jquery.flot.js"></script>
+    <script src="{{URL::to('assets')}}/vendors/bower_components/flot/jquery.flot.resize.js"></script>
+    <script src="{{URL::to('assets')}}/vendors/bower_components/flot.curvedlines/curvedLines.js"></script>
 
-               <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
-        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+    <script src="{{URL::to('assets')}}/vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+    <script src="{{URL::to('assets')}}/vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+    <script src="{{URL::to('assets')}}/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
+-->
+    <script src="{{URL::to('assets')}}/vendors/sparklines/jquery.sparkline.min.js"></script>
+    <script src="{{URL::to('assets')}}/vendors/bower_components/moment/min/moment.min.js"></script>
+    <script src="{{URL::to('assets')}}/vendors/bower_components/fullcalendar/dist/fullcalendar.min.js "></script>
+    <script src="{{URL::to('assets')}}/vendors/bower_components/simpleWeather/jquery.simpleWeather.min.js"></script>
+    <script src="{{URL::to('assets')}}/vendors/bower_components/Waves/dist/waves.min.js"></script>
 
-        <script src="vendors/bower_components/moment/min/moment.min.js"></script>
+    <script src="{{URL::to('assets')}}/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
 
-
-
-        <script src="{{URL::to('assets')}}/vendors/bower_components/moment/min/moment.min.js"></script>
-
-        <script src="{{URL::to('assets')}}/vendors/bower_components/Waves/dist/waves.min.js"></script>
-
-
-        <script src="{{URL::to('assets')}}/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
-
-        <!-- Placeholder for IE9 -->
-        <!--[if IE 9 ]>
+    <!-- Placeholder for IE9 -->
+    <!--[if IE 9 ]>
             <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
         <![endif]-->
 
+    <script src="{{URL::to('assets')}}/js/flot-charts/curved-line-chart.js"></script>
+    <script src="{{URL::to('assets')}}/js/flot-charts/line-chart.js"></script>
+    <script src="{{URL::to('assets')}}/js/charts.js"></script>
 
+    <script src="{{URL::to('assets')}}/js/charts.js"></script>
+    <script src="{{URL::to('assets')}}/js/functions.js"></script>
+    <script src="{{URL::to('assets')}}/js/demo.js"></script>
+    <script>
+        count_notifi();
+        //notification_count
 
-        <script src="{{URL::to('assets')}}/js/functions.js"></script>
+        setInterval(function() {
+            count_notifi();
+        }, 2000);
 
-        <script src="{{URL::to('assets')}}/js/sorttable.js"></script>
-       <!-- <script src="{{URL::to('assets')}}/js/amcharts.js"></script>
-        <script src="{{URL::to('assets')}}/js/serial.js"></script>
-        <script src="{{URL::to('assets')}}/js/light.js"></script>-->
+        function count_notifi() {
+            var url = '{{ url("count") }}';
+            $.get(url, function(data) {
+                if (data == 0)
+                    $('#notification_count').hide().html(data);
+                else
+                    $('#notification_count').show().html(data);
+                $('#hidden').attr('value', data);
+            });
+        }
 
-       <script src="{{URL::to('assets')}}/js/amcharts.js"></script>
-        <script src="{{URL::to('assets')}}/js/serial.js"></script>
-        <script src="{{URL::to('assets')}}/js/plugins/export/export.min.js"></script>
-        <script src="{{URL::to('assets')}}/js/light.js"></script>
-
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script>
-    $('#logout').click(function(){
-        var url = "{{ URL::to('/updatedb') }}";
-
-        $.get(url, function(){
+        $('#notification').click(function() {
+            showNotifications();
         });
-    });
-</script>
 
-       <!-- <script src="{{URL::to('assets')}}/js/demo.js"></script>-->
+        function showNotifications() {
+            $('#notification_count').hide().html('0');
+            var url = '{{ url("showNotifications") }}';
+            var nw = $('#hidden').val();
+            $.get(url, function(data) {
+                var d = data;
+                //console.log(d);
+                for (i = 0; i < d.length; i++) {
+                    if (i == 0)
+                        $('#notification_list').html('<a class="lv-item" href=""><div class="media"><div class="pull-left"><img class="lv-img-sm" src="{{URL::to("assets")}}/img/profile-pics/1.jpg" alt=""></div><div class="media-body"><div class="lv-title">' + d[i].email_of_booker + '</div><small class="lv-small">' + d[i].email_of_booker + ' has made a booking.</small></i></div></div></a>');
+                    else
+                        $('#notification_list').append('<a class="lv-item" href=""><div class="media"><div class="pull-left"><img class="lv-img-sm" src="{{URL::to("assets")}}/img/profile-pics/1.jpg" alt=""></div><div class="media-body"><div class="lv-title">' + d[i].email_of_booker + '</div><small class="lv-small">' + d[i].email_of_booker + ' has made a booking.</small></div></div></a>');
 
-        @yield('footer')
-    </body>
+                }
+            });
+        }
+    </script>
 
-  </html>
+</body>
+
+</html>

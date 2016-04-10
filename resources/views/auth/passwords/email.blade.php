@@ -40,7 +40,7 @@
             {!! csrf_field() !!}
 
             <div class="input-group m-b-20 ">
-                <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+                <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
                 <div class="fg-line {{ $errors->has('email') ? ' has-error' : '' }}">
 
                     <input type="email" class="form-control" placeholder="Email address"  name="email" value="{{ old('email') }}">
@@ -58,8 +58,8 @@
 
             <ul class="login-navigation">
 
-                <li class="bgm-red"><a href="{{ url('/login') }}">Login</a></li>
-                <li class="bgm-orange"><a href="{{ url('/register') }}">Register</a></li>
+                <li class="bgm-red"><a href="{{ url('/login') }}" class="c-white">Login</a></li>
+                <li class="bgm-orange"><a href="{{ url('/register') }}" class="c-white">Register</a></li>
             </ul>
         </div>
 <!-- Older IE warning message -->

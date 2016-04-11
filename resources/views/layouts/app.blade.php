@@ -13,6 +13,7 @@
     <link href="{{URL::to('assets')}}/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
     <link href="{{URL::to('assets')}}/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
     <link href="{{URL::to('assets')}}/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+    <link href="{{URL::to('assets')}}/vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
     <!-- CSS -->
     <link href="{{URL::to('assets')}}/css/app.min.1.css" rel="stylesheet">
@@ -49,7 +50,7 @@
                     </li>
                     @else
                     <!-- toggle-->
-                    <!--<li id="toggle-width">
+                   <!-- <li id="toggle-width">
                         <div class="toggle-switch">
                             <input id="tw-switch" type="checkbox" hidden="hidden">
                             <label for="tw-switch" class="ts-helper"></label>
@@ -72,14 +73,6 @@
                             <div class="listview" id="notifications">
                                 <div class="lv-header">
                                     Notification
-
-                                    <ul class="actions">
-                                        <li class="dropdown">
-                                            <a href="" data-clear="notification">
-                                                <i class="zmdi zmdi-check-all"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </div>
                                 <div class="lv-body" id="notification_list">
 
@@ -141,7 +134,7 @@
 
                 <ul class="main-menu">
                     <li>
-                        <a href="profile-about.html"><i class="zmdi zmdi-account"></i> View Profile</a>
+                        <a href="{{ url('profile')}}"><i class="zmdi zmdi-account"></i> View Profile</a>
                     </li>
                     <li>
                         <a href=""><i class="zmdi zmdi-input-antenna"></i> Privacy Settings</a>
@@ -247,7 +240,6 @@
      <script src="{{URL::to('assets')}}/vendors/bower_components/flot/jquery.flot.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bower_components/flot/jquery.flot.resize.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bower_components/flot.curvedlines/curvedLines.js"></script>
-
     <script src="{{URL::to('assets')}}/vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
@@ -258,6 +250,7 @@
     <script src="{{URL::to('assets')}}/vendors/bower_components/Waves/dist/waves.min.js"></script>
 
     <script src="{{URL::to('assets')}}/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+     <script src="{{URL::to('assets')}}/vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 
     <!-- Placeholder for IE9 -->
     <!--[if IE 9 ]>
@@ -271,6 +264,7 @@
     <script src="{{URL::to('assets')}}/js/charts.js"></script>
     <script src="{{URL::to('assets')}}/js/functions.js"></script>
     <script src="{{URL::to('assets')}}/js/demo.js"></script>
+    @if( !Auth::guest() )
     <script>
         count_notifi();
         //notification_count
@@ -311,6 +305,7 @@
             });
         }
     </script>
+    @endif
 @yield('footer')
 </body>
 

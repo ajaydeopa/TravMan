@@ -1604,8 +1604,8 @@ html.ismobile .page-loader {
 }
 
 #calendar .fc-toolbar {
-  height: 80px;
-  background-color:#2196F3;
+  height: 108px;
+  background-image: url('../img/cal-header.jpg');
   background-repeat: no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -1617,26 +1617,26 @@ html.ismobile .page-loader {
 
 #calendar .fc-toolbar:before {
   content: "";
-  height: 50px;
+  height: 40px;
   width: 100%;
-  background: #2196F3;
+  background: rgba(0, 0, 0, 0.36);
   position: absolute;
   bottom: 0;
   left: 0;
 }
 
 #calendar .fc-toolbar .fc-center {
-  margin-top: 2px;
+  margin-top: 45px;
   position: relative;
 }
 
 @media screen and (max-width: 991px) {
   #calendar .fc-toolbar {
-    height: 102px;
+    height: 108px;
   }
 
   #calendar .fc-toolbar .fc-center {
-    margin-top: 18px;
+    margin-top: 45px;
   }
 }
 
@@ -1726,7 +1726,7 @@ html.ismobile .page-loader {
 }
 
 .fc-event {
-  padding: 0;
+  padding: 1;
   font-size: 11px;
   border-radius: 0;
   border: 0;

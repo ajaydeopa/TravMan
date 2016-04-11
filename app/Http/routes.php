@@ -41,6 +41,9 @@ Route::group(['middleware' => 'web'], function () {
             return view('pages.booking');
         });
         
+         Route::get('profile', function(){
+            return view('pages.profile');
+        });
         Route::get('create', function(){
             return view('pages.memberRegister');
         });

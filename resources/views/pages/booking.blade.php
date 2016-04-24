@@ -35,7 +35,7 @@
 
                             <!--phone no-->
                             <div class="input-group m-b-20 ">
-                                <span class="input-group-addon"><i class="zmdi zmdi-smartphone-iphone"></i></span>
+                                <span class="input-group-addon"><i class="zmdi zmdi-phone"></i></span>
                                 <div class="fg-line {{ $errors->has('phone_no') ? ' has-error' : '' }}">
                                     <input type="text" class="form-control" placeholder="Phone No" name="phone_no" value="{{ old('phone_no') }}">
                                 </div>

@@ -3,7 +3,6 @@
     <div class="row">
         <div class="card">
             <table id="example" class="display" cellspacing="0" width="100%">
-
                 <div class="card-header bgm-blue m-b-20">
                     <h2>Booking list</h2>
                 </div>
@@ -44,6 +43,7 @@
         </div>
     </div>
 </div>
+
 
 
 @endsection @section('footer')

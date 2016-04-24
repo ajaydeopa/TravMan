@@ -69,8 +69,10 @@
                             <i class="tm-icon zmdi zmdi-notifications-none"></i>
                             <i class="tmn-counts" id="notification_count"></i>
                         </a>
+
                         <div class="dropdown-menu dropdown-menu-lg pull-right">
                             <div class="listview" id="notifications">
+
                                 <div class="lv-header">
                                     Notification
                                 </div>
@@ -82,6 +84,7 @@
                             </div>
 
                         </div>
+
                         <!-- End Notification -->
 
                     </li>
@@ -150,13 +153,13 @@
 
 <!--Start sidebar links -->
             <ul class="main-menu">
-                <li><a href="{{URL::to('/')}}"><i class="zmdi zmdi-calendar-note"></i>Dashboard</a></li>
+                <li><a href="{{URL::to('/')}}"><i class="zmdi zmdi-tv"></i>Dashboard</a></li>
                 <li><a href="{{ url('booking')}}"><i class="zmdi zmdi-calendar-note"></i>Booking</a></li>
-                <li><a href="{{ url('showbookings')}}"><i class="zmdi zmdi-calendar-note"></i>Show booking</a></li>
+                <li><a href="{{ url('showbookings')}}"><i class="zmdi zmdi-view-list"></i>Show booking</a></li>
                 @if( Auth::user()->flag == 1 )
                     <li><a href="{{ url('create') }}"><i class="zmdi zmdi-account-add"></i>Create Member</a></li>
                 @endif
-                <li><a href="{{ url('createpackage')}}"><i class="zmdi zmdi-calendar-note"></i>Create package</a></li>
+                <li><a href="{{ url('createpackage')}}"><i class="zmdi zmdi-local-mall"></i>Create package</a></li>
                 <li class="sub-menu">
                     <a href=""><i class="zmdi zmdi-view-compact"></i> Headers</a>
 

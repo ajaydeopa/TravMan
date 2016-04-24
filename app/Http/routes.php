@@ -81,5 +81,11 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('eventsave', 'CalendarTodoController@eventsave');
 
         Route::get('dashboard', 'CalendarTodoController@load');
+
+        Route::post('addtodo', 'CalendarTodoController@addtodo');
+
+        Route::get('deletetodo', 'CalendarTodoController@deletetodo');
+
+        Route::get('edittodo', 'CalendarTodoController@edittodo');
     });
 });

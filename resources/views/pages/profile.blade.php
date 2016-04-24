@@ -248,7 +248,7 @@
     //update summary
     function summarySave(){
         var url = '{{ url("summarysave") }}';
-        var summ = $('#summ_form').serializeArray();;
+        var summ = $('#summ_form').serializeArray();
 
         $.post(url, summ, function(){
             $('#org_summary').html(summ[1].value);

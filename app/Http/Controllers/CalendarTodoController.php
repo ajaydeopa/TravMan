@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Auth;
 use App\Calendar;
+use App\TodoList;
+use Carbon\Carbon;
 
 class CalendarTodoController extends Controller
 {
@@ -16,9 +18,10 @@ class CalendarTodoController extends Controller
 
 		$events = Calendar::where('cid', $id)->get();
 
-		return view('pages.dashboard', compact('events'));
-	}
+        $todo = TodoList::latest('updated_at')->where('cid', $id)->get();
 
+		return view('pages.dashboard', compact('events', 'todo'));
+	}
 
     public function eventsave(Request $request){
     	$id = Auth::user()->id;
@@ -59,5 +62,43 @@ class CalendarTodoController extends Controller
     	$store->year = substr($strt, 11,4);
     	$store->day = substr($strt, 8,2);
     	$store->save();
+    }
+
+    public function addtodo(Request $request){
+        $todo = $request->new_todo;
+        $id = Auth::user()->id;
+
+        $todosave = new TodoList;
+        $todosave->cid = $id;
+        $todosave->todo = $todo;
+        $todosave->updated_at = Carbon::now();
+        $todosave->save();
+
+        $data = $this->getTodoData();
+
+        return $data;
+    }
+
+    public function deletetodo(Request $request){
+        $id = $request->id;
+
+        TodoList::find($id)->delete();
+
+        $data = $this->getTodoData();
+
+        return $data;
+    }
+
+    public function getTodoData(){
+        $id = Auth::user()->id;
+
+        return TodoList::latest('updated_at')->where('cid', $id)->get();
+    }
+
+    public function edittodo(Request $request){
+        $id = $request->id;
+        $data = $request->data;
+
+        TodoList::find($id)->update(['todo' => $data, 'updated_at' => Carbon::now()]);
     }
 }

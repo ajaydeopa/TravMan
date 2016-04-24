@@ -88,159 +88,52 @@
                     <div id="add-tl-item">
                         <i class="add-new-item zmdi zmdi-plus"></i>
 
-                        <div class="add-tl-body">
-                            <textarea placeholder="What you want to do..."></textarea>
+                        <form method="POST" id="todo_form">
+                            {!! csrf_field() !!}
+                            <div class="add-tl-body">
+                                <textarea placeholder="What you want to do..." name="new_todo" id="new-todo"></textarea>
 
-                            <div class="add-tl-actions">
-                                <a href="" data-tl-action="dismiss"><i class="zmdi zmdi-close"></i></a>
-                                <a href="" data-tl-action="save"><i class="zmdi zmdi-check"></i></a>
+                                <div class="add-tl-actions">
+                                    <a href="" data-tl-action="dismiss" id="cancel"><i class="zmdi zmdi-close"></i></a>
+                                    <a href="" data-tl-action="save" id="save"><i class="zmdi zmdi-check"></i></a>
+                                    <a href="" data-tl-action="save" id="editt" style="display: none"><i class="zmdi zmdi-edit"></i></a>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
 
-                    <div class="checkbox media">
-                        <div class="pull-right">
-                            <ul class="actions actions-alt">
-                                <li class="dropdown">
-                                    <a href="" data-toggle="dropdown">
-                                        <i class="zmdi zmdi-more-vert"></i>
-                                    </a>
+                    <div id="todo_list">
 
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="">Delete</a></li>
-                                        <li><a href="">Archive</a></li>
+                    @if( count($todo) != 0 )
+                        @foreach( $todo as $t )
+                            <div class="checkbox media">
+                                <div class="pull-right">
+                                    <ul class="actions actions-alt">
+                                        <li class="dropdown" id="dropdown{{ $t->id }}">
+                                            <a href="" data-toggle="dropdown">
+                                                <i class="zmdi zmdi-more-vert"></i>
+                                            </a>
+
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a style="cursor:pointer" id="delete" todo-id="{{ $t->id }}">Delete</a></li>
+                                                <li><a style="cursor:pointer" id="edit" todo-id="{{ $t->id }}">Edit</a></li>
+                                            </ul>
+                                        </li>
                                     </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="media-body">
-                            <label>
-                                <input type="checkbox">
-                                <i class="input-helper"></i>
-                                <span>Duis vitae nibh molestie pharetra augue vitae</span>
-                            </label>
-                        </div>
+                                </div>
+                                <div class="media-body">
+                                    <label>
+                                        <input type="checkbox">
+                                        <i class="input-helper"></i>
+                                        <span id="todo-data{{ $t->id }}">{{ $t->todo }}</span>
+                                    </label>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
+
                     </div>
 
-                    <div class="checkbox media">
-                        <div class="pull-right">
-                            <ul class="actions actions-alt">
-                                <li class="dropdown">
-                                    <a href="" data-toggle="dropdown">
-                                        <i class="zmdi zmdi-more-vert"></i>
-                                    </a>
-
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="">Delete</a></li>
-                                        <li><a href="">Archive</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="media-body">
-                            <label>
-                                <input type="checkbox">
-                                <i class="input-helper"></i>
-                                <span>In vel imperdiet leoorbi mollis leo sit amet quam fringilla varius mauris orci turpis</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="checkbox media">
-                        <div class="pull-right">
-                            <ul class="actions actions-alt">
-                                <li class="dropdown">
-                                    <a href="" data-toggle="dropdown">
-                                        <i class="zmdi zmdi-more-vert"></i>
-                                    </a>
-
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="">Delete</a></li>
-                                        <li><a href="">Archive</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="media-body">
-                            <label>
-                                <input type="checkbox">
-                                <i class="input-helper"></i>
-                                <span>Suspendisse quis sollicitudin erosvel dictum nunc</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="checkbox media">
-                        <div class="pull-right">
-                            <ul class="actions actions-alt">
-                                <li class="dropdown">
-                                    <a href="" data-toggle="dropdown">
-                                        <i class="zmdi zmdi-more-vert"></i>
-                                    </a>
-
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="">Delete</a></li>
-                                        <li><a href="">Archive</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="media-body">
-                            <label>
-                                <input type="checkbox">
-                                <i class="input-helper"></i>
-                                <span>Curabitur egestas finibus sapien quis faucibusras bibendum ut justo at sagittis. In hac habitasse platea dictumst</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="checkbox media">
-                        <div class="pull-right">
-                            <ul class="actions actions-alt">
-                                <li class="dropdown">
-                                    <a href="" data-toggle="dropdown">
-                                        <i class="zmdi zmdi-more-vert"></i>
-                                    </a>
-
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="">Delete</a></li>
-                                        <li><a href="">Archive</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="media-body">
-                            <label>
-                                <input type="checkbox">
-                                <i class="input-helper"></i>
-                                <span>Suspendisse potenti. Cras dolor augue, tincidunt sit amet lorem id, blandit rutrum libero</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="checkbox media">
-                        <div class="pull-right">
-                            <ul class="actions actions-alt">
-                                <li class="dropdown">
-                                    <a href="" data-toggle="dropdown">
-                                        <i class="zmdi zmdi-more-vert"></i>
-                                    </a>
-
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="">Delete</a></li>
-                                        <li><a href="">Archive</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="media-body">
-                            <label>
-                                <input type="checkbox">
-                                <i class="input-helper"></i>
-                                <span>Proin luctus dictum nisl id auctor. Nullam lobortis condimentum arcu sit amet gravida</span>
-                            </label>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -308,6 +201,84 @@
 
 <script>
     $(document).ready(function() {
+
+        $('#todo_list').on('click', '#delete', function(){
+            var id = $(this).attr('todo-id');
+            $('#dropdown').removeClass('open');
+
+            deletetodo(id);
+        });
+
+        function deletetodo(id){
+            var url = '{{ url("deletetodo") }}';
+
+            $.get(url, {'id' : id}, function(data){
+                var d = data;
+                var content = '';
+
+                for( i = 0; i < d.length; i++ ){
+                    content += '<div class="checkbox media"><div class="pull-right"><ul class="actions actions-alt"><li class="dropdown" id="dropdown'+ d[i]['id'] +'"><a href="" data-toggle="dropdown"><i class="zmdi zmdi-more-vert"></i></a><ul class="dropdown-menu dropdown-menu-right">  <li><a style="cursor:pointer" id="delete" todo-id="'+ d[i]['id'] +'">Delete</a></li>  <li><a style="cursor:pointer" id="edit" todo-id="'+ d[i]['id'] +'">Edit</a></li>  </ul></li></ul></div><div class="media-body"><label><input type="checkbox"><i class="input-helper"></i><span id="todo-data'+ d[i]['id'] +'">'+ d[i]['todo'] +'</span></label></div></div>';
+                }
+
+                $('#todo_list').html(content);
+            });
+        }
+
+        $('#save').click(function(){
+            addtodo();
+        });
+
+        function addtodo(){
+            var todo = $('#todo_form').serializeArray();
+            var url = '{{ url("addtodo") }}';
+
+            $.post(url, todo, function(data){
+                var d = data;
+                var content = '';
+
+                for( i = 0; i < d.length; i++ ){
+                    content += '<div class="checkbox media"><div class="pull-right"><ul class="actions actions-alt"><li class="dropdown" id="dropdown'+ d[i]['id'] +'"><a href="" data-toggle="dropdown"><i class="zmdi zmdi-more-vert"></i></a><ul class="dropdown-menu dropdown-menu-right">  <li><a style="cursor:pointer" id="delete" todo-id="'+ d[i]['id'] +'">Delete</a></li>  <li><a style="cursor:pointer" id="edit" todo-id="'+ d[i]['id'] +'">Edit</a></li>  </ul></li></ul></div><div class="media-body"><label><input type="checkbox"><i class="input-helper"></i><span id="todo-data'+ d[i]['id'] +'">'+ d[i]['todo'] +'</span></label></div></div>';
+                }
+
+                $('#todo_list').html(content);
+            });
+        }
+
+        var id;
+
+        $('#todo_list').on('click', '#edit', function(){
+            id = $(this).attr('todo-id');
+            $('#add-tl-item').addClass('toggled');
+            $('#dropdown'+id).removeClass('open');
+            $('#new-todo').val($('#todo-data'+id).text());
+
+            $('#save').css('display', 'none');
+            $('#editt').css('display', 'inline-block');
+        });
+
+        $('#editt').click(function(){
+            $('#editt').css('display', 'none');
+            $('#save').css('display', 'inline-block');
+
+            var data = $('#new-todo').val();
+
+            editTodo(data);
+        });
+
+        $('#cancel').click(function(){
+            $('#editt').css('display', 'none');
+            $('#save').css('display', 'inline-block');
+        });
+
+        function editTodo(data){
+            var url = '{{ url("edittodo") }}';
+
+            $.get(url, {'id' : id, 'data' : data}, function(){
+                $('#todo-data'+id).html(data);
+            });
+        }
+
+
         var date = new Date();
         var d = date.getDate();
         var m = date.getMonth();

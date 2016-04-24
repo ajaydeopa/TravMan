@@ -12,60 +12,43 @@
             <form class="form-horizontal" role="form" method="POST" onsubmit="return false" id="member_form">
                 {!! csrf_field() !!}
                 <!-- User Name -->
-                <div class="form-group fg-float">
-                    <div class="input-group m-b-20 ">
-                        <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
-                        <div class="fg-line {{ $errors->has('user_name') ? ' has-error' : '' }}">
-                            <input type="text" class="form-control" name="user_name" value="{{ old('user_name') }}">
-                            <label class="fg-label">Full Name</label>
-                        </div>
-                        <p>
-                            <strong class="c-red" id="error_name"></strong>
-                        </p>
+                <div class="input-group m-b-20 ">
+                    <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+                    <div class="fg-line {{ $errors->has('user_name') ? ' has-error' : '' }}">
+                        <input type="text" class="form-control" placeholder="Full Name" name="user_name" value="{{ old('user_name') }}">
                     </div>
+                    <div><strong id="error_name"></strong></div>
                 </div>
                 <!-- Email -->
-                <div class="form-group fg-float">
-                    <div class="input-group m-b-20 ">
-                        <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
-                        <div class="fg-line {{ $errors->has('email') ? ' has-error' : '' }}">
-                            <input type="text" class="form-control" name="email" value="{{ old('email') }}">
-                            <label class="fg-label">E-Mail Address</label>
-                        </div>
-                        <p>
-                            <strong class="c-red" id="error_email"></strong>
-                        </p>
-                    </div>
-                </div>
 
-                <!-- password -->
-                <div class="form-group fg-float">
-                    <div class="input-group m-b-20 ">
-                        <span class="input-group-addon"><i class="zmdi zmdi-lock"></i></span>
-                        <div class="fg-line {{ $errors->has('password') ? ' has-error' : '' }}">
-                            <input type="password" class="form-control" name="password">
-                            <label class="fg-label">Password</label>
-                        </div>
-                        <p>
-                            <strong class="c-red" id="error_password"></strong>
-                        </p>
+                <div class="input-group m-b-20 ">
+                    <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
+                    <div class="fg-line {{ $errors->has('email') ? ' has-error' : '' }}">
+                        <input type="text" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}">
                     </div>
+                    <div><strong id="error_email"></strong></div>
+                </div>
+                <!-- password -->
+
+
+                <div class="input-group m-b-20 ">
+                    <span class="input-group-addon"><i class="zmdi zmdi-lock"></i></span>
+                    <div class="fg-line {{ $errors->has('password') ? ' has-error' : '' }}">
+                        <input type="password" class="form-control" placeholder="Password" name="password">
+                    </div>
+                    <div><strong id="error_password"></strong></div>
                 </div>
 
                 <!-- Confirm password -->
-                <div class="form-group fg-float">
-                    <div class="input-group m-b-20 ">
-                        <span class="input-group-addon"><i class="zmdi zmdi-lock"></i></span>
-                        <div class="fg-line {{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <input type="password" class="form-control" name="password_confirmation">
-                            <label class="fg-label">Confirm Password</label>
-                        </div>
-                        <p>
-                            <strong class="c-red" id="error_confirm"></strong>
-                        </p>
+                <div class="input-group m-b-20 ">
+                    <span class="input-group-addon"><i class="zmdi zmdi-lock"></i></span>
+                    <div class="fg-line {{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+                        <input type="password" class="form-control" placeholder="Confirm Password" name="password_confirmation">
                     </div>
+                    <div><strong id="error_confirm"></strong></div>
                 </div>
 
+                <!-- button -->
                 <div class="input-group m-b-20 ">
                     <span class="input-group-addon"></span>
                     <div class="fg-line">
@@ -79,9 +62,9 @@
 </div>
 
 
+
 @endsection @section('footer')
-<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+
 <script>
     $(document).ready(function() {
         validate();

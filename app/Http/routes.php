@@ -21,8 +21,6 @@
 | kernel and includes session state, CSRF protection, and more.
 |
 */
-
-
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
     
@@ -33,22 +31,42 @@ Route::group(['middleware' => 'web'], function () {
     
     Route::group(['middleware' => 'auth'], function () {
         //redirect to dashboard to loged in user
-        Route::get('dashboard', function(){
-            return view('pages.dashboard');        
+
+
+        Route::get('createpackage', function(){
+            return view('pages.createpackage');
         });
+
+        Route::post('savepackage', 'PackageController@save');
+
+        /*Route::get('profile', function(){
+            return view('pages.profile');
+        });*/
+
+        Route::get('profile', 'ProfileController@show');
+
+        Route::post('summarysave', 'ProfileController@summarysave');
+
+        Route::post('basicinfosave', 'ProfileController@basicinfosave');
+
+        Route::post('contactinfosave', 'ProfileController@contactinfosave');
         
         Route::get('booking', function(){
             return view('pages.booking');
         });
         
-         Route::get('profile', function(){
-            return view('pages.profile');
-        });
+
         Route::get('create', function(){
             return view('pages.memberRegister');
         });
         
         Route::get('count', 'NotificationController@countNotification');
+
+        Route::get('showbookings', 'BookingController@allbookings');
+
+        Route::get('cancel', 'BookingController@cancel');
+
+        Route::get('booking/{id}', 'BookingController@showbooking');
         
         //Route::get('cm', 'MemberController@cm');
         
@@ -59,5 +77,15 @@ Route::group(['middleware' => 'web'], function () {
         Route::post('make_booking', 'BookingController@makeBooking');
         
         Route::post('create_member', 'MemberController@createMember');
+
+        Route::get('eventsave', 'CalendarTodoController@eventsave');
+
+        Route::get('dashboard', 'CalendarTodoController@load');
+
+        Route::post('addtodo', 'CalendarTodoController@addtodo');
+
+        Route::get('deletetodo', 'CalendarTodoController@deletetodo');
+
+        Route::get('edittodo', 'CalendarTodoController@edittodo');
     });
 });

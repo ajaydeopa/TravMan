@@ -12,14 +12,14 @@ use Auth;
 class NotificationController extends Controller
 {
     public function countNotification(){
-        $count = Notification::where('cid', Auth::user()->id)->where('status', 'unseen')->get()->count();
+        $count = Notification::where('cid', Auth::user()->id)->where('seen_status', 'unseen')->get()->count();
         return $count;
     }
     
     public function show(){
-        $data = Notification::latest('notified_at')->where('cid', Auth::user()->id)->get();
+        $data = Notification::latest('id')->where('cid', Auth::user()->id)->get();
         
-        Notification::where('cid', Auth::user()->id)->where('notified_at', '<=', Carbon::now())->update(['status' => 'seen']);
+        Notification::where('cid', Auth::user()->id)->where('notified_at', '<=', Carbon::now())->update(['seen_status' => 'seen']);
         
         return $data;
     }

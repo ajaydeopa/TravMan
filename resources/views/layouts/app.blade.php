@@ -243,6 +243,7 @@
     <!-- Javascript Libraries -->
     <script src="{{URL::to('assets')}}/vendors/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+     <script src="{{URL::to('assets')}}/vendors/input-mask/input-mask.min.js"></script>
 
      <script src="{{URL::to('assets')}}/vendors/bower_components/flot/jquery.flot.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bower_components/flot/jquery.flot.resize.js"></script>

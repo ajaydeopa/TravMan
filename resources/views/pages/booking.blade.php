@@ -33,11 +33,13 @@
                     <div class="row">
                         <div class="col-sm-6">
 
+
+
                             <!--phone no-->
                             <div class="input-group m-b-20 ">
                                 <span class="input-group-addon"><i class="zmdi zmdi-phone"></i></span>
                                 <div class="fg-line {{ $errors->has('phone_no') ? ' has-error' : '' }}">
-                                    <input type="text" class="form-control" placeholder="Phone No" name="phone_no" value="{{ old('phone_no') }}">
+                                    <input type="text" class="form-control input-mask" data-mask="000-000-0000" placeholder="Phone No" maxlength="14" name="phone_no" value="{{ old('phone_no') }}">
                                 </div>
                                 <div><strong id="error_phone_no"></strong></div>
                             </div>

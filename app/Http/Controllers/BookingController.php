@@ -22,7 +22,7 @@ class BookingController extends Controller
             'email' => 'required|email',
             'payment_id' => 'required',
             'package_id' => 'required',
-            'phone_no' => 'required|digits:10',
+            'phone_no' => 'required',
             'no_of_adults' => 'required',
             'no_of_childrens' => 'required'
         ]);

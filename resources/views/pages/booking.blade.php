@@ -64,35 +64,35 @@
             <div class="card-body card-padding">
 
                 <div class="panel-group" data-collapse-color="red" id="accordionRed" role="tablist" aria-multiselectable="true">
-                            <div class="panel panel-collapse">
-                                <div class="panel-heading" role="tab">
-                                    <h4 class="panel-title">
+                    <div class="panel panel-collapse">
+                        <div class="panel-heading" role="tab">
+                            <h4 class="panel-title">
                                                     <a data-toggle="collapse" data-parent="#accordionRed" href="#accordionRed-one" aria-expanded="true">
                                                         Collapse Red #1
                                                     </a>
                                                 </h4>
-                                </div>
-                                <div id="accordionRed-one" class="collapse in" role="tabpanel">
-                                    <div class="panel-body">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
-                                    </div>
-                                </div>
+                        </div>
+                        <div id="accordionRed-one" class="collapse in" role="tabpanel">
+                            <div class="panel-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
                             </div>
-                            <div class="panel panel-collapse">
-                                <div class="panel-heading" role="tab">
-                                    <h4 class="panel-title">
+                        </div>
+                    </div>
+                    <div class="panel panel-collapse">
+                        <div class="panel-heading" role="tab">
+                            <h4 class="panel-title">
                                                     <a class="collapsed" data-toggle="collapse" data-parent="#accordionRed" href="#accordionRed-two" aria-expanded="false">
                                                         Collapse Red #2
                                                     </a>
                                                 </h4>
-                                </div>
-                                <div id="accordionRed-two" class="collapse" role="tabpanel">
-                                    <div class="panel-body">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
-                                    </div>
-                                </div>
+                        </div>
+                        <div id="accordionRed-two" class="collapse" role="tabpanel">
+                            <div class="panel-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
                             </div>
                         </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

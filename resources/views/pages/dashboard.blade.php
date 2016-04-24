@@ -755,5 +755,6 @@
             cId.fullCalendar('changeView', dataView);
         });
     });
+
 </script>
 @endsection

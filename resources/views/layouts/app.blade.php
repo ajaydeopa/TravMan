@@ -76,11 +76,12 @@
                                 <div class="lv-header">
                                     Notification
                                 </div>
+                               <div class="pm-overview c-overflow" style=" height:200px;">
                                 <div class="lv-body" id="notification_list">
 
                                 </div>
+                                </div>
 
-                                <a class="lv-footer" href="">View Previous</a>
                             </div>
 
                         </div>

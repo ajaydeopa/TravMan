@@ -1,48 +1,6 @@
 @extends('layouts.app',['link' => 'Add URL']) @section('content')
 <div class="container">
-    <!--<div class="card">
-                        <div class="card-header">
-                            <h2>Sales Statistics <small>Vestibulum purus quam scelerisque, mollis nonummy metus</small></h2>
-
-                            <ul class="actions">
-                                <li>
-                                    <a href="">
-                                        <i class="zmdi zmdi-refresh-alt"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <i class="zmdi zmdi-download"></i>
-                                    </a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="" data-toggle="dropdown">
-                                        <i class="zmdi zmdi-more-vert"></i>
-                                    </a>
-
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li>
-                                            <a href="">Change Date Range</a>
-                                        </li>
-                                        <li>
-                                            <a href="">Change Graph Type</a>
-                                        </li>
-                                        <li>
-                                            <a href="">Other Settings</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="card-body">
-                            <div class="chart-edge">
-                                <div id="curved-line-chart" class="flot-chart "></div>
-                            </div>
-                        </div>
-                    </div>-->
-
-    <div class="mini-charts">
+        <div class="mini-charts">
         <div class="row">
             <div class="col-sm-6 col-md-3">
                 <div class="mini-charts-item bgm-cyan">
@@ -93,150 +51,6 @@
             </div>
         </div>
     </div>
-
-
-    <!--<div class="dash-widgets">
-                        <div class="row">
-                            <div class="col-md-3 col-sm-6">
-                                <div id="site-visits" class="dash-widget-item bgm-teal">
-                                    <div class="dash-widget-header">
-                                        <div class="p-20">
-                                            <div class="dash-widget-visits"></div>
-                                        </div>
-
-                                        <div class="dash-widget-title">For the past 30 days</div>
-
-                                        <ul class="actions actions-alt">
-                                            <li class="dropdown">
-                                                <a href="" data-toggle="dropdown">
-                                                    <i class="zmdi zmdi-more-vert"></i>
-                                                </a>
-
-                                                <ul class="dropdown-menu dropdown-menu-right">
-                                                    <li>
-                                                        <a href="">Refresh</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="">Manage Widgets</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="">Widgets Settings</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="p-20">
-
-                                        <small>Page Views</small>
-                                        <h3 class="m-0 f-400">47,896,536</h3>
-
-                                        <br/>
-
-                                        <small>Site Visitors</small>
-                                        <h3 class="m-0 f-400">24,456,799</h3>
-
-                                        <br/>
-
-                                        <small>Total Clicks</small>
-                                        <h3 class="m-0 f-400">13,965</h3>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-3 col-sm-6">
-                                <div id="pie-charts" class="dash-widget-item">
-                                    <div class="bgm-pink">
-                                        <div class="dash-widget-header">
-                                            <div class="dash-widget-title">Email Statistics</div>
-                                        </div>
-
-                                        <div class="clearfix"></div>
-
-                                        <div class="text-center p-20 m-t-25">
-                                            <div class="easy-pie main-pie" data-percent="75">
-                                                <div class="percent">45</div>
-                                                <div class="pie-title">Total Emails Sent</div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="p-t-20 p-b-20 text-center">
-                                        <div class="easy-pie sub-pie-1" data-percent="56">
-                                            <div class="percent">56</div>
-                                            <div class="pie-title">Bounce Rate</div>
-                                        </div>
-                                        <div class="easy-pie sub-pie-2" data-percent="84">
-                                            <div class="percent">84</div>
-                                            <div class="pie-title">Total Opened</div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div class="col-md-3 col-sm-6">
-                                <div class="dash-widget-item bgm-lime">
-                                    <div id="weather-widget"></div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-3 col-sm-6">
-                                <div id="best-selling" class="dash-widget-item">
-                                    <div class="dash-widget-header">
-                                        <div class="dash-widget-title">Best Sellings</div>
-                                        <img src="img/widgets/alpha.jpg" alt="">
-                                        <div class="main-item">
-                                            <small>Samsung Galaxy Alpha</small>
-                                            <h2>$799.99</h2>
-                                        </div>
-                                    </div>
-
-                                    <div class="listview p-t-5">
-                                        <a class="lv-item" href="">
-                                            <div class="media">
-                                                <div class="pull-left">
-                                                    <img class="lv-img-sm" src="img/widgets/note4.jpg" alt="">
-                                                </div>
-                                                <div class="media-body">
-                                                    <div class="lv-title">Samsung Galaxy Note 4</div>
-                                                    <small class="lv-small">$850.00 - $1199.99</small>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a class="lv-item" href="">
-                                            <div class="media">
-                                                <div class="pull-left">
-                                                    <img class="lv-img-sm" src="img/widgets/mate7.jpg" alt="">
-                                                </div>
-                                                <div class="media-body">
-                                                    <div class="lv-title">Huawei Ascend Mate</div>
-                                                    <small class="lv-small">$649.59 - $749.99</small>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a class="lv-item" href="">
-                                            <div class="media">
-                                                <div class="pull-left">
-                                                    <img class="lv-img-sm" src="img/widgets/535.jpg" alt="">
-                                                </div>
-                                                <div class="media-body">
-                                                    <div class="lv-title">Nokia Lumia 535</div>
-                                                    <small class="lv-small">$189.99 - $250.00</small>
-                                                </div>
-                                            </div>
-                                        </a>
-
-                                        <a class="lv-footer" href="">
-                                            View All
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-
     <div class="row">
         <div class="col-sm-6 col-md-4">
 
@@ -445,8 +259,8 @@
                         <div class="modal-header">
                             <h4 class="modal-title">Add an Event</h4>
                         </div>
-                        <div class="modal-body">
-                            <form class="addEvent" role="form">
+                        <form class="addEvent" role="form" onsubmit="return false;">
+                            <div class="modal-body">
                                 <div class="form-group">
                                     <label for="eventName">Event Name</label>
                                     <div class="fg-line">
@@ -473,13 +287,13 @@
 
                                 <input type="hidden" id="getStart" />
                                 <input type="hidden" id="getEnd" />
-                            </form>
-                        </div>
+                            </div>
 
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-link" id="addEvent">Add Event</button>
-                            <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
-                        </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-link" id="addEvent">Add Event</button>
+                                <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -488,107 +302,6 @@
             <!-- End Calendar -->
         </div>
     </div>
-    <!-- Recent Posts -->
-
-    <!-- <div class="card">
-
-                                <div class="card-header ch-alt m-b-20">
-                                    <h2>Recent Posts <small>Phasellus condimentum ipsum id auctor imperdie</small></h2>
-                                    <ul class="actions">
-                                        <li>
-                                            <a href="">
-                                                <i class="zmdi zmdi-refresh-alt"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <i class="zmdi zmdi-download"></i>
-                                            </a>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a href="" data-toggle="dropdown">
-                                                <i class="zmdi zmdi-more-vert"></i>
-                                            </a>
-
-                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                <li>
-                                                    <a href="">Change Date Range</a>
-                                                </li>
-                                                <li>
-                                                    <a href="">Change Graph Type</a>
-                                                </li>
-                                                <li>
-                                                    <a href="">Other Settings</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-
-                                    <button class="btn bgm-cyan btn-float"><i class="zmdi zmdi-plus"></i></button>
-                                </div>
-
-                                <div class="card-body">
-                                    <div class="listview">
-                                        <a class="lv-item" href="">
-                                            <div class="media">
-                                                <div class="pull-left">
-                                                    <img class="lv-img-sm" src="img/profile-pics/1.jpg" alt="">
-                                                </div>
-                                                <div class="media-body">
-                                                    <div class="lv-title">David Belle</div>
-                                                    <small class="lv-small">Cum sociis natoque penatibus et magnis dis parturient montes</small>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a class="lv-item" href="">
-                                            <div class="media">
-                                                <div class="pull-left">
-                                                    <img class="lv-img-sm" src="img/profile-pics/2.jpg" alt="">
-                                                </div>
-                                                <div class="media-body">
-                                                    <div class="lv-title">Jonathan Morris</div>
-                                                    <small class="lv-small">Nunc quis diam diamurabitur at dolor elementum, dictum turpis vel</small>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a class="lv-item" href="">
-                                            <div class="media">
-                                                <div class="pull-left">
-                                                    <img class="lv-img-sm" src="img/profile-pics/3.jpg" alt="">
-                                                </div>
-                                                <div class="media-body">
-                                                    <div class="lv-title">Fredric Mitchell Jr.</div>
-                                                    <small class="lv-small">Phasellus a ante et est ornare accumsan at vel magnauis blandit turpis at augue ultricies</small>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a class="lv-item" href="">
-                                            <div class="media">
-                                                <div class="pull-left">
-                                                    <img class="lv-img-sm" src="img/profile-pics/4.jpg" alt="">
-                                                </div>
-                                                <div class="media-body">
-                                                    <div class="lv-title">Glenn Jecobs</div>
-                                                    <small class="lv-small">Ut vitae lacus sem ellentesque maximus, nunc sit amet varius dignissim, dui est consectetur neque</small>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a class="lv-item" href="">
-                                            <div class="media">
-                                                <div class="pull-left">
-                                                    <img class="lv-img-sm" src="img/profile-pics/4.jpg" alt="">
-                                                </div>
-                                                <div class="media-body">
-                                                    <div class="lv-title">Bill Phillips</div>
-                                                    <small class="lv-small">Proin laoreet commodo eros id faucibus. Donec ligula quam, imperdiet vel ante placerat</small>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a class="lv-footer" href="">View All</a>
-                                    </div>
-                                </div>
-                            </div> -->
-
 </div>
 
 @endsection @section('footer')
@@ -616,67 +329,20 @@
             editable: true,
 
             //Add Events
-            events: [{
-                title: 'Hangout with friends',
-                start: new Date(y, m, 1),
-                allDay: true,
-                className: 'bgm-cyan'
-            }, {
-                title: 'Meeting with client',
-                start: new Date(y, m, 10),
-                allDay: true,
-                className: 'bgm-orange'
-            }, {
-                title: 'Repeat Event',
-                start: new Date(y, m, 18),
-                allDay: true,
-                className: 'bgm-amber'
-            }, {
-                title: 'Semester Exam',
-                start: new Date(y, m, 20),
-                allDay: true,
-                className: 'bgm-green'
-            }, {
-                title: 'Coffee time',
-                start: new Date(y, m, 21),
-                allDay: true,
-                className: 'bgm-orange'
-            }, {
-                title: 'Job Interview',
-                start: new Date(y, m, 5),
-                allDay: true,
-                className: 'bgm-amber'
-            }, {
-                title: 'IT Meeting',
-                start: new Date(y, m, 5),
-                allDay: true,
-                className: 'bgm-green'
-            }, {
-                title: 'Brunch at Beach',
-                start: new Date(y, m, 1),
-                allDay: true,
-                className: 'bgm-lightblue'
-            }, {
-                title: 'Live TV Show',
-                start: new Date(y, m, 15),
-                allDay: true,
-                className: 'bgm-cyan'
-            }, {
-                title: 'Software Conference',
-                start: new Date(y, m, 25),
-                allDay: true,
-                className: 'bgm-lightblue'
-            }, {
-                title: 'Coffee time',
-                start: new Date(y, m, 30),
-                allDay: true,
-                className: 'bgm-orange'
-            }, {
-                title: 'Job Interview',
-                start: new Date(y, m, 30),
-                allDay: true,
-                className: 'bgm-green'
-            }, ],
+            events: [
+
+                @if( count($events) != 0 )
+                    @foreach( $events as $e )
+                        {
+                            title: '{{ $e->event_name }}',
+                            start: new Date( {{$e->year}}, {{$e->month}}, {{$e->day}} ),
+                            allDay: true,
+                            className: '{{ $e->color }}'
+                        },
+                    @endforeach
+                @endif
+
+            ],
 
             //On Day Select
             select: function(start, end, allDay) {
@@ -726,13 +392,19 @@
         $('body').on('click', '#addEvent', function() {
             var eventName = $('#eventName').val();
             var tagColor = $('.event-tag > span.selected').attr('data-tag');
+            var start = $('#getStart').val();
+            var end = $('#getEnd').val();
+
 
             if (eventName != '') {
+                //store event in db
+                eventSave(eventName, tagColor, start);
+
                 //Render Event
                 $('#calendar').fullCalendar('renderEvent', {
                     title: eventName,
-                    start: $('#getStart').val(),
-                    end: $('#getEnd').val(),
+                    start: start,
+                    end: end,
                     allDay: true,
                     className: tagColor
 
@@ -755,5 +427,11 @@
             cId.fullCalendar('changeView', dataView);
         });
     });
+
+    function eventSave(eventName, tagColor, start){
+        var url = '{{ url("eventsave") }}';
+
+        $.get(url, {'event' : eventName, 'color' : tagColor, 'strt' : start});
+    }
 </script>
 @endsection

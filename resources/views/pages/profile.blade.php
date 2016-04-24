@@ -39,7 +39,7 @@
                         </div>
     <!-- End sidebar-->
                          <!--Start About-->
-                        <div class="pm-body clearfix">
+                        <div class="pm-body clearfix" id="about">
 
                             <ul class="tab-nav tn-justified">
                                 <li class="active waves-effect"><a href="profile-about.html">About</a></li>
@@ -65,18 +65,21 @@
                                     </ul>
                                 </div>
                                 <div class="pmbb-body p-l-30">
-                                    <div class="pmbb-view">
-                                       Summary details
+                                    <div class="pmbb-view" id="org_summary">
+                                       {{ $data->summary }}
                                     </div>
 
                                     <div class="pmbb-edit">
-                                        <div class="fg-line">
-                                            <textarea class="form-control" rows="5" placeholder="Summary...">Sed eu est After Edit</textarea>
-                                        </div>
-                                        <div class="m-t-10">
-                                            <button class="btn btn-primary btn-sm">Save</button>
-                                            <button data-pmb-action="reset" class="btn btn-link btn-sm">Cancel</button>
-                                        </div>
+                                        <form method="POST" id="summ_form">
+                                            {!! csrf_field() !!}
+                                            <div class="fg-line">
+                                                <textarea class="form-control" rows="5" placeholder="Summary..." name="summary" id="summary">{{ $data->summary }}</textarea>
+                                            </div>
+                                            <div class="m-t-10">
+                                                <button data-pmb-action="reset" class="btn btn-primary btn-sm" id="save" num="1">Save</button>
+                                                <button data-pmb-action="reset" class="btn btn-link btn-sm">Cancel</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -103,69 +106,72 @@
                                     <div class="pmbb-view">
                                         <dl class="dl-horizontal">
                                             <dt>Full Name</dt>
-                                            <dd>Mallinda Hollaway</dd>
+                                            <dd id="show_name">{{ $data->full_name }}</dd>
                                         </dl>
                                         <dl class="dl-horizontal">
                                             <dt>Gender</dt>
-                                            <dd>Female</dd>
+                                            <dd id="show_gender">{{ $data->gender }}</dd>
                                         </dl>
                                         <dl class="dl-horizontal">
                                             <dt>Birthday</dt>
-                                            <dd>June 23, 1990</dd>
+                                            <dd id="show_birthday">{{$data->birthday}}</dd>
                                         </dl>
                                         <dl class="dl-horizontal">
                                             <dt>Martial Status</dt>
-                                            <dd>Single</dd>
+                                            <dd id="show_status">{{$data->martial_status}}</dd>
                                         </dl>
                                     </div>
 
                                     <div class="pmbb-edit">
-                                        <dl class="dl-horizontal">
-                                            <dt class="p-t-10">Full Name</dt>
-                                            <dd>
-                                                <div class="fg-line">
-                                                    <input type="text" class="form-control" placeholder="eg. Mallinda Hollaway">
-                                                </div>
+                                        <form method="POST" id="basic_info_form">
+                                            {!! csrf_field() !!}
+                                            <dl class="dl-horizontal">
+                                                <dt class="p-t-10">Full Name</dt>
+                                                <dd>
+                                                    <div class="fg-line">
+                                                        <input type="text" class="form-control" value="{{ $data->full_name }}" name="name">
+                                                    </div>
 
-                                            </dd>
-                                        </dl>
-                                        <dl class="dl-horizontal">
-                                            <dt class="p-t-10">Gender</dt>
-                                            <dd>
-                                                <div class="fg-line">
-                                                    <select class="form-control">
-                                                        <option>Male</option>
-                                                        <option>Female</option>
-                                                        <option>Other</option>
-                                                    </select>
-                                                </div>
-                                            </dd>
-                                        </dl>
-                                        <dl class="dl-horizontal">
-                                            <dt class="p-t-10">Birthday</dt>
-                                            <dd>
-                                                <div class="dtp-container dropdown fg-line">
-                                                    <input type='text' class="form-control date-picker" data-toggle="dropdown" placeholder="Click here...">
-                                                </div>
-                                            </dd>
-                                        </dl>
-                                        <dl class="dl-horizontal">
-                                            <dt class="p-t-10">Martial Status</dt>
-                                            <dd>
-                                                <div class="fg-line">
-                                                    <select class="form-control">
-                                                        <option>Single</option>
-                                                        <option>Married</option>
-                                                        <option>Other</option>
-                                                    </select>
-                                                </div>
-                                            </dd>
-                                        </dl>
+                                                </dd>
+                                            </dl>
+                                            <dl class="dl-horizontal">
+                                                <dt class="p-t-10">Gender</dt>
+                                                <dd>
+                                                    <div class="fg-line">
+                                                        <select class="form-control" name="gender">
+                                                            <option>Male</option>
+                                                            <option>Female</option>
+                                                            <option>Other</option>
+                                                        </select>
+                                                    </div>
+                                                </dd>
+                                            </dl>
+                                            <dl class="dl-horizontal">
+                                                <dt class="p-t-10">Birthday</dt>
+                                                <dd>
+                                                    <div class="dtp-container dropdown fg-line">
+                                                        <input type='text' class="form-control date-picker" data-toggle="dropdown" placeholder="Click here..." name="birthday">
+                                                    </div>
+                                                </dd>
+                                            </dl>
+                                            <dl class="dl-horizontal">
+                                                <dt class="p-t-10">Martial Status</dt>
+                                                <dd>
+                                                    <div class="fg-line">
+                                                        <select class="form-control" name="martial_status">
+                                                            <option>Single</option>
+                                                            <option>Married</option>
+                                                            <option>Other</option>
+                                                        </select>
+                                                    </div>
+                                                </dd>
+                                            </dl>
 
-                                        <div class="m-t-30">
-                                            <button class="btn btn-primary btn-sm">Save</button>
-                                            <button data-pmb-action="reset" class="btn btn-link btn-sm">Cancel</button>
-                                        </div>
+                                            <div class="m-t-30">
+                                                <button data-pmb-action="reset" class="btn btn-primary btn-sm" id="save" num="2">Save</button>
+                                                <button data-pmb-action="reset" class="btn btn-link btn-sm">Cancel</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -195,60 +201,30 @@
                                     <div class="pmbb-view">
                                         <dl class="dl-horizontal">
                                             <dt>Mobile Phone</dt>
-                                            <dd>00971 12345678 9</dd>
+                                            <dd id="show_phone">{{ $data->phone }}</dd>
                                         </dl>
                                         <dl class="dl-horizontal">
                                             <dt>Email Address</dt>
-                                            <dd>malinda.h@gmail.com</dd>
-                                        </dl>
-                                        <dl class="dl-horizontal">
-                                            <dt>Twitter</dt>
-                                            <dd>@malinda</dd>
-                                        </dl>
-                                        <dl class="dl-horizontal">
-                                            <dt>Skype</dt>
-                                            <dd>malinda.hollaway</dd>
+                                            <dd>{{ Auth::user()->email }}</dd>
                                         </dl>
                                     </div>
 
                                     <div class="pmbb-edit">
-                                        <dl class="dl-horizontal">
-                                            <dt class="p-t-10">Mobile Phone</dt>
-                                            <dd>
-                                                <div class="fg-line">
-                                                    <input type="text" class="form-control" placeholder="eg. 00971 12345678 9">
-                                                </div>
-                                            </dd>
-                                        </dl>
-                                        <dl class="dl-horizontal">
-                                            <dt class="p-t-10">Email Address</dt>
-                                            <dd>
-                                                <div class="fg-line">
-                                                    <input type="email" class="form-control" placeholder="eg. malinda.h@gmail.com">
-                                                </div>
-                                            </dd>
-                                        </dl>
-                                        <dl class="dl-horizontal">
-                                            <dt class="p-t-10">Twitter</dt>
-                                            <dd>
-                                                <div class="fg-line">
-                                                    <input type="text" class="form-control" placeholder="eg. @malinda">
-                                                </div>
-                                            </dd>
-                                        </dl>
-                                        <dl class="dl-horizontal">
-                                            <dt class="p-t-10">Skype</dt>
-                                            <dd>
-                                                <div class="fg-line">
-                                                    <input type="text" class="form-control" placeholder="eg. malinda.hollaway">
-                                                </div>
-                                            </dd>
-                                        </dl>
-
-                                        <div class="m-t-30">
-                                            <button class="btn btn-primary btn-sm">Save</button>
-                                            <button data-pmb-action="reset" class="btn btn-link btn-sm">Cancel</button>
-                                        </div>
+                                        <form method="POST" id="phone_form">
+                                            {!! csrf_field() !!}
+                                            <dl class="dl-horizontal">
+                                                <dt class="p-t-10">Mobile Phone</dt>
+                                                <dd>
+                                                    <div class="fg-line">
+                                                        <input type="text" class="form-control" placeholder="eg. 00971 12345678 9" name="phone">
+                                                    </div>
+                                                </dd>
+                                            </dl>
+                                            <div class="m-t-30">
+                                                <button data-pmb-action="reset" class="btn btn-primary btn-sm" id="save" num="3">Save</button>
+                                                <button data-pmb-action="reset" class="btn btn-link btn-sm">Cancel</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -258,4 +234,48 @@
 </div>
 @endsection
 @section('footer')
+<script>
+    $('#about').on('click', '#save', function(){
+        var num = $(this).attr('num');
+        if( num == 1 )
+            summarySave();
+        else if( num == 2 )
+            basicInfoSave();
+        else
+            contactInfoSave();
+    });
+
+    //update summary
+    function summarySave(){
+        var url = '{{ url("summarysave") }}';
+        var summ = $('#summ_form').serializeArray();;
+
+        $.post(url, summ, function(){
+            $('#org_summary').html(summ[1].value);
+        });
+    }
+
+    //update basic info
+    function basicInfoSave(){
+        var url = '{{ url("basicinfosave") }}';
+        var data = $('#basic_info_form').serializeArray();
+
+        $.post(url, data, function(){
+            $('#show_name').html(data[1].value);
+            $('#show_gender').html(data[2].value);
+            $('#show_birthday').html(data[3].value);
+            $('#show_status').html(data[4].value);
+        });
+    }
+
+    //update contact info
+    function contactInfoSave(){
+        var url = '{{ url("contactinfosave") }}';
+        var data = $('#phone_form').serializeArray();
+
+        $.post(url, data, function(){
+            $('#show_phone').html(data[1].value);
+        });
+    }
+</script>
 @endsection

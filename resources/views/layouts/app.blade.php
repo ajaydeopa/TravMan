@@ -152,7 +152,11 @@
             <ul class="main-menu">
                 <li><a href="{{URL::to('/')}}"><i class="zmdi zmdi-calendar-note"></i>Dashboard</a></li>
                 <li><a href="{{ url('booking')}}"><i class="zmdi zmdi-calendar-note"></i>Booking</a></li>
-                <li><a href="{{ url('create') }}"><i class="zmdi zmdi-account-add"></i>Create Member</a></li>
+                <li><a href="{{ url('showbookings')}}"><i class="zmdi zmdi-calendar-note"></i>Show booking</a></li>
+                @if( Auth::user()->flag == 1 )
+                    <li><a href="{{ url('create') }}"><i class="zmdi zmdi-account-add"></i>Create Member</a></li>
+                @endif
+                <li><a href="{{ url('createpackage')}}"><i class="zmdi zmdi-calendar-note"></i>Create package</a></li>
                 <li class="sub-menu">
                     <a href=""><i class="zmdi zmdi-view-compact"></i> Headers</a>
 
@@ -295,13 +299,16 @@
             $.get(url, function(data) {
                 var d = data;
                 //console.log(d);
-                for (i = 0; i < d.length; i++) {
-                    if (i == 0)
-                        $('#notification_list').html('<a class="lv-item" href=""><div class="media"><div class="pull-left"><img class="lv-img-sm" src="{{URL::to("assets")}}/img/profile-pics/1.jpg" alt=""></div><div class="media-body"><div class="lv-title">' + d[i].email_of_booker + '</div><small class="lv-small">' + d[i].email_of_booker + ' has made a booking.</small></i></div></div></a>');
-                    else
-                        $('#notification_list').append('<a class="lv-item" href=""><div class="media"><div class="pull-left"><img class="lv-img-sm" src="{{URL::to("assets")}}/img/profile-pics/1.jpg" alt=""></div><div class="media-body"><div class="lv-title">' + d[i].email_of_booker + '</div><small class="lv-small">' + d[i].email_of_booker + ' has made a booking.</small></div></div></a>');
 
+                var content = '';
+                for (i = 0; i < d.length; i++) {
+                    var status = 'cancelled booking.';
+                    if( d[i]['booking_status'] == 'booked' )
+                        status = 'made a booking.';
+
+                    content += '<a class="lv-item" href=""><div class="media"><div class="pull-left"><img class="lv-img-sm" src="{{URL::to("assets")}}/img/profile-pics/1.jpg" alt=""></div><div class="media-body"><div class="lv-title">' + d[i].email_of_booker + '</div><small class="lv-small">' + d[i].email_of_booker + ' '+ status +'</small></i></div></div></a>';
                 }
+                $('#notification_list').html(content);
             });
         }
     </script>

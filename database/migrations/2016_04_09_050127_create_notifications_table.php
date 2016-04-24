@@ -18,7 +18,8 @@ class CreateNotificationsTable extends Migration
             $table->string('company_id');
             $table->string('email_of_booker');
             $table->timestamp('notified_at');
-            $table->string('status');
+            $table->string('seen_status'); // seen or unseen
+            $table->string('booking_status'); // booked or cancelled
         });
     }
 

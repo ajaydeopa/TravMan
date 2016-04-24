@@ -13,35 +13,81 @@
                 <form method="POST" id="booking_form" onsubmit="return false;">
                     {!! csrf_field() !!}
                     <div class="input-group m-b-20 ">
+                        <span class="input-group-addon"><i class="zmdi zmdi-labels"></i></span>
+                        <div class="fg-line {{ $errors->has('package_id') ? ' has-error' : '' }}">
+                            <input type="text" class="form-control" placeholder="Package Id" name="package_id" value="{{ old('package_id') }}">
+                        </div>
+                        <div><strong id="error_package_id"></strong></div>
+                    </div>
+
+                    <!-- duration -->
+                    <div class="input-group m-b-20 ">
+                        <span class="input-group-addon"><i class="zmdi zmdi-labels"></i></span>
+                        <div class="fg-line {{ $errors->has('package_duration') ? ' has-error' : '' }}">
+                            <input type="text" class="form-control" placeholder="Package Duration" name="package_duration" value="{{ old('package_duration') }}">
+                        </div>
+                        <div><strong id="error_package_duration"></strong></div>
+                    </div>
+
+                    <!-- departure -->
+                    <div class="input-group m-b-20 ">
+                        <span class="input-group-addon"><i class="zmdi zmdi-labels"></i></span>
+                        <div class="fg-line {{ $errors->has('departure_date') ? ' has-error' : '' }}">
+                            <input type="date" class="form-control" placeholder="Departure Date" name="departure_date" value="{{ old('departure_date') }}">
+                        </div>
+                        <div><strong id="error_departure_date"></strong></div>
+                    </div>
+
+                    <div class="input-group m-b-20 ">
                         <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
                         <div class="fg-line {{ $errors->has('name') ? ' has-error' : '' }}">
                             <input type="text" class="form-control" placeholder="Customer Name" name="name" value="{{ old('name') }}">
                         </div>
+                        <div><strong id="error_name"></strong></div>
                     </div>
+
                     <div class="input-group m-b-20 ">
                         <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
                         <div class="fg-line {{ $errors->has('email') ? ' has-error' : '' }}">
                             <input type="text" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}">
                         </div>
+                        <div><strong id="error_email"></strong></div>
                     </div>
+
+
+                    <div class="input-group m-b-20 ">
+                        <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
+                        <div class="fg-line {{ $errors->has('no_of_adults') ? ' has-error' : '' }}">
+                            <input type="text" class="form-control" placeholder="Email" name="no_of_adults" value="{{ old('no_of_adults') }}">
+                        </div>
+                        <div><strong id="error_no_of_adults"></strong></div>
+                    </div>
+
+
+                    <div class="input-group m-b-20 ">
+                        <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
+                        <div class="fg-line {{ $errors->has('no_of_childrens') ? ' has-error' : '' }}">
+                            <input type="text" class="form-control" placeholder="Email" name="no_of_childrens" value="{{ old('no_of_childrens') }}">
+                        </div>
+                        <div><strong id="error_no_of_childrens"></strong></div>
+                    </div>
+
                     <div class="input-group m-b-20 ">
                         <span class="input-group-addon"><i class="zmdi zmdi-money"></i></span>
                         <div class="fg-line {{ $errors->has('payment_id') ? ' has-error' : '' }}">
                             <input type="text" class="form-control" placeholder="Payment Id" name="payment_id" value="{{ old('payment_id') }}">
                         </div>
+                        <div><strong id="error_payment_id"></strong></div>
                     </div>
-                    <div class="input-group m-b-20 ">
-                        <span class="input-group-addon"><i class="zmdi zmdi-labels"></i></span>
-                        <div class="fg-line {{ $errors->has('package_id') ? ' has-error' : '' }}">
-                            <input type="text" class="form-control" placeholder="Package Id" name="package_id" value="{{ old('package_id') }}">
-                        </div>
-                    </div>
+
                     <div class="input-group m-b-20 ">
                         <span class="input-group-addon"><i class="zmdi zmdi-smartphone-iphone"></i></span>
                         <div class="fg-line {{ $errors->has('phone_no') ? ' has-error' : '' }}">
                             <input type="text" class="form-control" placeholder="Phone No" name="phone_no" value="{{ old('phone_no') }}">
                         </div>
+                        <div><strong id="error_phone_no"></strong></div>
                     </div>
+
                     <div class="input-group m-b-20 ">
                         <span class="input-group-addon"></span>
                         <div class="fg-line">
@@ -101,10 +147,6 @@
 
 
 @endsection @section('footer')
-<script src="{{URL::to('assets')}}/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
-
-<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function() {
         $('#submit').click(function() {
@@ -117,11 +159,45 @@
         var url = '{{ url("checkbooking") }}';
         var data = $('#booking_form').serializeArray();
         $.post(url, data, function(data) {
-            if (data == 'false') {
-                $('#message').fadeIn().html('All the field should not be empty & valid.').fadeOut(2000);
-                $('#submit').val('Make Booking');
-            } else
+            var d = data;
+            if( d['package_id'] != 'no' ){
+                $('#error_package_id').html(d['package_id']);
+                $('#submit').val('Booking');
+            }
+            else if( d['name'] != 'no' ){
+                $('#error_package_id').html('');
+                $('#error_name').html(d['name']);
+                $('#submit').val('Booking');
+            }
+            else if( d['email'] != 'no' ){
+                $('#error_name').html('');
+                $('#error_email').html(d['email']);
+                $('#submit').val('Booking');
+            }
+            else if( d['no_of_adults'] != 'no' ){
+                $('#error_email').html('');
+                $('#error_no_of_adults').html(d['no_of_adults']);
+                $('#submit').val('Booking');
+            }
+            else if( d['no_of_childrens'] != 'no' ){
+                $('#error_no_of_adults').html('');
+                $('#error_no_of_childrens').html(d['no_of_childrens']);
+                $('#submit').val('Booking');
+            }
+            else if( d['payment_id'] != 'no' ){
+                $('#error_no_of_childrens').html('');
+                $('#error_payment_id').html(d['payment_id']);
+                $('#submit').val('Booking');
+            }
+            else if( d['phone_no'] != 'no' ){
+                $('#error_payment_id').html('');
+                $('#error_phone_no').html(d['phone_no']);
+                $('#submit').val('Booking');
+            }
+            else{
+                $('#error_phone_no').html('');
                 makeBooking();
+            }
         });
     }
 

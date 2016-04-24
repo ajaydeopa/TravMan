@@ -83,8 +83,6 @@
 @endsection
 
 @section('footer')
-<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function(){
         validate();

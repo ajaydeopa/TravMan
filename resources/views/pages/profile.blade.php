@@ -46,7 +46,7 @@
                 <li class="active waves-effect"><a href="profile-about.html">About</a></li>
             </ul>
 
-<!--summary-->
+            <!--summary-->
             <div class="pmb-block">
                 <div class="pmbb-header">
                     <h2><i class="zmdi zmdi-equalizer m-r-5"></i> Summary</h2>
@@ -75,7 +75,7 @@
                         <form method="POST" id="summ_form">
                             {!! csrf_field() !!}
                             <div class="fg-line">
-                                <textarea class="form-control" rows="3" placeholder="Summary..." name="summary" id="summary">{{ $data->summary }}</textarea>
+                                <textarea class="form-control auto-size" rows="3" placeholder="Summary..." name="summary" id="summary" data-autosize-on="true" style="overflow: hidden; word-wrap: break-word; height: 41px;">{{ $data->summary }}</textarea>
                             </div>
                             <div class="m-t-10">
                                 <button data-pmb-action="reset" class="btn btn-primary btn-sm" id="save" num="1">Save</button>
@@ -86,7 +86,7 @@
                 </div>
             </div>
 
-<!--Basic Information-->
+            <!--Basic Information-->
             <div class="pmb-block">
                 <div class="pmbb-header">
                     <h2><i class="zmdi zmdi-account m-r-5"></i> Basic Information</h2>
@@ -181,62 +181,62 @@
                 </div>
             </div>
 
-                <!--Contact Information-->
-                 <div class="pmb-block">
-                    <div class="pmbb-header">
-                        <h2><i class="zmdi zmdi-phone m-r-5"></i> Contact Information</h2>
+            <!--Contact Information-->
+            <div class="pmb-block">
+                <div class="pmbb-header">
+                    <h2><i class="zmdi zmdi-phone m-r-5"></i> Contact Information</h2>
 
-                        <ul class="actions">
-                            <li class="dropdown">
-                                <a href="" data-toggle="dropdown">
-                                    <i class="zmdi zmdi-more-vert"></i>
-                                </a>
+                    <ul class="actions">
+                        <li class="dropdown">
+                            <a href="" data-toggle="dropdown">
+                                <i class="zmdi zmdi-more-vert"></i>
+                            </a>
 
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li>
-                                        <a data-pmb-action="edit">Edit</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li>
+                                    <a data-pmb-action="edit">Edit</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="pmbb-body p-l-30">
+                    <div class="pmbb-view">
+                        <dl class="dl-horizontal">
+                            <dt>Mobile Phone</dt>
+                            <dd id="show_phone">{{ $data->phone }}</dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt>Email Address</dt>
+                            <dd>{{ Auth::user()->email }}</dd>
+                        </dl>
                     </div>
-                    <div class="pmbb-body p-l-30">
-                        <div class="pmbb-view">
+
+                    <div class="pmbb-edit">
+                        <form method="POST" id="phone_form">
+                            {!! csrf_field() !!}
                             <dl class="dl-horizontal">
-                                <dt>Mobile Phone</dt>
-                                <dd id="show_phone">{{ $data->phone }}</dd>
+                                <dt class="p-t-10">Mobile Phone</dt>
+                                <dd>
+                                    <div class="fg-line">
+                                        <input type="text" class="form-control" placeholder="eg. 00971 12345678 9" name="phone">
+                                    </div>
+                                </dd>
                             </dl>
-                            <dl class="dl-horizontal">
-                                <dt>Email Address</dt>
-                                <dd>{{ Auth::user()->email }}</dd>
-                            </dl>
-                        </div>
-
-                        <div class="pmbb-edit">
-                            <form method="POST" id="phone_form">
-                                {!! csrf_field() !!}
-                                <dl class="dl-horizontal">
-                                    <dt class="p-t-10">Mobile Phone</dt>
-                                    <dd>
-                                        <div class="fg-line">
-                                            <input type="text" class="form-control" placeholder="eg. 00971 12345678 9" name="phone">
-                                        </div>
-                                    </dd>
-                                </dl>
-                                <div class="m-t-30">
-                                    <button data-pmb-action="reset" class="btn btn-primary btn-sm" id="save" num="3">Save</button>
-                                    <button data-pmb-action="reset" class="btn btn-link btn-sm">Cancel</button>
-                                </div>
-                            </form>
-                        </div>
-
-
+                            <div class="m-t-30">
+                                <button data-pmb-action="reset" class="btn btn-primary btn-sm" id="save" num="3">Save</button>
+                                <button data-pmb-action="reset" class="btn btn-link btn-sm">Cancel</button>
+                            </div>
+                        </form>
                     </div>
+
+
                 </div>
             </div>
         </div>
-        <!--End About-->
     </div>
+    <!--End About-->
+</div>
 
 
 @endsection @section('footer')

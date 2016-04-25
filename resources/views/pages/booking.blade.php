@@ -178,19 +178,23 @@
         var data = $('#booking_form').serializeArray();
         $.post(url, data, function(data) {
             var d = data;
-            if (d['package_id'] != 'no') {
-                $('#error_package_id').html(d['package_id']);
-                $('#submit').val('Booking');
-            } else if (d['name'] != 'no') {
-                $('#error_package_id').html('');
+            if (d['name'] != 'no') {
                 $('#error_name').html(d['name']);
                 $('#submit').val('Booking');
             } else if (d['email'] != 'no') {
                 $('#error_name').html('');
                 $('#error_email').html(d['email']);
                 $('#submit').val('Booking');
-            } else if (d['no_of_adults'] != 'no') {
+            } else if (d['phone_no'] != 'no') {
                 $('#error_email').html('');
+                $('#error_phone_no').html("The phone no must be at least 10 characters");
+                $('#submit').val('Booking');
+            } else if (d['package_id'] != 'no') {
+                $('#error_phone_no').html('');
+                $('#error_package_id').html(d['package_id']);
+                $('#submit').val('Booking');
+            } else if (d['no_of_adults'] != 'no') {
+                $('#error_package_id').html('');
                 $('#error_no_of_adults').html(d['no_of_adults']);
                 $('#submit').val('Booking');
             } else if (d['no_of_childrens'] != 'no') {
@@ -201,12 +205,8 @@
                 $('#error_no_of_childrens').html('');
                 $('#error_payment_id').html(d['payment_id']);
                 $('#submit').val('Booking');
-            } else if (d['phone_no'] != 'no') {
-                $('#error_payment_id').html('');
-                $('#error_phone_no').html(d['phone_no']);
-                $('#submit').val('Booking');
             } else {
-                $('#error_phone_no').html('');
+                $('#error_payment_id').html('');
                 makeBooking();
             }
         });

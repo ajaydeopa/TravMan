@@ -6275,7 +6275,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .pagination > .active > span:focus {
   z-index: 3;
   color: #ffffff;
-  background-color: #00bcd4;
+  background-color: #7DB043;
   border-color: #ffffff;
   cursor: default;
 }
@@ -14242,11 +14242,11 @@ html:not(.ie9) .select.fg-line:before {
 
 .pagination > li > a,
 .pagination > li > span {
-  border-radius: 50% !important;
+  border-radius: 0% !important;
   padding: 0;
-  width: 40px;
-  height: 40px;
-  line-height: 38px;
+  width: 30px;
+  height: 30px;
+  line-height: 29px;
   text-align: center;
   font-size: 14px;
   z-index: 1;

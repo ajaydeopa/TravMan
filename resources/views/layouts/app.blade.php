@@ -69,19 +69,23 @@
                             <i class="tm-icon zmdi zmdi-notifications-none"></i>
                             <i class="tmn-counts" id="notification_count"></i>
                         </a>
+
                         <div class="dropdown-menu dropdown-menu-lg pull-right">
                             <div class="listview" id="notifications">
+
                                 <div class="lv-header">
                                     Notification
                                 </div>
+                               <div class="pm-overview c-overflow" style=" height:200px;">
                                 <div class="lv-body" id="notification_list">
 
                                 </div>
+                                </div>
 
-                                <a class="lv-footer" href="">View Previous</a>
                             </div>
 
                         </div>
+
                         <!-- End Notification -->
 
                     </li>
@@ -127,8 +131,10 @@
                         <img src="{{URL::to('assets')}}/img/profile-pics/2.jpg" alt="">
                     </div>
                     <div class="profile-info">
-                        @if( !Auth::guest() ) {{ Auth::user()->user_name }} @endif
-                        <i class="zmdi zmdi-caret-down"></i>
+                        @if( !Auth::guest() )
+                        {{ Auth::user()->user_name }}
+                          @endif
+
                     </div>
                 </a>
 
@@ -136,27 +142,25 @@
                     <li>
                         <a href="{{ url('profile')}}"><i class="zmdi zmdi-account"></i> View Profile</a>
                     </li>
-                    <li>
-                        <a href=""><i class="zmdi zmdi-input-antenna"></i> Privacy Settings</a>
-                    </li>
-                    <li>
-                        <a href=""><i class="zmdi zmdi-settings"></i> Settings</a>
-                    </li>
-                    <li>
-                        <a href=""><i class="zmdi zmdi-time-restore"></i> Logout</a>
-                    </li>
+
                 </ul>
             </div>
 
 <!--Start sidebar links -->
             <ul class="main-menu">
-                <li><a href="{{URL::to('/')}}"><i class="zmdi zmdi-calendar-note"></i>Dashboard</a></li>
-                <li><a href="{{ url('booking')}}"><i class="zmdi zmdi-calendar-note"></i>Booking</a></li>
-                <li><a href="{{ url('showbookings')}}"><i class="zmdi zmdi-calendar-note"></i>Show booking</a></li>
+                <li><a href="{{URL::to('/')}}"><i class="zmdi zmdi-tv"></i>Dashboard</a></li>
                 @if( Auth::user()->flag == 1 )
                     <li><a href="{{ url('create') }}"><i class="zmdi zmdi-account-add"></i>Create Member</a></li>
                 @endif
-                <li><a href="{{ url('createpackage')}}"><i class="zmdi zmdi-calendar-note"></i>Create package</a></li>
+                <li class="sub-menu">
+                <a href=""><i class="zmdi zmdi-format-list-bulleted zmdi-hc-fw"></i>Booking</a>
+
+                    <ul>
+                <li><a href="{{ url('booking')}}"><i class="zmdi zmdi-calendar-note"></i> Create Booking</a></li>
+                <li><a href="{{ url('showbookings')}}"><i class="zmdi zmdi-view-list"></i>Show booking</a></li>
+                </ul>
+                </li>
+                <li><a href="{{ url('createpackage')}}"><i class="zmdi zmdi-local-mall"></i>Create package</a></li>
                 <li class="sub-menu">
                     <a href=""><i class="zmdi zmdi-view-compact"></i> Headers</a>
 
@@ -240,6 +244,7 @@
     <!-- Javascript Libraries -->
     <script src="{{URL::to('assets')}}/vendors/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+     <script src="{{URL::to('assets')}}/vendors/input-mask/input-mask.min.js"></script>
 
      <script src="{{URL::to('assets')}}/vendors/bower_components/flot/jquery.flot.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bower_components/flot/jquery.flot.resize.js"></script>
@@ -254,6 +259,7 @@
     <script src="{{URL::to('assets')}}/vendors/bower_components/Waves/dist/waves.min.js"></script>
 
     <script src="{{URL::to('assets')}}/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="{{URL::to('assets')}}/vendors/bower_components/autosize/dist/autosize.min.js"></script>
      <script src="{{URL::to('assets')}}/vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 
     <!-- Placeholder for IE9 -->

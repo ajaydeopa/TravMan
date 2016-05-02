@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests;
 use App\Notification;
 use App\Booking;
+use App\Package;
 use App\User;
 use Carbon\Carbon;
 use Validator;
@@ -16,13 +17,18 @@ use Auth;
 class BookingController extends Controller
 {
     //
+    public function show(){
+        $package = Package::where('company_id', Auth::user()->company_id)->get();
+
+        return view('pages.booking', compact('package'));
+    }
+
     public function checkBooking(Request $request){
         $validator = Validator::make($request->all(), [
             'name'  => 'required|max:50',
             'email' => 'required|email',
             'payment_id' => 'required',
-            'package_id' => 'required',
-            'phone_no' => 'required|digits:10',
+            'phone_no' => 'required|max:12|min:12',
             'no_of_adults' => 'required',
             'no_of_childrens' => 'required'
         ]);
@@ -44,8 +50,8 @@ class BookingController extends Controller
         else
             $d['payment_id'] = 'no';
 
-        if( $validator->errors()->has('package_id') )
-            $d['package_id'] = $validator->errors()->first('package_id');
+        if( $request->pack_id === 'default' )
+            $d['package_id'] = 'Enter a valid package name.';
         else
             $d['package_id'] = 'no';
 
@@ -68,12 +74,21 @@ class BookingController extends Controller
     }
     
     public function makeBooking(Request $request){
+        $id = $request->pack_id;
+        $package = Package::find($id);
+
+        $ddate = $request->departure_date;
+
+        $year = substr($ddate, 6, 4);
+        $month = substr($ddate, 3, 2);
+        $day = substr($ddate, 0, 2);
+
         //save data in DB
         $store = new Booking;
         $store->company_id  = Auth::user()->company_id;
-        $store->package_id  = $request->package_id;
-        $store->package_duration  = $request->package_duration;
-        $store->departure_date  = $request->departure_date;
+        $store->package_id  = $package->pack_name;
+        $store->package_duration  = $package->pack_duration;
+        $store->departure_date  = $year.'-'.$month.'-'.$day;
         $store->name = $request->name;
         $store->email = $request->email;
         $store->no_of_adults = $request->no_of_adults;

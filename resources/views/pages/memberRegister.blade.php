@@ -1,5 +1,4 @@
-@extends('layouts.app',['link' => 'Add URL'])
-@section('content')
+@extends('layouts.app',['link' => 'Add URL']) @section('content')
 
 <div class="container">
     <div class="card">
@@ -7,132 +6,115 @@
             <h2>Add Member<small>Please Fill Details</small></h2>
         </div>
         <div class="card-body card-padding">
-    <div style="text-align:center">
-        <h4 id="message"></h4>
-    </div>
-    <form class="form-horizontal" role="form" method="POST" onsubmit="return false" id="member_form">
+            <div style="text-align:center">
+                <h4 id="message"></h4>
+            </div>
+            <form class="form-horizontal" role="form" method="POST" onsubmit="return false" id="member_form">
                 {!! csrf_field() !!}
                 <!-- User Name -->
-        <div class="form-group fg-float">
                 <div class="input-group m-b-20 ">
                     <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
                     <div class="fg-line {{ $errors->has('user_name') ? ' has-error' : '' }}">
-                        <input type="text" class="form-control" name="user_name" value="{{ old('user_name') }}">
-                        <label class="fg-label">Full Name</label>
+                        <input type="text" class="form-control" placeholder="Full Name" name="user_name" value="{{ old('user_name') }}">
                     </div>
-                    <p>
-                        <strong class="c-red" id="error_name"></strong>
-                    </p>
+                    <div><strong id="error_name"></strong></div>
                 </div>
-        </div>
-       <!-- Email -->
-                <div class="form-group fg-float">
-                    <div class="input-group m-b-20 ">
+                <!-- Email -->
+
+                <div class="input-group m-b-20 ">
                     <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
                     <div class="fg-line {{ $errors->has('email') ? ' has-error' : '' }}">
-                        <input type="text" class="form-control"  name="email" value="{{ old('email') }}">
-                        <label class="fg-label">E-Mail Address</label>
+                        <input type="text" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}">
                     </div>
-                    <p>
-                        <strong class="c-red" id="error_email"></strong>
-                    </p>
+                    <div><strong id="error_email"></strong></div>
                 </div>
-        </div>
-
                 <!-- password -->
-         <div class="form-group fg-float">
+
+
                 <div class="input-group m-b-20 ">
                     <span class="input-group-addon"><i class="zmdi zmdi-lock"></i></span>
                     <div class="fg-line {{ $errors->has('password') ? ' has-error' : '' }}">
-                        <input type="password" class="form-control" name="password">
-                        <label class="fg-label">Password</label>
+                        <input type="password" class="form-control" placeholder="Password" name="password">
                     </div>
-                    <p>
-                        <strong class="c-red" id="error_password"></strong>
-                    </p>
-             </div>
+                    <div><strong id="error_password"></strong></div>
                 </div>
-                
+
                 <!-- Confirm password -->
-         <div class="form-group fg-float">
                 <div class="input-group m-b-20 ">
                     <span class="input-group-addon"><i class="zmdi zmdi-lock"></i></span>
                     <div class="fg-line {{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                        <input type="password" class="form-control" name="password_confirmation">
-                        <label class="fg-label">Confirm Password</label>
-                   </div>
-                    <p>
-                        <strong class="c-red" id="error_confirm"></strong>
-                    </p>
+                        <input type="password" class="form-control" placeholder="Confirm Password" name="password_confirmation">
+                    </div>
+                    <div><strong id="error_confirm"></strong></div>
                 </div>
-        </div>
-                
+
+                <!-- button -->
                 <div class="input-group m-b-20 ">
                     <span class="input-group-addon"></span>
                     <div class="fg-line">
-                          <button class="btn bgm-lightblue waves-effect" type="submit" name="book" id="submit"> Member</button>
+                        <button class="btn bgm-lightblue waves-effect" type="submit" name="book" id="submit"> Member</button>
 
                     </div>
                 </div>
             </form>
-    </div>
+        </div>
     </div>
 </div>
 
 
-@endsection
 
-@section('footer')
+@endsection @section('footer')
+
 <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
         validate();
-        
-        $('#submit').click(function(){
+
+        $('#submit').click(function() {
             $('#submit').val('Creating Member...').focus();
-            
+
             var name = $(':input[name="user_name"]').val();
             var email = $(':input[name="email"]').val();
             var password = $(':input[name="password"]').val();
             var confirm = $(':input[name="password_confirmation"]').val();
-            
-            if( name != '' && email != '' && password != '' && confirm != '' && $('#error_name').text() == '' && $('#error_email').text() == '' && $('#error_password').text() == '' && $('#error_confirm').text() == '' )
+
+            if (name != '' && email != '' && password != '' && confirm != '' && $('#error_name').text() == '' && $('#error_email').text() == '' && $('#error_password').text() == '' && $('#error_confirm').text() == '')
                 createMember();
-            else{
-                if(name == '')
+            else {
+                if (name == '')
                     $("#error_name").text("Field shouldn't be empty");
-                if( email == '' )
+                if (email == '')
                     $("#error_email").text("Field shouldn't be empty");
-                if( password == '' )
+                if (password == '')
                     $("#error_password").text("Field shouldn't be empty");
-                if( confirm == '' )
+                if (confirm == '')
                     $("#error_confirm").text("Field shouldn't be empty");
                 $('#submit').val('Create Member');
             }
         });
     });
-    
-    function createMember(){
+
+    function createMember() {
         var url = '{{ url("create_member") }}';
         var data = $('#member_form').serializeArray();
-        $.post(url, data, function(data){
+        $.post(url, data, function(data) {
             $('#message').fadeIn().text('Member has being successfully added !!').fadeOut(3000);
             $('#submit').val('Create Member');
             $(':input[type="text"], :input[type="password"]').val('');
             //alert(data);
         });
     }
-    
-    function validate(){
+
+    function validate() {
         var pattern = /[a-zA-Z ]/;
         var email_pattern = /[0-9a-zA-Z ]/;
 
         //validate name while writing
-        $(':input[name="user_name"]').focusin(function(){
-            $(this).keyup(function(){
+        $(':input[name="user_name"]').focusin(function() {
+            $(this).keyup(function() {
                 $("#error_name").text('');
                 var value = $(this).val();
-                for( var i = 0 ; i < value.length ; i++ ){
-                    if( ! value.charAt(i).match(pattern) ){
+                for (var i = 0; i < value.length; i++) {
+                    if (!value.charAt(i).match(pattern)) {
                         $("#error_name").text('Name should contain only alphabets.').css('font-weight', 'bold');
                         break;
                     }
@@ -141,18 +123,17 @@
         });
 
         //validate email while writing
-        $(':input[name="email"]').focusin(function(){
-            $(this).keyup(function(){
+        $(':input[name="email"]').focusin(function() {
+            $(this).keyup(function() {
                 var value = $(this).val();
-                if( value == '' )
+                if (value == '')
                     $("#error_email").text('');
-                else if(value.indexOf('@') <= 0 || value.indexOf('.') <= 0 || value.indexOf('@') > value.indexOf('.') || value.indexOf('.') >= ( value.length - 2 )){
+                else if (value.indexOf('@') <= 0 || value.indexOf('.') <= 0 || value.indexOf('@') > value.indexOf('.') || value.indexOf('.') >= (value.length - 2)) {
                     $("#error_email").text('Invalid email address.').css('font-weight', 'bold');
-                }
-                else{
+                } else {
                     $("#error_email").text('');
-                    for( var i = 0 ; i < value.indexOf('@') ; i++ ){
-                        if( ! value.charAt(i).match(email_pattern) ){
+                    for (var i = 0; i < value.indexOf('@'); i++) {
+                        if (!value.charAt(i).match(email_pattern)) {
                             $("#error_email").text('Invalid email address.').css('font-weight', 'bold');
                             break;
                         }
@@ -162,12 +143,12 @@
         });
 
         //validate password while writing
-        $(':input[name="password"]').focusin(function(){
-            $(this).keyup(function(){
+        $(':input[name="password"]').focusin(function() {
+            $(this).keyup(function() {
                 var value = $(this).val();
-                if( value == '' )
+                if (value == '')
                     $('#error_password').text('');
-                else if( value.length < 6 )
+                else if (value.length < 6)
                     $('#error_password').text('Password too short !!').css('font-weight', 'bold');
                 else
                     $('#error_password').text('');
@@ -175,14 +156,14 @@
         });
 
         //validate confirm password while writing
-        $(':input[name="password_confirmation"]').focusin(function(){
-            $(this).keyup(function(){
+        $(':input[name="password_confirmation"]').focusin(function() {
+            $(this).keyup(function() {
                 var value = $(this).val();
                 var temp = $(':input[name="password"]').val();
                 //alert($(':input[name="password"]').val());
-                if( value == '' )
+                if (value == '')
                     $('#error_confirm').text('');
-                else if( value != temp )
+                else if (value != temp)
                     $('#error_confirm').text("Password doesn't match !!").css('font-weight', 'bold');
                 else
                     $('#error_confirm').text('');

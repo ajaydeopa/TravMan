@@ -21,18 +21,32 @@
 		                        <div class="fg-line {{ $errors->has('package_name') ? ' has-error' : '' }}">
 		                            <input type="text" class="form-control" placeholder="Package name" name="package_name" value="{{ old('package_name') }}">
 		                        </div>
-		                        <div><strong id="error_package_name"></strong></div>
+		                        <div><strong id="error_name"></strong></div>
 		                    </div>
 
 		                    <!-- duration -->
 		                    <div class="input-group m-b-20 ">
-		                        <span class="input-group-addon"><i class="zmdi zmdi-time"></i></span>
-		                        <div class="fg-line {{ $errors->has('package_duration') ? ' has-error' : '' }}">
-		                            <input type="text" class="form-control" placeholder="Package Duration" name="package_duration" value="{{ old('package_duration') }}">
-		                        </div>
-		                        <div><strong id="error_package_duration"></strong></div>
-		                    </div>
-
+		                    	<label style="padding-left: 40px">Package duration</label>
+			                    <div class="row">
+			                    	<div class="col-sm-4">
+	                                    <div class="input-group">
+	                                        <span class="input-group-addon"><i class="zmdi zmdi-time"></i></span>
+	                                        <div class="fg-line">
+	                                                <input type="text" class="form-control" placeholder="Days" name="days" value="{{ old('days') }}">
+	                                        </div>
+	                                    </div>
+	                            	</div>
+	                            	<div class="col-sm-4">
+	                                    <div class="input-group">
+	                                        <span class="input-group-addon"><i class="zmdi zmdi-time"></i></span>
+	                                        <div class="fg-line">
+	                                                <input type="text" class="form-control" placeholder="Nights" name="nights" value="{{ old('nights') }}">
+	                                        </div>
+	                                    </div>
+	                            	</div>
+	                            </div>
+	                            <div><strong id="error_duration" style="padding-left: 40px"></strong></div>
+                            </div>
 <!-- description -->
                             <div class="input-group m-b-20 ">
 		                        <span class="input-group-addon"><i class="zmdi zmdi-widgets"></i></span>
@@ -50,7 +64,7 @@
                                  <div class="fg-line {{ $errors->has('package_include') ? ' has-error' : '' }}">
                                     <textarea class="form-control auto-size" placeholder="Package include" name="package_include" value="{{ old('package_include') }}" data-autosize-on="true" style="overflow: hidden; word-wrap: break-word; height: 41px;"></textarea>
                                 </div>
-                                <div><strong id="error_package_include"></strong></div>
+                                <div><strong id="error_pack_include"></strong></div>
                             </div>
 
 <!-- cost include -->
@@ -93,8 +107,55 @@
 @section('footer')
 <script type="text/javascript">
 	$('#submit').click(function(){
-		createPackage();
+		validatePackage();
 	});
+
+	function validatePackage() {
+        var url = '{{ url("validatePackage") }}';
+        var data = $('#package_form').serializeArray();
+        $.post(url, data, function(data) {
+            var d = data;
+            if (d['name'] != 'no') {
+                $('#error_name').html(d['name']);
+                $('#submit').val('Booking');
+            }
+
+            else if (d['duration'] != 'no') {
+                $('#error_name').html('');
+                $('#error_duration').html(d['duration']);
+                $('#submit').val('Booking');
+            }
+
+            else if (d['description'] != 'no') {
+                $('#error_duration').html('');
+                $('#error_description').html(d['description']);
+                $('#submit').val('Booking');
+            }
+
+            else if (d['package_include'] != 'no') {
+                $('#error_description').html('');
+                $('#error_pack_include').html(d['package_include']);
+                $('#submit').val('Booking');
+            }
+
+            else if (d['cost_include'] != 'no') {
+                $('#error_pack_include').html('');
+                $('#error_cost_include').html(d['cost_include']);
+                $('#submit').val('Booking');
+            }
+
+            else if (d['notes'] != 'no') {
+                $('#error_cost_include').html('');
+                $('#error_notes').html(d['notes']);
+                $('#submit').val('Booking');
+            }
+
+            else {
+                $('#error_notes').html('');
+                createPackage();
+            }
+        });
+    }
 
 	function createPackage(){
 		var data = $('#package_form').serializeArray();

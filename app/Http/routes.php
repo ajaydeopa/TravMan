@@ -39,9 +39,9 @@ Route::group(['middleware' => 'web'], function () {
 
         Route::post('savepackage', 'PackageController@save');
 
-        /*Route::get('profile', function(){
-            return view('pages.profile');
-        });*/
+        Route::get('getduration', 'PackageController@getduration');
+
+        Route::post('validatePackage', 'PackageController@validatePackage');
 
         Route::get('profile', 'ProfileController@show');
 
@@ -51,16 +51,25 @@ Route::group(['middleware' => 'web'], function () {
 
         Route::post('contactinfosave', 'ProfileController@contactinfosave');
         
-        Route::get('booking', function(){
+        /*Route::get('booking', function(){
             return view('pages.booking');
-        });
+        });*/
         
 
         Route::get('create', function(){
             return view('pages.memberRegister');
         });
+
+        Route::post('create_member', 'MemberController@createMember');
+
+
         
         Route::get('count', 'NotificationController@countNotification');
+
+        Route::get('showNotifications', 'NotificationController@show');
+
+
+        Route::get('booking', 'BookingController@show');
 
         Route::get('showbookings', 'BookingController@allbookings');
 
@@ -68,15 +77,11 @@ Route::group(['middleware' => 'web'], function () {
 
         Route::get('booking/{id}', 'BookingController@showbooking');
         
-        //Route::get('cm', 'MemberController@cm');
-        
-        Route::get('showNotifications', 'NotificationController@show');
-        
         Route::post('checkbooking', 'BookingController@checkBooking');
         
         Route::post('make_booking', 'BookingController@makeBooking');
         
-        Route::post('create_member', 'MemberController@createMember');
+
 
         Route::get('eventsave', 'CalendarTodoController@eventsave');
 

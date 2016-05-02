@@ -46,10 +46,25 @@
                         </div>
                         <div class="col-sm-6">
                             <!--package id -->
+                            <!--
                             <div class="input-group m-b-20 ">
                                 <span class="input-group-addon"><i class="zmdi zmdi-labels"></i></span>
                                 <div class="fg-line {{ $errors->has('package_id') ? ' has-error' : '' }}">
                                     <input type="text" class="form-control" placeholder="Package Id" name="package_id" value="{{ old('package_id') }}">
+                                </div>
+
+                            </div>
+                            -->
+                            <div>
+                                <div>
+                                    <select class="form-control" name="pack_id" id="package">
+                                        <option value="default">select package</option>
+                                        @if( count($package) > 0 )
+                                            @foreach( $package as $p )
+                                                <option value="{{ $p->id }}">{{ $p->pack_name }}</option>
+                                            @endforeach
+                                        @endif
+                                    </select>
                                 </div>
                                 <div><strong id="error_package_id"></strong></div>
                             </div>
@@ -60,10 +75,9 @@
                         <div class="col-sm-6">
                             <div class="input-group m-b-20 ">
                                 <span class="input-group-addon"><i class="zmdi zmdi-time"></i></span>
-                                <div class="fg-line {{ $errors->has('package_duration') ? ' has-error' : '' }}">
-                                    <input type="text" class="form-control" placeholder="Package Duration" name="package_duration" value="{{ old('package_duration') }}">
+                                <div class="fg-line">
+                                    <input type="text" class="form-control" placeholder="Package Duration" name="pack_duration" id="pack_duration" disabled="disabled">
                                 </div>
-                                <div><strong id="error_package_duration"></strong></div>
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -128,34 +142,27 @@
             <div class="card-body card-padding">
 
                 <div class="panel-group" data-collapse-color="red" id="accordionRed" role="tablist" aria-multiselectable="true">
-                    <div class="panel panel-collapse">
-                        <div class="panel-heading" role="tab">
-                            <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordionRed" href="#accordionRed-one" aria-expanded="true">
-                                                        Collapse Red #1
-                                                    </a>
-                                                </h4>
-                        </div>
-                        <div id="accordionRed-one" class="collapse in" role="tabpanel">
-                            <div class="panel-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+
+                    @if( count($package) == 0 )
+                        <h4 style="text-align: center;">No package is available</h4>
+                    @else
+                        @foreach( $package as $p )
+                            <div class="panel panel-collapse">
+                                <div class="panel-heading" role="tab">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordionRed" href="#accordionRed-{{ $p->id }}" aria-expanded="true">
+                                            <B>{{ $p->pack_name }}&nbsp;&nbsp;({{ $p->pack_duration }})</B>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="accordionRed-{{ $p->id }}" class="collapse out" role="tabpanel">
+                                    <div class="panel-body">
+                                        {{ $p->pack_desc }}
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-collapse">
-                        <div class="panel-heading" role="tab">
-                            <h4 class="panel-title">
-                                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionRed" href="#accordionRed-two" aria-expanded="false">
-                                                        Collapse Red #2
-                                                    </a>
-                                                </h4>
-                        </div>
-                        <div id="accordionRed-two" class="collapse" role="tabpanel">
-                            <div class="panel-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
-                            </div>
-                        </div>
-                    </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>
@@ -171,7 +178,23 @@
             $('#submit').val('Making Booking...').focus();
             checkBooking();
         });
+
+        $('#package').change(function(){
+            var id = $(this).val();
+
+            if( id != 'default' )
+                setDuration(id);
+            else
+                $('#pack_duration').attr('value', '');
+        });
     });
+
+    function setDuration(id)
+    {   var url = '{{ url("getduration") }}';
+        $.get(url, {'id' : id}, function(data){
+            $(':input[name="pack_duration"]').attr('placeholder', data);
+        });
+    }
 
     function checkBooking() {
         var url = '{{ url("checkbooking") }}';

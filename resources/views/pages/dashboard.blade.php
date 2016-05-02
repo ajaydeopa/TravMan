@@ -8,8 +8,8 @@
                     <div class="clearfix">
                         <div class="chart stats-bar"></div>
                         <div class="count">
-                            <small>Website Traffics</small>
-                            <h2>987,459</h2>
+                            <small>Website </small>
+                            <h2>987</h2>
                         </div>
                     </div>
                 </div>
@@ -20,8 +20,8 @@
                     <div class="clearfix">
                         <div class="chart stats-bar-2"></div>
                         <div class="count">
-                            <small>Website Impressions</small>
-                            <h2>356,785K</h2>
+                            <small> Impressions</small>
+                            <h2>785K</h2>
                         </div>
                     </div>
                 </div>
@@ -32,8 +32,8 @@
                     <div class="clearfix">
                         <div class="chart stats-line"></div>
                         <div class="count">
-                            <small>Total Sales</small>
-                            <h2>$ 458,778</h2>
+                            <small>Total </small>
+                            <h2>$ 458</h2>
                         </div>
                     </div>
                 </div>
@@ -44,8 +44,8 @@
                     <div class="clearfix">
                         <div class="chart stats-line-2"></div>
                         <div class="count">
-                            <small>Support Tickets</small>
-                            <h2>23,856</h2>
+                            <small>Support</small>
+                            <h2>236</h2>
                         </div>
                     </div>
                 </div>
@@ -53,34 +53,13 @@
         </div>
     </div>
     <div class="row">
+        <!-- Todo Lists -->
         <div class="col-sm-6 col-md-4">
-
-
-            <!-- Todo Lists -->
             <div id="todo-lists">
                 <div class="tl-header">
                     <h2>Todo Lists</h2>
                     <small>Add, edit and manage your Todo Lists</small>
 
-                    <ul class="actions actions-alt">
-                        <li class="dropdown">
-                            <a href="" data-toggle="dropdown">
-                                <i class="zmdi zmdi-more-vert"></i>
-                            </a>
-
-                            <ul class="dropdown-menu dropdown-menu-right">
-                                <li>
-                                    <a href="">Refresh</a>
-                                </li>
-                                <li>
-                                    <a href="">Manage Widgets</a>
-                                </li>
-                                <li>
-                                    <a href="">Widgets Settings</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
                 </div>
 
                 <div class="clearfix"></div>
@@ -134,6 +113,7 @@
                     @endif
 
                     </div>
+                    {!! $todo->links() !!}
 
                 </div>
             </div>

@@ -132,7 +132,7 @@
                     </div>
                     <div class="profile-info">
                         @if( !Auth::guest() )
-                        {{ Auth::user()->user_name }}
+                        <span class="tm-label text-uppercase">{{ Auth::user()->user_name }}</span>
                           @endif
 
                     </div>
@@ -156,11 +156,14 @@
                 <a href=""><i class="zmdi zmdi-format-list-bulleted zmdi-hc-fw"></i>Booking</a>
 
                     <ul>
-                <li><a href="{{ url('booking')}}"><i class="zmdi zmdi-calendar-note"></i> Create Booking</a></li>
-                <li><a href="{{ url('showbookings')}}"><i class="zmdi zmdi-view-list"></i>Show booking</a></li>
+                <li><a href="{{ url('booking')}}"><i class="zmdi zmdi-calendar-note zmdi-hc-fw p-r-10"></i> Create Booking</a></li>
+                <li><a href="{{ url('showbookings')}}"><i class="zmdi zmdi-view-list zmdi-hc-fw p-r-10"></i>Show booking</a></li>
                 </ul>
                 </li>
                 <li><a href="{{ url('createpackage')}}"><i class="zmdi zmdi-local-mall"></i>Create package</a></li>
+
+                <!--
+                zmdi zmdi-edit zmdi-hc-fw
                 <li class="sub-menu">
                     <a href=""><i class="zmdi zmdi-view-compact"></i> Headers</a>
 
@@ -169,7 +172,7 @@
                         <li><a href="image-logo.html">Image logo</a></li>
                         <li><a href="top-mainmenu.html">Mainmenu on top</a></li>
                     </ul>
-                </li>
+                </li>-->
             </ul>
             <!-- End sidebar links -->
         </aside>

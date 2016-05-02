@@ -24,29 +24,37 @@
 		                        <div><strong id="error_name"></strong></div>
 		                    </div>
 
+
 		                    <!-- duration -->
-		                    <div class="input-group m-b-20 ">
-		                    	<label style="padding-left: 40px">Package duration</label>
-			                    <div class="row">
-			                    	<div class="col-sm-4">
+		                    <div class="row m-b-10 ">
+		                    <div class="col-sm-4">
+		                    <div class="input-group">
+		                    	  <span class="input-group-addon"><i class="zmdi zmdi-time"></i></span>
+                                    <div class="fg-line fg-toggled">
+                                            <input type="text" class="form-control" value="Duration"  placeholder="Duration" disabled="">
+                                        </div>
+                               </div>
+                                </div>
+			                 <div class="col-sm-4">
 	                                    <div class="input-group">
-	                                        <span class="input-group-addon"><i class="zmdi zmdi-time"></i></span>
+	                                        <span class="input-group-addon"><i class="zmdi zmdi-sun"></i></span>
 	                                        <div class="fg-line">
-	                                                <input type="text" class="form-control" placeholder="Days" name="days" value="{{ old('days') }}">
-	                                        </div>
+                                       <input type="text" class="form-control input-mask" data-mask="00" placeholder="Number of Days" name="days" value="{{ old('days') }}" maxlength="2" autocomplete="off">
+                                           </div>
 	                                    </div>
 	                            	</div>
-	                            	<div class="col-sm-4">
+	                           <div class="col-sm-4">
 	                                    <div class="input-group">
-	                                        <span class="input-group-addon"><i class="zmdi zmdi-time"></i></span>
+	                                        <span class="input-group-addon"><i class="zmdi zmdi-time-interval"></i></span>
 	                                        <div class="fg-line">
-	                                                <input type="text" class="form-control" placeholder="Nights" name="nights" value="{{ old('nights') }}">
-	                                        </div>
+                                                 <input type="text" class="form-control input-mask" data-mask="00" placeholder="Number of Nights" name="nights" value="{{ old('nights') }}" maxlength="2" autocomplete="off">
+                                            </div>
 	                                    </div>
 	                            	</div>
+	                            	 <div><strong id="error_duration" style="padding-left: 40px"></strong></div>
 	                            </div>
-	                            <div><strong id="error_duration" style="padding-left: 40px"></strong></div>
-                            </div>
+
+
 <!-- description -->
                             <div class="input-group m-b-20 ">
 		                        <span class="input-group-addon"><i class="zmdi zmdi-widgets"></i></span>

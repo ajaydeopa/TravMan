@@ -62,6 +62,7 @@ Route::group(['middleware' => 'web'], function () {
 
         Route::post('create_member', 'MemberController@createMember');
 
+        Route::post('validatemember', 'MemberController@validatemember');
 
         
         Route::get('count', 'NotificationController@countNotification');

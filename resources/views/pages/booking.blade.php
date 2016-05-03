@@ -105,7 +105,7 @@
                             <div class="input-group m-b-20 ">
                                 <span class="input-group-addon"><i class="zmdi zmdi-male-female"></i></span>
                                 <div class="fg-line {{ $errors->has('no_of_adults') ? ' has-error' : '' }}">
-                                    <input type="text" class="form-control" placeholder="No of Adults" name="no_of_adults" value="{{ old('no_of_adults') }}">
+                                <input type="text" class="form-control input-mask" placeholder="No of Adults" data-mask="000"  maxlength="3" name="no_of_adults" value="{{ old('no_of_adults') }}">
                                 </div>
                                 <div><strong id="error_no_of_adults"></strong></div>
                             </div>
@@ -115,7 +115,7 @@
                             <div class="input-group m-b-20 ">
                                 <span class="input-group-addon"><i class="zmdi zmdi-face"></i></span>
                                 <div class="fg-line {{ $errors->has('no_of_childrens') ? ' has-error' : '' }}">
-                                    <input type="text" class="form-control" placeholder="No of Childrens" name="no_of_childrens" value="{{ old('no_of_childrens') }}">
+                                    <input type="text"class="form-control input-mask" placeholder="No of Childrens" data-mask="000"  maxlength="3" name="no_of_childrens" value="{{ old('no_of_childrens') }}">
                                 </div>
                                 <div><strong id="error_no_of_childrens"></strong></div>
                             </div>
@@ -158,7 +158,7 @@
                                 <div class="panel-heading" role="tab">
                                     <h4 class="panel-title">
                                         <a data-toggle="collapse" data-parent="#accordionRed" href="#accordionRed-{{ $p->id }}" aria-expanded="true">
-                                            <B>{{ $p->pack_name }}&nbsp;&nbsp;({{ $p->pack_duration }})</B>
+                                            <div class="text-capitalize">  {{ $p->pack_name }}<small class="p-l-10">({{ $p->pack_duration }})</small></div>
                                         </a>
                                     </h4>
                                 </div>

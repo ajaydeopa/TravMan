@@ -1,16 +1,4 @@
 <?php
-
-/*
-|--------------------------------------------------------------------------
-| Routes File
-|--------------------------------------------------------------------------
-|
-| Here is where you will register all of the routes in an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -30,19 +18,23 @@ Route::group(['middleware' => 'web'], function () {
     }]);
     
     Route::group(['middleware' => 'auth'], function () {
-        //redirect to dashboard to loged in user
-
 
         Route::get('createpackage', function(){
             return view('pages.createpackage');
         });
 
+        Route::get('create', function(){
+            return view('pages.memberRegister');
+        });
+
+        //Route for PackageController
         Route::post('savepackage', 'PackageController@save');
 
         Route::get('getduration', 'PackageController@getduration');
 
         Route::post('validatePackage', 'PackageController@validatePackage');
 
+        //Route for ProfileController
         Route::get('profile', 'ProfileController@show');
 
         Route::post('summarysave', 'ProfileController@summarysave');
@@ -51,27 +43,19 @@ Route::group(['middleware' => 'web'], function () {
 
         Route::post('contactinfosave', 'ProfileController@contactinfosave');
         
-        /*Route::get('booking', function(){
-            return view('pages.booking');
-        });*/
-        
-
-        Route::get('create', function(){
-            return view('pages.memberRegister');
-        });
-
+        //Route for MemberController
         Route::post('create_member', 'MemberController@createMember');
 
         Route::post('validatemember', 'MemberController@validatemember');
 
-        
+        //Route for NotificationController
         Route::get('count', 'NotificationController@countNotification');
 
         Route::get('showNotifications', 'NotificationController@show');
 
         Route::get('notificationdetail', 'NotificationController@details');
 
-
+        //Route for BookingController
         Route::get('booking', 'BookingController@show');
 
         Route::get('showbookings', 'BookingController@allbookings');
@@ -84,8 +68,7 @@ Route::group(['middleware' => 'web'], function () {
         
         Route::post('make_booking', 'BookingController@makeBooking');
         
-
-
+        //Route for CalendarTodoController
         Route::get('eventsave', 'CalendarTodoController@eventsave');
 
         Route::get('dashboard', 'CalendarTodoController@load');

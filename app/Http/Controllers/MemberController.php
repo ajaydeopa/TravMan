@@ -10,7 +10,7 @@ use Validator;
 use Auth;
 
 class MemberController extends Controller
-{
+{   //validate member form
     public function validatemember(Request $request){
         $validator = Validator::make($request->all(), [
             'user_name' => 'required|max:20|alpha',
@@ -38,6 +38,7 @@ class MemberController extends Controller
         return $d;
     }
 
+    //save member data
     public function createMember(Request $request){
         $store = new User;
         $store->company_id = Auth::user()->company_id;

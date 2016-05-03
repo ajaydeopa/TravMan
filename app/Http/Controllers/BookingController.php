@@ -16,13 +16,14 @@ use Auth;
 
 class BookingController extends Controller
 {
-    //
+    //open booking page with pakage name
     public function show(){
         $package = Package::where('company_id', Auth::user()->company_id)->get();
 
         return view('pages.booking', compact('package'));
     }
 
+    //validate booking form
     public function checkBooking(Request $request){
         $validator = Validator::make($request->all(), [
             'name'  => 'required|max:50',
@@ -33,11 +34,7 @@ class BookingController extends Controller
             'departure_date' => 'required',
             'no_of_childrens' => 'required|integer'
         ]);
-        
-        //var_dump($validator->errors()->all()); die();
 
-
-        
         if( $validator->errors()->has('name') )
             $d['name'] = $validator->errors()->first('name');
         else
@@ -88,6 +85,7 @@ class BookingController extends Controller
         return $d;
     }
     
+    //save booking details sfter validation
     public function makeBooking(Request $request){
         $id = $request->pack_id;
         $package = Package::find($id);
@@ -116,6 +114,7 @@ class BookingController extends Controller
         $this->bookingNotification($request->email, 'booked');
     }
 
+    //open page having list of all bookings
     public function allbookings(){
         $data = Booking::where('company_id', Auth::user()->company_id)->get();
         //return $data;
@@ -133,13 +132,14 @@ class BookingController extends Controller
         return $data;
     }
 
-    //show detail of a booking
+    //show detail of specific booking
     public function showbooking($id){
         $idd = floor((int)substr($id, 3) / 1000);
         $data = Booking::find($idd);
         return view('pages.bookingdetail', compact('data'));
     }
 
+    //create notification of booked / cancelled booking.
     public function bookingNotification($email, $status){
         $total = User::where('company_id', Auth::user()->company_id)->get();
         

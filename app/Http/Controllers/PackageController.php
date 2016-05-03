@@ -10,7 +10,8 @@ use Validator;
 use Auth;
 
 class PackageController extends Controller
-{   public function validatePackage(Request $request){
+{   //validate package form
+    public function validatePackage(Request $request){
         $validator = Validator::make($request->all(), [
             'package_name'  => 'required|max:20',
             'days' => 'required|integer',
@@ -63,6 +64,7 @@ class PackageController extends Controller
         return $d;
     }
 
+    //save package
     public function save(Request $request){
 		$store = new Package;
         $store->company_id = Auth::user()->company_id;
@@ -76,6 +78,7 @@ class PackageController extends Controller
     	return $request->package_name;
 	}
 
+    //get duration of package on selecting a package
     public function getduration(Request $request){
         $id = $request->id;
 

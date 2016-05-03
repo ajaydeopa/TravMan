@@ -18,7 +18,7 @@ class CalendarTodoController extends Controller
 
 		$events = Calendar::where('cid', $id)->get();
 
-        $todo = TodoList::latest('updated_at')->where('cid', $id)->paginate(5);
+        $todo = TodoList::latest('updated_at')->where('cid', $id)->get();
 
 		return view('pages.dashboard', compact('events', 'todo'));
 	}

@@ -1,4 +1,12 @@
-@extends('layouts.app',['link' => 'Add URL']) @section('content')
+@extends('layouts.app',['link' => 'Add URL'])
+
+ <style type="text/css">
+            .toggle-switch .ts-label {
+                min-width: 130px;
+            }
+        </style>
+
+@section('content')
 <div class="container">
     <div class="col-md-8">
         <div class="card">
@@ -33,9 +41,7 @@
                     <div class="row">
                         <div class="col-sm-6">
 
-
-
-                            <!--phone no-->
+     <!--phone no-->
                             <div class="input-group m-b-20 ">
                                 <span class="input-group-addon"><i class="zmdi zmdi-phone"></i></span>
                                 <div class="fg-line {{ $errors->has('phone_no') ? ' has-error' : '' }}">
@@ -54,11 +60,11 @@
                                 </div>
 
                             </div>
-                            -->
-                            <div>
-                                <div>
-                                    <select class="form-control" name="pack_id" id="package">
-                                        <option value="default">select package</option>
+                            --><div class="m-l-30">
+
+                             <select class="selectpicker" name="pack_id" id="package">
+
+                                         <option value="default">select package</option>
                                         @if( count($package) > 0 )
                                             @foreach( $package as $p )
                                                 <option value="{{ $p->id }}">{{ $p->pack_name }}</option>
@@ -66,10 +72,10 @@
                                         @endif
                                     </select>
                                 </div>
-                                <div><strong id="error_package_id"></strong></div>
-                            </div>
+                            <div><strong id="error_package_id"></strong></div>
+             </div>
                         </div>
-                    </div>
+
                     <!--package duration -->
                     <div class="row">
                         <div class="col-sm-6">
@@ -133,6 +139,7 @@
         </div>
     </div>
 
+
     <div class="col-md-4">
 
         <div class="card" style="min-height:470px;">
@@ -157,7 +164,15 @@
                                 </div>
                                 <div id="accordionRed-{{ $p->id }}" class="collapse out" role="tabpanel">
                                     <div class="panel-body">
-                                        {{ $p->pack_desc }}
+                                        <div class="f-15 c-teal"> package description</div><br>
+                                         {{ $p->pack_desc }}
+                                        <hr>
+                                        <div class="f-15 c-teal">package include</div><br>
+                                        {{ $p->pack_include }}
+                                        <hr>
+                                         <div class="f-15 c-teal">package Cost</div><br>
+                                        {{ $p->cost_include }}
+
                                     </div>
                                 </div>
                             </div>

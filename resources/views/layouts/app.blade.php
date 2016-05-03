@@ -12,6 +12,8 @@
     <link href="{{URL::to('assets')}}/vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
     <link href="{{URL::to('assets')}}/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
     <link href="{{URL::to('assets')}}/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+     <link href="{{URL::to('assets')}}/vendors/bower_components/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet">
+      <link href="{{URL::to('assets')}}/vendors/bower_components/chosen/chosen.min.css" rel="stylesheet">
     <link href="{{URL::to('assets')}}/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
     <link href="{{URL::to('assets')}}/vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
@@ -132,7 +134,7 @@
                     </div>
                     <div class="profile-info">
                         @if( !Auth::guest() )
-                        {{ Auth::user()->user_name }}
+                        <span class="tm-label text-uppercase">{{ Auth::user()->user_name }}</span>
                           @endif
 
                     </div>
@@ -156,11 +158,14 @@
                 <a href=""><i class="zmdi zmdi-format-list-bulleted zmdi-hc-fw"></i>Booking</a>
 
                     <ul>
-                <li><a href="{{ url('booking')}}"><i class="zmdi zmdi-calendar-note"></i> Create Booking</a></li>
-                <li><a href="{{ url('showbookings')}}"><i class="zmdi zmdi-view-list"></i>Show booking</a></li>
+                <li><a href="{{ url('booking')}}"><i class="zmdi zmdi-calendar-note zmdi-hc-fw p-r-10"></i> Create Booking</a></li>
+                <li><a href="{{ url('showbookings')}}"><i class="zmdi zmdi-view-list zmdi-hc-fw p-r-10"></i>Show booking</a></li>
                 </ul>
                 </li>
                 <li><a href="{{ url('createpackage')}}"><i class="zmdi zmdi-local-mall"></i>Create package</a></li>
+
+                <!--
+                zmdi zmdi-edit zmdi-hc-fw
                 <li class="sub-menu">
                     <a href=""><i class="zmdi zmdi-view-compact"></i> Headers</a>
 
@@ -169,7 +174,7 @@
                         <li><a href="image-logo.html">Image logo</a></li>
                         <li><a href="top-mainmenu.html">Mainmenu on top</a></li>
                     </ul>
-                </li>
+                </li>-->
             </ul>
             <!-- End sidebar links -->
         </aside>
@@ -245,7 +250,8 @@
     <script src="{{URL::to('assets')}}/vendors/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
      <script src="{{URL::to('assets')}}/vendors/input-mask/input-mask.min.js"></script>
-
+     <script src="{{URL::to('assets')}}/vendors/bower_components/chosen/chosen.jquery.min.js"></script>
+     <script src="{{URL::to('assets')}}/vendors/bower_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
      <script src="{{URL::to('assets')}}/vendors/bower_components/flot/jquery.flot.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bower_components/flot/jquery.flot.resize.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bower_components/flot.curvedlines/curvedLines.js"></script>

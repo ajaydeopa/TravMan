@@ -68,6 +68,8 @@ Route::group(['middleware' => 'web'], function () {
 
         Route::get('showNotifications', 'NotificationController@show');
 
+        Route::get('notificationdetail', 'NotificationController@details');
+
 
         Route::get('booking', 'BookingController@show');
 

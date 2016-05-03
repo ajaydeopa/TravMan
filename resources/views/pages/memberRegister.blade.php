@@ -1,4 +1,5 @@
-@extends('layouts.app',['link' => 'Add URL']) @section('content')
+@extends('layouts.app',['link' => 'Add URL'])
+@section('content')
 
 <div class="container">
     <div class="card">

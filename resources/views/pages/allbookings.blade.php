@@ -24,16 +24,18 @@
                             </thead>
 
                             <tbody id="tbody">
+                                {{-- */ $count = 1; /*  --}}
                                 @foreach($data as $i)
-                                <tr>
-                                    <td>1</td>
-                                    <td><a href='booking/{{ rand(100, 999) }}{{ $i->id }}{{ rand(100,999) }}'>{{ $i->email }}</a></td>
-                                    <td>{{ $i->departure_date }} </td>
-                                    <td>{{ $i->booked_at }} </td>
-                                    <td>
-                                        <a class="btn btn-danger waves-effect delete-button" data-method="delete" id="{{ $i->id }}"><i class="zmdi zmdi-close"></i></a>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>{{ $count }}</td>
+                                        <td><a href='booking/{{ rand(100, 999) }}{{ $i->id }}{{ rand(100,999) }}'>{{ $i->email }}</a></td>
+                                        <td>{{ $i->departure_date }} </td>
+                                        <td>{{ $i->booked_at }} </td>
+                                        <td>
+                                            <a class="btn btn-danger waves-effect delete-button" data-method="delete" id="{{ $i->id }}"><i class="zmdi zmdi-close"></i></a>
+                                        </td>
+                                    </tr>
+                                    {{-- */ $count++; /* --}}
                                 @endforeach
                             </tbody>
                         </table>

@@ -82,17 +82,20 @@
             'id': id
         }, function(data) {
             var d = data;
+            var content = '';
             if (d.length == 0)
-                alert('hghg');
+                content +='no bookings';
             else {
-                var content = '';
+
                 var count = 1;
-                for (i = 0; i < d.length; i++) {
+                for (i = 0; i < d.length; i++)
+                {
                     content += '<tr><td>' + count + '</td><td><a href="booking/{{rand(100, 999)}}' + d[i]["id"] + '{{rand(100, 999)}}">' + d[i]['email'] + '</a></td><td>' + d[i]['departure_date'] + '</td><td>' + d[i]['booked_at'] + '</td><td><a class="btn btn-danger waves-effect delete-button" data-method="delete" id="' + d[i]["id"] + '">Cancel Booking</a></td></tr>';
                     count++;
                 }
-                $('#tbody').html(content);
+
             }
+             $('#tbody').html(content);
         });
     }
 

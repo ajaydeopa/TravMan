@@ -185,7 +185,7 @@
             if( id != 'default' )
                 setDuration(id);
             else
-                $('#pack_duration').attr('value', '');
+                $('#pack_duration').attr('placeholder', 'Package Duration');
         });
     });
 
@@ -204,31 +204,51 @@
             if (d['name'] != 'no') {
                 $('#error_name').html(d['name']);
                 $('#submit').val('Booking');
-            } else if (d['email'] != 'no') {
+            }
+
+            else if (d['email'] != 'no') {
                 $('#error_name').html('');
                 $('#error_email').html(d['email']);
                 $('#submit').val('Booking');
-            } else if (d['phone_no'] != 'no') {
+            }
+
+            else if (d['phone_no'] != 'no') {
                 $('#error_email').html('');
                 $('#error_phone_no').html("The phone no must be at least 10 characters");
                 $('#submit').val('Booking');
-            } else if (d['package_id'] != 'no') {
+            }
+
+            else if (d['package_id'] != 'no') {
                 $('#error_phone_no').html('');
                 $('#error_package_id').html(d['package_id']);
                 $('#submit').val('Booking');
-            } else if (d['no_of_adults'] != 'no') {
+            }
+
+            else if (d['departure_date'] != 'no') {
                 $('#error_package_id').html('');
+                $('#error_departure_date').html(d['departure_date']);
+                $('#submit').val('Booking');
+            }
+
+            else if (d['no_of_adults'] != 'no') {
+                $('#error_departure_date').html('');
                 $('#error_no_of_adults').html(d['no_of_adults']);
                 $('#submit').val('Booking');
-            } else if (d['no_of_childrens'] != 'no') {
+            }
+
+            else if (d['no_of_childrens'] != 'no') {
                 $('#error_no_of_adults').html('');
                 $('#error_no_of_childrens').html(d['no_of_childrens']);
                 $('#submit').val('Booking');
-            } else if (d['payment_id'] != 'no') {
+            }
+
+            else if (d['payment_id'] != 'no') {
                 $('#error_no_of_childrens').html('');
                 $('#error_payment_id').html(d['payment_id']);
                 $('#submit').val('Booking');
-            } else {
+            }
+
+            else {
                 $('#error_payment_id').html('');
                 makeBooking();
             }
@@ -242,6 +262,8 @@
         $.post(url, data, function() {
             $('#message').fadeIn().html('Congratulations, your booking has being made !!').fadeOut(2000);
             $(':input[type="text"]').val('');
+            $('#package').val('default');
+            $('#pack_duration').attr('placeholder', 'Package Duration');
             $('#submit').val('Make Booking');
         });
     }

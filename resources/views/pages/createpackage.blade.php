@@ -92,7 +92,7 @@
 
 <!-- button -->
 		                    <div class="input-group m-b-20 ">
-		                       <button class="btn bgm-lightblue waves-effect" type="submit" name="book" id="submit">Booking</button>
+		                       <button class="btn bgm-lightblue waves-effect" type="submit" name="book" id="submit">Create Package</button>
 
 		                    </div>
 		                </form>
@@ -107,6 +107,7 @@
 @section('footer')
 <script type="text/javascript">
 	$('#submit').click(function(){
+		$('#submit').val('Creating Package...').focus();
 		validatePackage();
 	});
 
@@ -117,37 +118,37 @@
             var d = data;
             if (d['name'] != 'no') {
                 $('#error_name').html(d['name']);
-                $('#submit').val('Booking');
+                $('#submit').val('Create Package');
             }
 
             else if (d['duration'] != 'no') {
                 $('#error_name').html('');
                 $('#error_duration').html(d['duration']);
-                $('#submit').val('Booking');
+                $('#submit').val('Create Package');
             }
 
             else if (d['description'] != 'no') {
                 $('#error_duration').html('');
                 $('#error_description').html(d['description']);
-                $('#submit').val('Booking');
+                $('#submit').val('Create Package');
             }
 
             else if (d['package_include'] != 'no') {
                 $('#error_description').html('');
                 $('#error_pack_include').html(d['package_include']);
-                $('#submit').val('Booking');
+                $('#submit').val('Create Package');
             }
 
             else if (d['cost_include'] != 'no') {
                 $('#error_pack_include').html('');
                 $('#error_cost_include').html(d['cost_include']);
-                $('#submit').val('Booking');
+                $('#submit').val('Create Package');
             }
 
             else if (d['notes'] != 'no') {
                 $('#error_cost_include').html('');
                 $('#error_notes').html(d['notes']);
-                $('#submit').val('Booking');
+                $('#submit').val('Create Package');
             }
 
             else {
@@ -163,6 +164,8 @@
 
 		$.post(url, data, function(data){
 			$('#message').fadeIn().html('Package has been successfully created !!').fadeOut(2000);
+			$(':input').val('');
+			$('#submit').val('Create Package');
 		});
 	}
 </script>

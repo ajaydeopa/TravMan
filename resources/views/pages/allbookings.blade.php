@@ -8,9 +8,11 @@
                 </div>
                 <div class="card-body" id="boking_list">
                     <div class="table-responsive">
-                        @if($data->count() == 0) No searches @else
+                        @if($data->count() == 0)
+                            <p style="text-align: center">No bookings</p>
+                        @else
                         <table class="table table-hover">
-                            <thead>
+                            <thead id="thead">
                                 <tr>
                                     <th class=" hidden-xs">No.</th>
                                     <th>email id</th>
@@ -82,17 +84,20 @@
             'id': id
         }, function(data) {
             var d = data;
-            if (d.length == 0)
-                alert('hghg');
+            var content = '';
+            if (d.length == 0){
+                content += '<p style="text-align:center">No bookings</p>';
+                $('#thead').css('display', 'none');
+            }
             else {
-                var content = '';
                 var count = 1;
+                $('#thead').removeAttr('display');
                 for (i = 0; i < d.length; i++) {
-                    content += '<tr><td>' + count + '</td><td><a href="booking/{{rand(100, 999)}}' + d[i]["id"] + '{{rand(100, 999)}}">' + d[i]['email'] + '</a></td><td>' + d[i]['departure_date'] + '</td><td>' + d[i]['booked_at'] + '</td><td><a class="btn btn-danger waves-effect delete-button" data-method="delete" id="' + d[i]["id"] + '">Cancel Booking</a></td></tr>';
+                    content += '<tr><td>' + count + '</td><td><a href="booking/{{rand(100, 999)}}' + d[i]["id"] + '{{rand(100, 999)}}">' + d[i]['email'] + '</a></td><td>' + d[i]['departure_date'] + '</td><td>' + d[i]['booked_at'] + '</td><td><a class="btn btn-danger waves-effect delete-button" data-method="delete" id="' + d[i]["id"] + '"><i class="zmdi zmdi-close"></i></a></td></tr>';
                     count++;
                 }
-                $('#tbody').html(content);
             }
+            $('#tbody').html(content);
         });
     }
 

@@ -29,46 +29,61 @@ class BookingController extends Controller
             'email' => 'required|email',
             'payment_id' => 'required',
             'phone_no' => 'required|max:12|min:12',
-            'no_of_adults' => 'required',
-            'no_of_childrens' => 'required'
+            'no_of_adults' => 'required|integer',
+            'departure_date' => 'required',
+            'no_of_childrens' => 'required|integer'
         ]);
         
         //var_dump($validator->errors()->all()); die();
+
+
         
         if( $validator->errors()->has('name') )
             $d['name'] = $validator->errors()->first('name');
         else
-            $d['name'] = 'no';
+        {   $d['name'] = 'no';
 
-        if( $validator->errors()->has('email') )
-            $d['email'] = $validator->errors()->first('email');
-        else
-            $d['email'] = 'no';
+            if( $validator->errors()->has('email') )
+                $d['email'] = $validator->errors()->first('email');
+            else
+            {   $d['email'] = 'no';
 
-        if( $validator->errors()->has('payment_id') )
-            $d['payment_id'] = $validator->errors()->first('payment_id');
-        else
-            $d['payment_id'] = 'no';
+                if( $validator->errors()->has('phone_no') )
+                    $d['phone_no'] = $validator->errors()->first('phone_no');
+                else
+                {   $d['phone_no'] = 'no';
 
-        if( $request->pack_id === 'default' )
-            $d['package_id'] = 'Enter a valid package name.';
-        else
-            $d['package_id'] = 'no';
+                    if( $request->pack_id === 'default' )
+                        $d['package_id'] = 'Enter a valid package name.';
+                    else
+                    {   $d['package_id'] = 'no';
 
-        if( $validator->errors()->has('phone_no') )
-            $d['phone_no'] = $validator->errors()->first('phone_no');
-        else
-            $d['phone_no'] = 'no';
+                        if( $validator->errors()->has('departure_date') )
+                            $d['departure_date'] = $validator->errors()->first('departure_date');
+                        else
+                        {   $d['departure_date'] = 'no';
 
-        if( $validator->errors()->has('no_of_adults') )
-            $d['no_of_adults'] = $validator->errors()->first('no_of_adults');
-        else
-            $d['no_of_adults'] = 'no';
+                            if( $validator->errors()->has('no_of_adults') )
+                                $d['no_of_adults'] = $validator->errors()->first('no_of_adults');
+                            else
+                            {   $d['no_of_adults'] = 'no';
 
-        if( $validator->errors()->has('no_of_childrens') )
-            $d['no_of_childrens'] = $validator->errors()->first('no_of_childrens');
-        else
-            $d['no_of_childrens'] = 'no';
+                                if( $validator->errors()->has('no_of_childrens') )
+                                    $d['no_of_childrens'] = $validator->errors()->first('no_of_childrens');
+                                else
+                                {   $d['no_of_childrens'] = 'no';
+
+                                    if( $validator->errors()->has('payment_id') )
+                                        $d['payment_id'] = $validator->errors()->first('payment_id');
+                                    else
+                                        $d['payment_id'] = 'no';
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         return $d;
     }

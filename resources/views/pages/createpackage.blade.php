@@ -24,29 +24,37 @@
 		                        <div><strong id="error_name"></strong></div>
 		                    </div>
 
+
 		                    <!-- duration -->
-		                    <div class="input-group m-b-20 ">
-		                    	<label style="padding-left: 40px">Package duration</label>
-			                    <div class="row">
-			                    	<div class="col-sm-4">
+		                    <div class="row m-b-10 ">
+		                    <div class="col-sm-4">
+		                    <div class="input-group">
+		                    	  <span class="input-group-addon"><i class="zmdi zmdi-time"></i></span>
+                                    <div class="fg-line fg-toggled">
+                                            <input type="text" class="form-control" value="Duration"  placeholder="Duration" disabled="">
+                                        </div>
+                               </div>
+                                </div>
+			                 <div class="col-sm-4">
 	                                    <div class="input-group">
-	                                        <span class="input-group-addon"><i class="zmdi zmdi-time"></i></span>
+	                                        <span class="input-group-addon"><i class="zmdi zmdi-sun"></i></span>
 	                                        <div class="fg-line">
-	                                                <input type="text" class="form-control" placeholder="Days" name="days" value="{{ old('days') }}">
-	                                        </div>
+                                       <input type="text" class="form-control input-mask" data-mask="00" placeholder="Number of Days" name="days" value="{{ old('days') }}" maxlength="2" autocomplete="off">
+                                           </div>
 	                                    </div>
 	                            	</div>
-	                            	<div class="col-sm-4">
+	                           <div class="col-sm-4">
 	                                    <div class="input-group">
-	                                        <span class="input-group-addon"><i class="zmdi zmdi-time"></i></span>
+	                                        <span class="input-group-addon"><i class="zmdi zmdi-time-interval"></i></span>
 	                                        <div class="fg-line">
-	                                                <input type="text" class="form-control" placeholder="Nights" name="nights" value="{{ old('nights') }}">
-	                                        </div>
+                                                 <input type="text" class="form-control input-mask" data-mask="00" placeholder="Number of Nights" name="nights" value="{{ old('nights') }}" maxlength="2" autocomplete="off">
+                                            </div>
 	                                    </div>
 	                            	</div>
+	                            	 <div><strong id="error_duration" style="padding-left: 40px"></strong></div>
 	                            </div>
-	                            <div><strong id="error_duration" style="padding-left: 40px"></strong></div>
-                            </div>
+
+
 <!-- description -->
                             <div class="input-group m-b-20 ">
 		                        <span class="input-group-addon"><i class="zmdi zmdi-widgets"></i></span>
@@ -92,7 +100,7 @@
 
 <!-- button -->
 		                    <div class="input-group m-b-20 ">
-		                       <button class="btn bgm-lightblue waves-effect" type="submit" name="book" id="submit">Booking</button>
+		                       <button class="btn bgm-lightblue waves-effect" type="submit" name="book" id="submit">Create Package</button>
 
 		                    </div>
 		                </form>
@@ -107,6 +115,7 @@
 @section('footer')
 <script type="text/javascript">
 	$('#submit').click(function(){
+		$('#submit').val('Creating Package...').focus();
 		validatePackage();
 	});
 
@@ -117,37 +126,37 @@
             var d = data;
             if (d['name'] != 'no') {
                 $('#error_name').html(d['name']);
-                $('#submit').val('Booking');
+                $('#submit').val('Create Package');
             }
 
             else if (d['duration'] != 'no') {
                 $('#error_name').html('');
                 $('#error_duration').html(d['duration']);
-                $('#submit').val('Booking');
+                $('#submit').val('Create Package');
             }
 
             else if (d['description'] != 'no') {
                 $('#error_duration').html('');
                 $('#error_description').html(d['description']);
-                $('#submit').val('Booking');
+                $('#submit').val('Create Package');
             }
 
             else if (d['package_include'] != 'no') {
                 $('#error_description').html('');
                 $('#error_pack_include').html(d['package_include']);
-                $('#submit').val('Booking');
+                $('#submit').val('Create Package');
             }
 
             else if (d['cost_include'] != 'no') {
                 $('#error_pack_include').html('');
                 $('#error_cost_include').html(d['cost_include']);
-                $('#submit').val('Booking');
+                $('#submit').val('Create Package');
             }
 
             else if (d['notes'] != 'no') {
                 $('#error_cost_include').html('');
                 $('#error_notes').html(d['notes']);
-                $('#submit').val('Booking');
+                $('#submit').val('Create Package');
             }
 
             else {
@@ -163,6 +172,8 @@
 
 		$.post(url, data, function(data){
 			$('#message').fadeIn().html('Package has been successfully created !!').fadeOut(2000);
+			$(':input').val('');
+			$('#submit').val('Create Package');
 		});
 	}
 </script>

@@ -1,4 +1,12 @@
-@extends('layouts.app',['link' => 'Add URL']) @section('content')
+@extends('layouts.app',['link' => 'Add URL'])
+
+ <style type="text/css">
+            .toggle-switch .ts-label {
+                min-width: 130px;
+            }
+        </style>
+
+@section('content')
 <div class="container">
     <div class="col-md-8">
         <div class="card">
@@ -33,9 +41,7 @@
                     <div class="row">
                         <div class="col-sm-6">
 
-
-
-                            <!--phone no-->
+     <!--phone no-->
                             <div class="input-group m-b-20 ">
                                 <span class="input-group-addon"><i class="zmdi zmdi-phone"></i></span>
                                 <div class="fg-line {{ $errors->has('phone_no') ? ' has-error' : '' }}">
@@ -54,11 +60,11 @@
                                 </div>
 
                             </div>
-                            -->
-                            <div>
-                                <div>
-                                    <select class="form-control" name="pack_id" id="package">
-                                        <option value="default">select package</option>
+                            --><div class="m-l-30">
+
+                             <select class="selectpicker" name="pack_id" id="package">
+
+                                         <option value="default">select package</option>
                                         @if( count($package) > 0 )
                                             @foreach( $package as $p )
                                                 <option value="{{ $p->id }}">{{ $p->pack_name }}</option>
@@ -66,10 +72,10 @@
                                         @endif
                                     </select>
                                 </div>
-                                <div><strong id="error_package_id"></strong></div>
-                            </div>
+                            <div><strong id="error_package_id"></strong></div>
+             </div>
                         </div>
-                    </div>
+
                     <!--package duration -->
                     <div class="row">
                         <div class="col-sm-6">
@@ -133,6 +139,7 @@
         </div>
     </div>
 
+
     <div class="col-md-4">
 
         <div class="card" style="min-height:470px;">
@@ -157,7 +164,15 @@
                                 </div>
                                 <div id="accordionRed-{{ $p->id }}" class="collapse out" role="tabpanel">
                                     <div class="panel-body">
-                                        {{ $p->pack_desc }}
+                                        <div class="f-15 c-teal"> package description</div><br>
+                                         {{ $p->pack_desc }}
+                                        <hr>
+                                        <div class="f-15 c-teal">package include</div><br>
+                                        {{ $p->pack_include }}
+                                        <hr>
+                                         <div class="f-15 c-teal">package Cost</div><br>
+                                        {{ $p->cost_include }}
+
                                     </div>
                                 </div>
                             </div>
@@ -185,7 +200,7 @@
             if( id != 'default' )
                 setDuration(id);
             else
-                $('#pack_duration').attr('value', '');
+                $('#pack_duration').attr('placeholder', 'Package Duration');
         });
     });
 
@@ -204,31 +219,51 @@
             if (d['name'] != 'no') {
                 $('#error_name').html(d['name']);
                 $('#submit').val('Booking');
-            } else if (d['email'] != 'no') {
+            }
+
+            else if (d['email'] != 'no') {
                 $('#error_name').html('');
                 $('#error_email').html(d['email']);
                 $('#submit').val('Booking');
-            } else if (d['phone_no'] != 'no') {
+            }
+
+            else if (d['phone_no'] != 'no') {
                 $('#error_email').html('');
                 $('#error_phone_no').html("The phone no must be at least 10 characters");
                 $('#submit').val('Booking');
-            } else if (d['package_id'] != 'no') {
+            }
+
+            else if (d['package_id'] != 'no') {
                 $('#error_phone_no').html('');
                 $('#error_package_id').html(d['package_id']);
                 $('#submit').val('Booking');
-            } else if (d['no_of_adults'] != 'no') {
+            }
+
+            else if (d['departure_date'] != 'no') {
                 $('#error_package_id').html('');
+                $('#error_departure_date').html(d['departure_date']);
+                $('#submit').val('Booking');
+            }
+
+            else if (d['no_of_adults'] != 'no') {
+                $('#error_departure_date').html('');
                 $('#error_no_of_adults').html(d['no_of_adults']);
                 $('#submit').val('Booking');
-            } else if (d['no_of_childrens'] != 'no') {
+            }
+
+            else if (d['no_of_childrens'] != 'no') {
                 $('#error_no_of_adults').html('');
                 $('#error_no_of_childrens').html(d['no_of_childrens']);
                 $('#submit').val('Booking');
-            } else if (d['payment_id'] != 'no') {
+            }
+
+            else if (d['payment_id'] != 'no') {
                 $('#error_no_of_childrens').html('');
                 $('#error_payment_id').html(d['payment_id']);
                 $('#submit').val('Booking');
-            } else {
+            }
+
+            else {
                 $('#error_payment_id').html('');
                 makeBooking();
             }
@@ -242,6 +277,8 @@
         $.post(url, data, function() {
             $('#message').fadeIn().html('Congratulations, your booking has being made !!').fadeOut(2000);
             $(':input[type="text"]').val('');
+            $('#package').val('default');
+            $('#pack_duration').attr('placeholder', 'Package Duration');
             $('#submit').val('Make Booking');
         });
     }

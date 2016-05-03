@@ -5,13 +5,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title')</title>
+    <title>Travo</title>
 
     <!-- Vendor CSS -->
     <link href="{{URL::to('assets')}}/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
     <link href="{{URL::to('assets')}}/vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
     <link href="{{URL::to('assets')}}/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
     <link href="{{URL::to('assets')}}/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+     <link href="{{URL::to('assets')}}/vendors/bower_components/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet">
+      <link href="{{URL::to('assets')}}/vendors/bower_components/chosen/chosen.min.css" rel="stylesheet">
     <link href="{{URL::to('assets')}}/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
     <link href="{{URL::to('assets')}}/vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
@@ -132,7 +134,7 @@
                     </div>
                     <div class="profile-info">
                         @if( !Auth::guest() )
-                        {{ Auth::user()->user_name }}
+                        <span class="tm-label text-uppercase">{{ Auth::user()->user_name }}</span>
                           @endif
 
                     </div>
@@ -156,20 +158,12 @@
                 <a href=""><i class="zmdi zmdi-format-list-bulleted zmdi-hc-fw"></i>Booking</a>
 
                     <ul>
-                <li><a href="{{ url('booking')}}"><i class="zmdi zmdi-calendar-note"></i> Create Booking</a></li>
-                <li><a href="{{ url('showbookings')}}"><i class="zmdi zmdi-view-list"></i>Show booking</a></li>
+                <li><a href="{{ url('booking')}}"><i class="zmdi zmdi-calendar-note zmdi-hc-fw p-r-10"></i> Create Booking</a></li>
+                <li><a href="{{ url('showbookings')}}"><i class="zmdi zmdi-view-list zmdi-hc-fw p-r-10"></i>Show booking</a></li>
                 </ul>
                 </li>
                 <li><a href="{{ url('createpackage')}}"><i class="zmdi zmdi-local-mall"></i>Create package</a></li>
-                <li class="sub-menu">
-                    <a href=""><i class="zmdi zmdi-view-compact"></i> Headers</a>
 
-                    <ul>
-                        <li><a href="textual-menu.html">Textual menu</a></li>
-                        <li><a href="image-logo.html">Image logo</a></li>
-                        <li><a href="top-mainmenu.html">Mainmenu on top</a></li>
-                    </ul>
-                </li>
             </ul>
             <!-- End sidebar links -->
         </aside>
@@ -195,57 +189,14 @@
             <p>Please wait...</p>
         </div>
     </div>
-    <!--End Page Loader -->
-
-    <!-- Older IE warning message -->
-    <!--[if lt IE 9]>
-            <div class="ie-warning">
-                <h1 class="c-white">Warning!!</h1>
-                <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
-                <div class="iew-container">
-                    <ul class="iew-download">
-                        <li>
-                            <a href="http://www.google.com/chrome/">
-                                <img src="img/browsers/chrome.png" alt="">
-                                <div>Chrome</div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.mozilla.org/en-US/firefox/new/">
-                                <img src="img/browsers/firefox.png" alt="">
-                                <div>Firefox</div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://www.opera.com">
-                                <img src="img/browsers/opera.png" alt="">
-                                <div>Opera</div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.apple.com/safari/">
-                                <img src="img/browsers/safari.png" alt="">
-                                <div>Safari</div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
-                                <img src="img/browsers/ie.png" alt="">
-                                <div>IE (New)</div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <p>Sorry for the inconvenience!</p>
-            </div>
-        <![endif]-->
 
    @yield('footer')
     <!-- Javascript Libraries -->
     <script src="{{URL::to('assets')}}/vendors/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
      <script src="{{URL::to('assets')}}/vendors/input-mask/input-mask.min.js"></script>
-
+     <script src="{{URL::to('assets')}}/vendors/bower_components/chosen/chosen.jquery.min.js"></script>
+     <script src="{{URL::to('assets')}}/vendors/bower_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
      <script src="{{URL::to('assets')}}/vendors/bower_components/flot/jquery.flot.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bower_components/flot/jquery.flot.resize.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bower_components/flot.curvedlines/curvedLines.js"></script>
@@ -275,7 +226,28 @@
     <script src="{{URL::to('assets')}}/js/functions.js"></script>
     <script src="{{URL::to('assets')}}/js/demo.js"></script>
     @if( !Auth::guest() )
-    <script>
+        <script>
+        $('#notification_list').on('click', '#note', function(){
+            var id = $(this).attr('data-id');
+            $(this).css('background-color', 'white');
+
+            showdetails(id);
+        });
+
+        function showdetails(id){
+            var url = '{{ url("notificationdetail") }}';
+
+            $.get(url, {'id' : id}, function(data){
+                swal({
+                    title: "Notification details !!",
+                    text: data,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "OK",
+                    closeOnConfirm: false,
+                });
+            });
+        }
+
         count_notifi();
         //notification_count
 
@@ -309,15 +281,19 @@
                 var content = '';
                 for (i = 0; i < d.length; i++) {
                     var status = 'cancelled booking.';
+                    var color = '';
                     if( d[i]['booking_status'] == 'booked' )
                         status = 'made a booking.';
 
-                    content += '<a class="lv-item" href=""><div class="media"><div class="pull-left"><img class="lv-img-sm" src="{{URL::to("assets")}}/img/profile-pics/1.jpg" alt=""></div><div class="media-body"><div class="lv-title">' + d[i].email_of_booker + '</div><small class="lv-small">' + d[i].email_of_booker + ' '+ status +'</small></i></div></div></a>';
+                    if( d[i]['seen_status'] == 'open' )
+                        color = 'background-color:#FFEB3B';
+
+                    content += '<a class="lv-item" style="cursor:pointer;border-bottom:1px solid black;'+ color +'" id="note" data-id="'+ d[i]['id'] +'"><div class="media" ><div class="pull-left"><img class="lv-img-sm" src="{{URL::to("assets")}}/img/profile-pics/1.jpg" alt=""></div><div class="media-body"><div class="lv-title">' + d[i].email_of_booker + '</div><small class="lv-small">' + d[i].email_of_booker + ' '+ status +'</small></i></div></div></a>';
                 }
                 $('#notification_list').html(content);
             });
         }
-    </script>
+        </script>
     @endif
 @yield('footer')
 </body>

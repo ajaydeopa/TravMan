@@ -249,7 +249,14 @@
 
         $('#calendar').on('click', '.fc-title', function(){
 
-            swal($(this).html())
+             swal({
+                    title: "Are you sure?",
+                    text: "You will not be able to recover this",
+                    showCancelButton: true,
+                    confirmButtonText: "Yes, delete it!",
+                    closeOnConfirm: false
+                });
+
         });
 
         $('#cancel').click(function(){

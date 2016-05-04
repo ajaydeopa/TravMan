@@ -12,7 +12,7 @@ use Carbon\Carbon;
 
 class CalendarTodoController extends Controller
 {
-    //
+    //open dashboard
 	public function load(){
 		$id = Auth::user()->id;
 
@@ -23,6 +23,7 @@ class CalendarTodoController extends Controller
 		return view('pages.dashboard', compact('events', 'todo'));
 	}
 
+    //save calendar appointment
     public function eventsave(Request $request){
     	$id = Auth::user()->id;
     	$event = $request->event;
@@ -64,6 +65,7 @@ class CalendarTodoController extends Controller
     	$store->save();
     }
 
+    //save todo list data
     public function addtodo(Request $request){
         $todo = $request->new_todo;
         $id = Auth::user()->id;
@@ -79,6 +81,7 @@ class CalendarTodoController extends Controller
         return $data;
     }
 
+    //delete specific todo
     public function deletetodo(Request $request){
         $id = $request->id;
 
@@ -89,12 +92,14 @@ class CalendarTodoController extends Controller
         return $data;
     }
 
+    //retrive todo after deletion
     public function getTodoData(){
         $id = Auth::user()->id;
 
         return TodoList::latest('updated_at')->where('cid', $id)->get();
     }
 
+    //edit a todo
     public function edittodo(Request $request){
         $id = $request->id;
         $data = $request->data;

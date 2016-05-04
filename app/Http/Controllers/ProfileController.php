@@ -18,6 +18,7 @@ class ProfileController extends Controller
     	return view('pages.profile', compact('data'));
     }
 
+    //save summary
     public function summarysave(Request $request){
     	$id = Auth::user()->id;
     	$summ = $request->summary;
@@ -25,6 +26,7 @@ class ProfileController extends Controller
     	Userdetail::where('cid', $id)->update(['summary' => $summ]);
     }
 
+    //save name, gender, birthday, martial status
     public function basicinfosave(Request $request){
         $id = Auth::user()->id;
         $name = $request->name;
@@ -35,6 +37,7 @@ class ProfileController extends Controller
         Userdetail::where('cid', $id)->update(['full_name' => $name, 'gender' => $gender, 'birthday' => $birth, 'martial_status' => $status]);
     }
 
+    //save contact info
     public function contactinfosave(Request $request){
         $id = Auth::user()->id;
         $phone = $request->phone;

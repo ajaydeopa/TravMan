@@ -1,4 +1,5 @@
-@extends('layouts.app',['link' => 'Add URL']) @section('content')
+@extends('layouts.app',['link' => 'Add URL'])
+ @section('content')
 <div class="container">
         <div class="mini-charts">
         <div class="row">
@@ -7,8 +8,8 @@
                     <div class="clearfix">
                         <div class="chart stats-bar"></div>
                         <div class="count">
-                            <small>Website Traffics</small>
-                            <h2>987,459</h2>
+                            <small>Total Bookings </small>
+                            <h2>4</h2>
                         </div>
                     </div>
                 </div>
@@ -19,8 +20,8 @@
                     <div class="clearfix">
                         <div class="chart stats-bar-2"></div>
                         <div class="count">
-                            <small>Website Impressions</small>
-                            <h2>356,785K</h2>
+                            <small>Package</small>
+                            <h2>7</h2>
                         </div>
                     </div>
                 </div>
@@ -31,8 +32,8 @@
                     <div class="clearfix">
                         <div class="chart stats-line"></div>
                         <div class="count">
-                            <small>Total Sales</small>
-                            <h2>$ 458,778</h2>
+                            <small>Facebook</small>
+                            <h2>458</h2>
                         </div>
                     </div>
                 </div>
@@ -43,8 +44,8 @@
                     <div class="clearfix">
                         <div class="chart stats-line-2"></div>
                         <div class="count">
-                            <small>Support Tickets</small>
-                            <h2>23,856</h2>
+                            <small>Support</small>
+                            <h2>236</h2>
                         </div>
                     </div>
                 </div>
@@ -52,34 +53,13 @@
         </div>
     </div>
     <div class="row">
+        <!-- Todo Lists -->
         <div class="col-sm-6 col-md-4">
-
-
-            <!-- Todo Lists -->
             <div id="todo-lists">
                 <div class="tl-header">
                     <h2>Todo Lists</h2>
                     <small>Add, edit and manage your Todo Lists</small>
 
-                    <ul class="actions actions-alt">
-                        <li class="dropdown">
-                            <a href="" data-toggle="dropdown">
-                                <i class="zmdi zmdi-more-vert"></i>
-                            </a>
-
-                            <ul class="dropdown-menu dropdown-menu-right">
-                                <li>
-                                    <a href="">Refresh</a>
-                                </li>
-                                <li>
-                                    <a href="">Manage Widgets</a>
-                                </li>
-                                <li>
-                                    <a href="">Widgets Settings</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
                 </div>
 
                 <div class="clearfix"></div>
@@ -96,7 +76,7 @@
                                 <div class="add-tl-actions">
                                     <a href="" data-tl-action="dismiss" id="cancel"><i class="zmdi zmdi-close"></i></a>
                                     <a href="" data-tl-action="save" id="save"><i class="zmdi zmdi-check"></i></a>
-                                    <a href="" data-tl-action="save" id="editt" style="display: none"><i class="zmdi zmdi-edit"></i></a>
+                                    <a href="" data-tl-action="save" id="editt" style="display: none"><i class="zmdi zmdi-check"></i></a>
                                 </div>
                             </div>
                         </form>
@@ -107,16 +87,15 @@
                     @if( count($todo) != 0 )
                         @foreach( $todo as $t )
                             <div class="checkbox media">
-                                <div class="pull-right">
+                                <div class="pull-right ">
                                     <ul class="actions actions-alt">
-                                        <li class="dropdown" id="dropdown{{ $t->id }}">
+                                        <li class="dropdown " id="dropdown{{ $t->id }}" >
                                             <a href="" data-toggle="dropdown">
                                                 <i class="zmdi zmdi-more-vert"></i>
                                             </a>
-
-                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                <li><a style="cursor:pointer" id="delete" todo-id="{{ $t->id }}">Delete</a></li>
-                                                <li><a style="cursor:pointer" id="edit" todo-id="{{ $t->id }}">Edit</a></li>
+                                                  <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a style="cursor:pointer" id="edit" todo-id="{{ $t->id }}" class="c-green f-20 p-t-0 p-b-2">Edit</a></li>
+                                                <li><a style="cursor:pointer" id="delete" todo-id="{{ $t->id }}" class="c-red f-20 p-t-0 p-b-2 ">Delete</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -133,6 +112,7 @@
                     @endif
 
                     </div>
+
 
                 </div>
             </div>
@@ -197,7 +177,9 @@
     </div>
 </div>
 
-@endsection @section('footer')
+@endsection
+
+@section('footer')
 
 <script>
     $(document).ready(function() {
@@ -217,7 +199,7 @@
                 var content = '';
 
                 for( i = 0; i < d.length; i++ ){
-                    content += '<div class="checkbox media"><div class="pull-right"><ul class="actions actions-alt"><li class="dropdown" id="dropdown'+ d[i]['id'] +'"><a href="" data-toggle="dropdown"><i class="zmdi zmdi-more-vert"></i></a><ul class="dropdown-menu dropdown-menu-right">  <li><a style="cursor:pointer" id="delete" todo-id="'+ d[i]['id'] +'">Delete</a></li>  <li><a style="cursor:pointer" id="edit" todo-id="'+ d[i]['id'] +'">Edit</a></li>  </ul></li></ul></div><div class="media-body"><label><input type="checkbox"><i class="input-helper"></i><span id="todo-data'+ d[i]['id'] +'">'+ d[i]['todo'] +'</span></label></div></div>';
+                    content += '<div class="checkbox media"><div class="pull-right"><ul class="actions actions-alt"><li class="dropdown" id="dropdown'+ d[i]['id'] +'"><a href="" data-toggle="dropdown"><i class="zmdi zmdi-more-vert"></i></a><ul class="dropdown-menu dropdown-menu-right">  <li><a style="cursor:pointer" id="edit" todo-id="'+ d[i]['id'] +'"class="c-green f-20 p-t-0 p-b-2">Edit</a></li> <li><a style="cursor:pointer" id="delete" todo-id="'+ d[i]['id'] +'" class="c-red f-20 p-t-0 p-b-2 ">Delete</a></li>  </ul></li></ul></div><div class="media-body"><label><input type="checkbox"><i class="input-helper"></i><span id="todo-data'+ d[i]['id'] +'">'+ d[i]['todo'] +'</span></label></div></div>';
                 }
 
                 $('#todo_list').html(content);
@@ -237,7 +219,7 @@
                 var content = '';
 
                 for( i = 0; i < d.length; i++ ){
-                    content += '<div class="checkbox media"><div class="pull-right"><ul class="actions actions-alt"><li class="dropdown" id="dropdown'+ d[i]['id'] +'"><a href="" data-toggle="dropdown"><i class="zmdi zmdi-more-vert"></i></a><ul class="dropdown-menu dropdown-menu-right">  <li><a style="cursor:pointer" id="delete" todo-id="'+ d[i]['id'] +'">Delete</a></li>  <li><a style="cursor:pointer" id="edit" todo-id="'+ d[i]['id'] +'">Edit</a></li>  </ul></li></ul></div><div class="media-body"><label><input type="checkbox"><i class="input-helper"></i><span id="todo-data'+ d[i]['id'] +'">'+ d[i]['todo'] +'</span></label></div></div>';
+                    content += '<div class="checkbox media"><div class="pull-right"><ul class="actions actions-alt"><li class="dropdown" id="dropdown'+ d[i]['id'] +'"><a href="" data-toggle="dropdown"><i class="zmdi zmdi-more-vert"></i></a><ul class="dropdown-menu dropdown-menu-right">  <li><a style="cursor:pointer" id="edit" todo-id="'+ d[i]['id'] +'" class="c-green f-20 p-t-0 p-b-2">Edit</a></li> <li><a style="cursor:pointer" id="delete" todo-id="'+ d[i]['id'] +'" class="c-red f-20 p-t-0 p-b-2 ">Delete</a></li> </ul></li></ul></div><div class="media-body"><label><input type="checkbox"><i class="input-helper"></i><span id="todo-data'+ d[i]['id'] +'">'+ d[i]['todo'] +'</span></label></div></div>';
                 }
 
                 $('#todo_list').html(content);
@@ -263,6 +245,18 @@
             var data = $('#new-todo').val();
 
             editTodo(data);
+        });
+
+        $('#calendar').on('click', '.fc-title', function(){
+
+             swal({
+                    title: "Are you sure?",
+                    text: "You will not be able to recover this",
+                    showCancelButton: true,
+                    confirmButtonText: "Yes, delete it!",
+                    closeOnConfirm: false
+                });
+
         });
 
         $('#cancel').click(function(){
@@ -323,6 +317,7 @@
                 $('#getEnd').val(end);
             }
         });
+
 
         //Create and ddd Action button with dropdown in Calendar header.
         var actionMenu = '<ul class="actions actions-alt" id="fc-actions">' +
@@ -399,10 +394,12 @@
         });
     });
 
+
     function eventSave(eventName, tagColor, start){
         var url = '{{ url("eventsave") }}';
 
         $.get(url, {'event' : eventName, 'color' : tagColor, 'strt' : start});
     }
+
 </script>
 @endsection

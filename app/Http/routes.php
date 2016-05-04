@@ -9,6 +9,10 @@
 | kernel and includes session state, CSRF protection, and more.
 |
 */
+ Route::get('micro', function(){
+            return view('pages.microsite');
+        });
+
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
     

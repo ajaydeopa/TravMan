@@ -12,6 +12,9 @@
  Route::get('micro', function(){
             return view('pages.microsite');
         });
+Route::get('micro2', function(){
+            return view('pages.microsite2');
+        });
 
 Route::group(['middleware' => 'web'], function () {
     Route::auth();

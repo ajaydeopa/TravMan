@@ -141,9 +141,7 @@
                         <img src="{{URL::to('assets')}}/media/gallery/thumbs/9.jpg" alt="" />
                     </div>
                 </div>
-                <span style="margin-top:-1em;">
-
-                <div data-src="{{URL::to('assets')}}/media/gallery/1.jpg" class="col-md-2 col-sm-4 col-xs-6">
+             <div data-src="{{URL::to('assets')}}/media/gallery/1.jpg" class="col-md-2 col-sm-4 col-xs-6">
                     <div class="lightbox-item p-item">
                         <img src="{{URL::to('assets')}}/media/gallery/thumbs/1.jpg" alt="" />
                     </div>
@@ -160,7 +158,7 @@
                         <img src="{{URL::to('assets')}}/media/gallery/thumbs/3.jpg" alt="" />
                     </div>
                 </div>
-</span>
+
 
             </div>
             <ul class="actions">

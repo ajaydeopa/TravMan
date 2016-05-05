@@ -12,8 +12,14 @@
  Route::get('micro', function(){
             return view('pages.microsite');
         });
-Route::get('micro2', function(){
-            return view('pages.microsite2');
+Route::get('morepackage', function(){
+            return view('pages.morepackage');
+        });
+Route::get('packagedetails', function(){
+            return view('pages.packagedetails');
+        });
+Route::get('galery', function(){
+            return view('pages.galery');
         });
 
 Route::group(['middleware' => 'web'], function () {
@@ -87,3 +93,4 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('edittodo', 'CalendarTodoController@edittodo');
     });
 });
+

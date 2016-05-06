@@ -41,6 +41,12 @@
                 </div>
             </article>
         </div>
+        <center>
+         <ul class="actions">
+                        <li>
+                            <a href="{{ url('morepackage')}}" class="button big alt">More Packages</a>
+                        </li>
+                    </ul></center>
     </section>
 
     <!-- Two -->
@@ -123,10 +129,12 @@
 
 
             </div>
+
             <ul class="actions">
-                <li><a href="{{ url('galery')}}" class="button big alt">move to gallery</a></li>
+                <li style="margin-top:1.5em;"><a href="{{ url('galery')}}" class="button big alt">move to gallery</a></li>
             </ul>
-        </div>
+            </div>
+
     </section>
     <!-- Galery>
     <!-- Three -->

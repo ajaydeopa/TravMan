@@ -78,5 +78,14 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('deletetodo', 'CalendarTodoController@deletetodo');
 
         Route::get('edittodo', 'CalendarTodoController@edittodo');
+
+        //Route for FeedbackController
+        Route::get('travo/feedback', 'FeedbackController@show');
+
+        /*Route::post('validatefeedback', 'FeedbackController@validatefeedback');
+
+        Route::post('savefeedback', 'FeedbackController@savefeedback');*/
+
+        Route::get('savefeed', 'FeedbackController@savefeed');
     });
 });

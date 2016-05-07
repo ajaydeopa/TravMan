@@ -151,7 +151,7 @@
            <div class="text-capitalize">
             <ul class="main-menu">
 
-                <li><a href="{{URL::to('/')}}"><i class="zmdi zmdi-tv"></i><span data-trigger="hover" data-toggle="popover" data-placement="right" data-content="Delete Booking" title="" data-original-title="Delete">Dashboard</span></a></li>
+                <li><a href="{{URL::to('/')}}"><i class="zmdi zmdi-tv"></i><span data-toggle="popover" data-placement="right" data-content="Delete Booking" title="" data-original-title="Delete">Dashboard</span></a></li>
                 @if( Auth::user()->flag == 1 )
                 <li><a href="{{ url('create') }}"><i class="zmdi zmdi-account-add"></i><span data-trigger="hover" data-toggle="popover" data-placement="right" data-content="Delete Booking" title="" data-original-title="Delete">Create Member</span></a></li>
                 @endif
@@ -295,6 +295,8 @@
                 $('#notification_list').html(content);
             });
         }
+
+
         </script>
     @endif
 @yield('footer')

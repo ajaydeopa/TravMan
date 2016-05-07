@@ -88,7 +88,7 @@
                         @foreach( $todo as $t )
                             <div class="checkbox media">
                                 <div class="pull-right ">
-                                    <ul class="actions actions-alt">
+                                    <ul class="actions actions-alt" data-trigger="hover" data-toggle="popover" data-placement="right"  title="" data-original-title="edit/delete">
                                         <li class="dropdown " id="dropdown{{ $t->id }}" >
                                             <a href="" data-toggle="dropdown">
                                                 <i class="zmdi zmdi-more-vert"></i>
@@ -392,6 +392,10 @@
             $(this).parent().addClass('active');
             cId.fullCalendar('changeView', dataView);
         });
+
+
+
+
     });
 
 

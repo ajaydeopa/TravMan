@@ -10,7 +10,7 @@
     <!-- Vendor CSS -->
     <link href="{{URL::to('assets')}}/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
     <link href="{{URL::to('assets')}}/vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
-    <link href="{{URL::to('assets')}}/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
+    <link href="{{URL::to('assets')}}/vendors/bower_components/bootstrap-sweetalert/lib/sweetalert.css" rel="stylesheet">
     <link href="{{URL::to('assets')}}/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
      <link href="{{URL::to('assets')}}/vendors/bower_components/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet">
       <link href="{{URL::to('assets')}}/vendors/bower_components/chosen/chosen.min.css" rel="stylesheet">
@@ -50,6 +50,7 @@
                         <a href="{{ url('/register') }}"><span class="tm-label">Register</span></a>
                     </li>
                     @else
+
                     <!-- toggle-->
                    <!-- <li id="toggle-width">
                         <div class="toggle-switch">
@@ -80,29 +81,28 @@
                                <div class="pm-overview c-overflow" style=" height:200px;">
                                 <div class="lv-body" id="notification_list">
 
-                                </div>
+                                    </div>
+                                    </div>
+
                                 </div>
 
                             </div>
-
-                        </div>
-
+                        </li>
                         <!-- End Notification -->
 
-                    </li>
-
-
-
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" href="">
-                            <span class="tm-label text-uppercase">{{ Auth::user()->user_name }}<span class="caret"></span> </span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-sm pull-right">
-                            <div class="listview">
-                                <a class="lv-item" href="{{ url('/logout') }}" id="logout"> Logout</a>
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" href="">
+                                <span class="tm-label text-uppercase">{{ Auth::user()->user_name }}<span class="caret"></span> </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-sm pull-right">
+                                <div class="listview">
+                                    <a class="lv-item" id="feedback"> Feedback</a>
+                                </div>
+                                <div class="listview">
+                                    <a class="lv-item" href="{{ url('/logout') }}" id="logout"> Logout</a>
+                                </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
                     @endif
 
                 </ul>
@@ -133,7 +133,11 @@
                     </div>
                     <div class="profile-info">
                         @if( !Auth::guest() )
+
                         <span class="tm-label text-capitalize" data-trigger="hover" data-toggle="popover" data-placement="right" title="" data-original-title="show profile">{{ Auth::user()->user_name }}</span>
+
+                        <span class="tm-label text-uppercase">{{ Auth::user()->user_name }}</span>
+
                           @endif
 
                     </div>
@@ -148,10 +152,11 @@
             </div>
 
 <!--Start sidebar links -->
-           <div class="text-capitalize">
             <ul class="main-menu">
 
+
                 <li><a href="{{URL::to('/')}}"><i class="zmdi zmdi-tv"></i><span data-toggle="popover" data-placement="right" data-content="Delete Booking" title="" data-original-title="Delete">Dashboard</span></a></li>
+
                 @if( Auth::user()->flag == 1 )
                 <li><a href="{{ url('create') }}"><i class="zmdi zmdi-account-add"></i><span data-trigger="hover" data-toggle="popover" data-placement="right" data-content="Delete Booking" title="" data-original-title="Delete">Create Member</span></a></li>
                 @endif
@@ -166,7 +171,6 @@
                 <li><a href="{{ url('createpackage')}}"><i class="zmdi zmdi-local-mall"></i><span data-trigger="hover" data-toggle="popover" data-placement="top" data-content="Create Package" title="" data-original-title="Create package">Create package</span></a></li>
 
             </ul>
-            </div>
             <!-- End sidebar links -->
         </aside>
 
@@ -204,7 +208,7 @@
     <script src="{{URL::to('assets')}}/vendors/bower_components/flot.curvedlines/curvedLines.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
-    <script src="{{URL::to('assets')}}/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
+    <script src="{{URL::to('assets')}}/vendors/bower_components/bootstrap-sweetalert/lib/sweetalert.min.js"></script>
     <script src="{{URL::to('assets')}}/vendors/sparklines/jquery.sparkline.min.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bower_components/moment/min/moment.min.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bower_components/fullcalendar/dist/fullcalendar.min.js "></script>
@@ -229,6 +233,39 @@
     <script src="{{URL::to('assets')}}/js/demo.js"></script>
     @if( !Auth::guest() )
         <script>
+        $('#feedback').click(function(){
+            swal(   {  title: "Write your feedback !!",
+                    //text: "Enter the keyword :",
+                    type: "input",
+                    showCancelButton: true,
+                    closeOnConfirm: false,
+                    animation: "slide-from-top",
+                    text:'Email : {{Auth::user()->email}}<br/>',
+                    html: true,
+                },
+                function(inputValue){
+                    if (inputValue === false)
+                        return false;
+                    else if (inputValue === "") {
+                        swal.showInputError("You need to write something!");
+                        return false
+                    }
+
+                    else{
+                        var url = '{{ url("savefeed") }}';
+
+                        $.get(url, {'feedback': inputValue}, function(){
+                            swal({  title: "Feedback saved",
+                                text: "Thanx for giving us your feedback.",
+                                timer: 2000,
+                                showConfirmButton: false
+                            });
+                        });
+                    }
+                }
+            );
+        });
+
         $('#notification_list').on('click', '#note', function(){
             var id = $(this).attr('data-id');
             $(this).css('background-color', 'white');

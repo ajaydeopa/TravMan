@@ -106,4 +106,9 @@ class CalendarTodoController extends Controller
 
         TodoList::find($id)->update(['todo' => $data, 'updated_at' => Carbon::now()]);
     }
+
+    //delete event
+    public function deleteEvent(Request $request){
+        Calendar::where('event_name', $request->data)->delete();
+    }
 }

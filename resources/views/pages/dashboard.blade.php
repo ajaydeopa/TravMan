@@ -299,7 +299,7 @@
                 @if( count($events) != 0 )
                     @foreach( $events as $e )
                         {
-                            title: '{{ $e->event_name }}',
+                            title: '{{ $e->event_name }},{{ $e->id }}',
                             start: new Date( {{$e->year}}, {{$e->month}}, {{$e->day}} ),
                             allDay: true,
                             className: '{{ $e->color }}'

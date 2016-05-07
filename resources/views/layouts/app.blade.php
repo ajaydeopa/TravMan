@@ -136,7 +136,6 @@
 
                         <span class="tm-label text-capitalize" data-trigger="hover" data-toggle="popover" data-placement="right" title="" data-original-title="show profile">{{ Auth::user()->user_name }}</span>
 
-                        <span class="tm-label text-uppercase">{{ Auth::user()->user_name }}</span>
 
                           @endif
 

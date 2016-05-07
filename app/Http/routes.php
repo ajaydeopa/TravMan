@@ -27,6 +27,10 @@ Route::group(['middleware' => 'web'], function () {
             return view('pages.memberRegister');
         });
 
+        Route::get('itenary', function(){
+            return view('pages.itenary');
+        });
+
         //Route for PackageController
         Route::post('savepackage', 'PackageController@save');
 
@@ -78,6 +82,8 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('deletetodo', 'CalendarTodoController@deletetodo');
 
         Route::get('edittodo', 'CalendarTodoController@edittodo');
+
+        Route::get('deleteEvent', 'CalendarTodoController@deleteEvent');
 
         //Route for FeedbackController
         Route::get('travo/feedback', 'FeedbackController@show');

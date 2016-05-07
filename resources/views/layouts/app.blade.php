@@ -38,9 +38,8 @@
             </li>
             @endif
             <li class="logo hidden-xs">
-                <a href="{{URL::to('/')}}">Trav-Man</a>
+                <a href="{{URL::to('/')}}" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="home" title="" data-original-title="logo">Trav-Man</a>
             </li>
-
             <li class="pull-right">
                 <ul class="top-menu">
                     @if( Auth::guest() )
@@ -66,7 +65,7 @@
                     <!-- End Search -->
 
                     <!-- Notification -->
-                    <li class="dropdown">
+                    <li class="dropdown" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="Notification" title="" data-original-title="Notification">
                         <a data-toggle="dropdown" href="" id="notification">
                             <i class="tm-icon zmdi zmdi-notifications-none"></i>
                             <i class="tmn-counts" id="notification_count"></i>
@@ -134,7 +133,7 @@
                     </div>
                     <div class="profile-info">
                         @if( !Auth::guest() )
-                        <span class="tm-label text-capitalize">{{ Auth::user()->user_name }}</span>
+                        <span class="tm-label text-capitalize" data-trigger="hover" data-toggle="popover" data-placement="right" title="" data-original-title="show profile">{{ Auth::user()->user_name }}</span>
                           @endif
 
                     </div>
@@ -152,19 +151,19 @@
            <div class="text-capitalize">
             <ul class="main-menu">
 
-                <li><a href="{{URL::to('/')}}"><i class="zmdi zmdi-tv"></i>Dashboard</a></li>
+                <li><a href="{{URL::to('/')}}"><i class="zmdi zmdi-tv"></i><span data-trigger="hover" data-toggle="popover" data-placement="right" data-content="Delete Booking" title="" data-original-title="Delete">Dashboard</span></a></li>
                 @if( Auth::user()->flag == 1 )
-                    <li><a href="{{ url('create') }}"><i class="zmdi zmdi-account-add"></i>Create Member</a></li>
+                <li><a href="{{ url('create') }}"><i class="zmdi zmdi-account-add"></i><span data-trigger="hover" data-toggle="popover" data-placement="right" data-content="Delete Booking" title="" data-original-title="Delete">Create Member</span></a></li>
                 @endif
                 <li class="sub-menu">
-                <a href=""><i class="zmdi zmdi-format-list-bulleted zmdi-hc-fw"></i>Booking</a>
+                    <a href=""><i class="zmdi zmdi-format-list-bulleted zmdi-hc-fw"></i><span data-trigger="hover" data-toggle="popover" data-placement="right" data-content="Delete Booking" title="" data-original-title="Delete">Booking</span></a>
 
                     <ul>
-                <li><a href="{{ url('booking')}}"><i class="zmdi zmdi-calendar-note zmdi-hc-fw p-r-10"></i> Create Booking</a></li>
-                <li><a href="{{ url('showbookings')}}"><i class="zmdi zmdi-view-list zmdi-hc-fw p-r-10"></i>Show booking</a></li>
+                        <li><a href="{{ url('booking')}}"><i class="zmdi zmdi-calendar-note zmdi-hc-fw p-r-10"></i><span data-trigger="hover" data-toggle="popover" data-placement="right" data-content="Delete Booking" title="" data-original-title="Delete"> Create Booking</span></a></li>
+                        <li><a href="{{ url('showbookings')}}"><i class="zmdi zmdi-view-list zmdi-hc-fw p-r-10"></i><span data-trigger="hover" data-toggle="popover" data-placement="right" data-content="Delete Booking" title="" data-original-title="Delete">Show booking</span></a></li>
                 </ul>
                 </li>
-                <li><a href="{{ url('createpackage')}}"><i class="zmdi zmdi-local-mall"></i>Create package</a></li>
+                <li><a href="{{ url('createpackage')}}"><i class="zmdi zmdi-local-mall"></i><span data-trigger="hover" data-toggle="popover" data-placement="top" data-content="Create Package" title="" data-original-title="Create package">Create package</span></a></li>
 
             </ul>
             </div>

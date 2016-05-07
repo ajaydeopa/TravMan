@@ -65,7 +65,7 @@
                 <div class="clearfix"></div>
 
                 <div class="tl-body">
-                    <div id="add-tl-item">
+                    <div id="add-tl-item" data-trigger="hover" data-toggle="popover" data-placement="top"  title="" data-original-title="Add todo">
                         <i class="add-new-item zmdi zmdi-plus"></i>
 
                         <form method="POST" id="todo_form">

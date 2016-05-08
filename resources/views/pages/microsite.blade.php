@@ -1,4 +1,4 @@
-@extends('layouts.app2')
+@extends('layouts.app2',['fullname'=> $user->full_name])
         <link rel="stylesheet" href="{{URL::to('assets')}}/micro/css/main.css" />
          @section('content')
 
@@ -7,8 +7,8 @@
 
         @section('contents')
         <i class="icon fa-diamond"></i>
-        <h2>{{$user_name}}</h2>
-        <p>Welcome to ! {{$user_name}}</p>
+        <h2>{{ $user->company_name }}</h2>
+        <p>Welcome to ! </p>
          @endsection
 
 

@@ -11,9 +11,9 @@ class MicroController extends Controller
 {
     public function detail($id)
     {
-       $user_name = DB::table('users')->where('company_id', $id)->value('user_name');
+       $user = DB::table('userdetails')->where('cid', $id)->first();
         $packages = DB::table('packages')->where('company_id', $id)->get();
-        return view('pages.microsite',compact('user_name','packages'));
+        return view('pages.microsite',compact('user','packages'));
 
 
     }

@@ -16,6 +16,7 @@ class CreateUserDetailTable extends Migration
             $table->increments('id');
             $table->integer('cid');
             $table->string('full_name');
+            $table->string('company_name');
             $table->string('gender');
             $table->string('birthday');
             $table->string('martial_status');

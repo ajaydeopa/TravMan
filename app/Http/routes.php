@@ -9,16 +9,14 @@
 | kernel and includes session state, CSRF protection, and more.
 |
 */
+//Route::get('micro','MicroController@micro') ;
+Route::get('micro', array('as' => 'micro', 'uses' => 'MicroController@micro'));
  Route::get('micro/{id}','MicroController@detail') ;
-Route::get('morepackage', function(){
-            return view('pages.morepackage');
-        });
-Route::get('packagedetails', function(){
-            return view('pages.packagedetails');
-        });
-Route::get('galery', function(){
-            return view('pages.galery');
-        });
+
+
+Route::get('morepackage/{id}','MicroController@more' );
+Route::get('packagedetails/{id}','MicroController@package');
+Route::get('galery/{id}', 'MicroController@galery');
 
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
@@ -65,7 +63,6 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('showNotifications', 'NotificationController@show');
 
         Route::get('notificationdetail', 'NotificationController@details');
-
         //Route for BookingController
         Route::get('booking', 'BookingController@show');
 

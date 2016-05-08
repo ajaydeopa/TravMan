@@ -11,46 +11,61 @@
         <p>Welcome to ! </p>
          @endsection
 
+{{-- */ $flag = 0; /*  --}}
 
-     <!-- One -->
+@if(!$packages)
+                            <p style="text-align: center">No Package</p>
+{{-- */ $flag = 1; /*  --}}
+
+                        @else     <!-- One -->
+{{-- */ $count = 1; /*  --}}
+
 @foreach($packages as $i)
-
-
+@if($count==1)
     <section id="one" class="wrapper style1">
         <div class="inner">
             <article class="feature left">
                 <span class="image"><img src="{{URL::to('assets')}}/micro/images/pic01.jpg" alt="" /></span>
                 <div class="content">
                     <h2>{{$i->pack_name}}</h2>
+                    <h3>{{$i->pack_duration}}</h3>
                     <p>{{$i->pack_desc}}</p>
                     <ul class="actions">
                         <li>
-                            <a href="{{ url('packagedetails')}}" class="button alt">other details of package</a>
+                            <a href='{{URL::to("packagedetails")}}/{{ $i->id }}' class="button alt">other details of package</a>
                         </li>
                     </ul>
                 </div>
             </article>
+            {{-- */ $count = 0; /*  --}}
+
+
+    @elseif($count==0)
             <article class="feature right">
                 <span class="image"><img src="{{URL::to('assets')}}/micro/images/pic02.jpg" alt="" /></span>
                 <div class="content">
                         <h2>{{$i->pack_name}}</h2>
+                    <h3>{{$i->pack_duration}}</h3>
                     <p>{{$i->pack_desc}}</p>
 
                     <ul class="actions">
                         <li>
-                            <a href="{{ url('packagedetails')}}" class="button alt">other details of package </a>
+                            <a href='{{URL::to("packagedetails")}}/{{ $i->id }}' class="button alt">other details of package</a>
                         </li>
                     </ul>
                 </div>
             </article>
         </div>
+{{-- */ $count = 1; /*  --}}
+        @endif
         @endforeach
-        <center>
+@endif
+        @if($flag ==0)<center>
          <ul class="actions">
                         <li>
-                            <a href="{{ url('morepackage')}}" class="button big alt">More Packages</a>
+                            <a href='{{URL::to("morepackage")}}/$user->cid'  class="button big alt">More Packages</a>
                         </li>
-                    </ul></center>
+                    </ul></center>@endif
     </section>
 
     <!-- Two -->
@@ -64,7 +79,7 @@
 
             <div class="lightbox photos">
 
-                <div data-src="{{URL::to('assets')}}/media/gallery/1.jpg" class="col-md-2 col-sm-4 col-xs-6">
+            <!--   <div data-src="{{URL::to('assets')}}/media/gallery/1.jpg" class="col-md-2 col-sm-4 col-xs-6">
                     <div class="lightbox-item p-item">
                         <img src="{{URL::to('assets')}}/media/gallery/thumbs/1.jpg" alt="" />
                     </div>
@@ -124,29 +139,39 @@
                         <img src="{{URL::to('assets')}}/media/gallery/thumbs/2.jpg" alt="" />
                     </div>
                 </div>
+-->
 
-                <div data-src="{{URL::to('assets')}}/media/gallery/3.jpg" class="col-md-2 col-sm-4 col-xs-6">
+                @foreach($galery as $g)
+
+                <div data-src="{{$g->pic}}" class="col-md-2 col-sm-4 col-xs-6">
                     <div class="lightbox-item p-item">
-                        <img src="{{URL::to('assets')}}/media/gallery/thumbs/3.jpg" alt="" />
+                        <img src="{{$g->thumb}}" alt="" />
                     </div>
                 </div>
 
+                @endforeach
+
+
+
 
             </div>
-
-            <ul class="actions">
-                <li style="margin-top:1.5em;"><a href="{{ url('galery')}}" class="button big alt">move to gallery</a></li>
-            </ul>
-            </div>
+</div>
 
     </section>
-    <!-- Galery>
-    <!-- Three -->
+
+    <section id="zero" class="wrapper special">
+        <div class="inner">
+            <ul class="actions">
+                <li style="margin-top:1.5em;"><a href="{{ url('galery')}}/{{$user->cid}}" class="button big alt">move to gallery</a></li>
+            </ul></div>
+</section>
+                <!-- Galery>
+    <! Three -->
     <section id="three" class="wrapper style3 special">
         <div class="inner">
             <header class="major narrow	">
                 <h2>personal details of company</h2>
-                <p>Address, contact no ,and others</p>
+                <p>{{$user->address}} <br> {{$user->phone}} </p>
             </header>
             <ul class="actions">
                 <li><a href="#" class="button big alt">some other details</a></li>

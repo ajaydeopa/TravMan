@@ -27,7 +27,7 @@
     <!-- Header -->
     <header id="header" class="alt">
 
-        <h1><a href="index.html">name</a></h1>
+        <h1><a href="index.html">asd</a></h1>
         <a href="">signup</a>
         <a href="">login</a>
         <a href="#nav">Menu</a>

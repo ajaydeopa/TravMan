@@ -1,33 +1,48 @@
 @extends('layouts.app2')
         <link rel="stylesheet" href="{{URL::to('assets')}}/micro/css/main2.css" />
          @section('content')
-         <section id="one" class="wrapper style1">
+  {{-- */ $count = 1; /*  --}}
+
+@foreach($packages as $i)
+@if($count==1)
+    <section id="one" class="wrapper style1">
         <div class="inner">
             <article class="feature left">
                 <span class="image"><img src="{{URL::to('assets')}}/micro/images/pic01.jpg" alt="" /></span>
                 <div class="content">
-                    <h2>Package 1</h2>
-                    <p>Description</p>
+                    <h2>{{$i->pack_name}}</h2>
+                    <h3>{{$i->pack_duration}}</h3>
+                    <p>{{$i->pack_desc}}</p>
                     <ul class="actions">
                         <li>
-                            <a href="{{ url('packagedetails')}}" class="button alt">other details of package</a>
+                            <a href='{{URL::to("packagedetails")}}/{{ $i->id }}' class="button alt">other details of package</a>
                         </li>
                     </ul>
                 </div>
             </article>
+            {{-- */ $count = 0; /*  --}}
+
+     @elseif($count==0)
             <article class="feature right">
                 <span class="image"><img src="{{URL::to('assets')}}/micro/images/pic02.jpg" alt="" /></span>
                 <div class="content">
-                    <h2>Package 2</h2>
-                    <p>Description</p>
+                        <h2>{{$i->pack_name}}</h2>
+                    <h3>{{$i->pack_duration}}</h3>
+                    <p>{{$i->pack_desc}}</p>
+
                     <ul class="actions">
                         <li>
-                            <a href="{{ url('packagedetails')}}" class="button alt">other details of package </a>
+                            <a href='{{URL::to("packagedetails")}}/{{ $i->id }}' class="button alt">other details of package</a>
                         </li>
                     </ul>
                 </div>
             </article>
         </div>
+{{-- */ $count = 1; /*  --}}
+        @endif
+        @endforeach
+
+
     </section>
 
         @endsection

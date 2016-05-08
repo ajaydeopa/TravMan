@@ -7,20 +7,22 @@
 
         @section('contents')
         <i class="icon fa-diamond"></i>
-        <h2>Company Name</h2>
-        <p>Welcome to ! Company Name</p>
+        <h2>{{$user_name}}</h2>
+        <p>Welcome to ! {{$user_name}}</p>
          @endsection
 
 
      <!-- One -->
+@foreach($packages as $i)
+
 
     <section id="one" class="wrapper style1">
         <div class="inner">
             <article class="feature left">
                 <span class="image"><img src="{{URL::to('assets')}}/micro/images/pic01.jpg" alt="" /></span>
                 <div class="content">
-                    <h2>popular Package details</h2>
-                    <p>Description</p>
+                    <h2>{{$i->pack_name}}</h2>
+                    <p>{{$i->pack_desc}}</p>
                     <ul class="actions">
                         <li>
                             <a href="{{ url('packagedetails')}}" class="button alt">other details of package</a>
@@ -31,8 +33,9 @@
             <article class="feature right">
                 <span class="image"><img src="{{URL::to('assets')}}/micro/images/pic02.jpg" alt="" /></span>
                 <div class="content">
-                    <h2>popular Package details</h2>
-                    <p>Description</p>
+                        <h2>{{$i->pack_name}}</h2>
+                    <p>{{$i->pack_desc}}</p>
+
                     <ul class="actions">
                         <li>
                             <a href="{{ url('packagedetails')}}" class="button alt">other details of package </a>
@@ -41,6 +44,7 @@
                 </div>
             </article>
         </div>
+        @endforeach
         <center>
          <ul class="actions">
                         <li>

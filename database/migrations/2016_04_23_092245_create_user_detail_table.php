@@ -18,7 +18,6 @@ class CreateUserDetailTable extends Migration
             $table->string('full_name');
             $table->string('company_name');
             $table->string('gender');
-            $table->string('address');
             $table->string('birthday');
             $table->string('martial_status');
             $table->string('phone');

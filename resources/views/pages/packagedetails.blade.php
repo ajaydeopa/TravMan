@@ -1,4 +1,5 @@
-@extends('layouts.app2')
+@extends('layouts.app2',['fullname'=> $name])
+
         <link rel="stylesheet" href="{{URL::to('assets')}}/micro/css/main2.css" />
          @section('content')
          <!-- Main -->
@@ -10,7 +11,7 @@
 
 					</header>
 
-					<a href="#" class="image fit"><img src="{{URL::to('assets')}}/micro/images/pic01.jpg" alt="" /></a>
+					<a href="#" class="image fit"><img src="$packages->pic" alt="" /></a>
                     <h2>Package details</h2>
 				       {{$packages-> pack_duration}};
                     <br>

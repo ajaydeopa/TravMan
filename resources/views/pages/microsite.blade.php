@@ -1,4 +1,4 @@
-@extends('layouts.app2',['fullname'=> $user->full_name])
+@extends('layouts.app2',['fullname'=> $name])
         <link rel="stylesheet" href="{{URL::to('assets')}}/micro/css/main.css" />
          @section('content')
 
@@ -14,7 +14,12 @@
 {{-- */ $flag = 0; /*  --}}
 
 @if(!$packages)
-                            <p style="text-align: center">No Package</p>
+ <section id="one" class="wrapper style1">
+            <header class="major narrow">
+                <h2 style="text-align: center">No Package</h2>
+
+                </header>
+
 {{-- */ $flag = 1; /*  --}}
 
                         @else     <!-- One -->
@@ -22,10 +27,10 @@
 
 @foreach($packages as $i)
 @if($count==1)
-    <section id="one" class="wrapper style1">
+
         <div class="inner">
             <article class="feature left">
-                <span class="image"><img src="{{URL::to('assets')}}/micro/images/pic01.jpg" alt="" /></span>
+                <span class="image"><img src="$i->thumb" alt="" /></span>
                 <div class="content">
                     <h2>{{$i->pack_name}}</h2>
                     <h3>{{$i->pack_duration}}</h3>
@@ -42,7 +47,7 @@
 
     @elseif($count==0)
             <article class="feature right">
-                <span class="image"><img src="{{URL::to('assets')}}/micro/images/pic02.jpg" alt="" /></span>
+                <span class="image"><img src="$i->thumb" alt="" /></span>
                 <div class="content">
                         <h2>{{$i->pack_name}}</h2>
                     <h3>{{$i->pack_duration}}</h3>
@@ -71,75 +76,21 @@
     <!-- Two -->
      <!-- galery-->
     <section id="two" class="wrapper special">
-        <div class="inner">
+        <div class="inner" style="position:inherit";>
             <header class="major narrow">
                 <h2>photos gallery</h2>
                 <p>Best photos</p>
             </header>
 
-            <div class="lightbox photos">
+            {{-- */ $flag = 0; /*  --}}
 
-            <!--   <div data-src="{{URL::to('assets')}}/media/gallery/1.jpg" class="col-md-2 col-sm-4 col-xs-6">
-                    <div class="lightbox-item p-item">
-                        <img src="{{URL::to('assets')}}/media/gallery/thumbs/1.jpg" alt="" />
-                    </div>
-                </div>
+@if(!$galery)
 
-                <div data-src="{{URL::to('assets')}}/media/gallery/2.jpg" class="col-md-2 col-sm-4 col-xs-6">
-                    <div class="lightbox-item p-item">
-                        <img src="{{URL::to('assets')}}/media/gallery/thumbs/2.jpg" alt="" />
-                    </div>
-                </div>
+{{-- */ $flag = 1; /*  --}}
 
-                <div data-src="{{URL::to('assets')}}/media/gallery/3.jpg" class="col-md-2 col-sm-4 col-xs-6">
-                    <div class="lightbox-item p-item">
-                        <img src="{{URL::to('assets')}}/media/gallery/thumbs/3.jpg" alt="" />
-                    </div>
-                </div>
+                        @endif
+            <div class="row"><div class="lightbox photos">
 
-                <div data-src="{{URL::to('assets')}}/media/gallery/4.jpg" class="col-md-2 col-sm-4 col-xs-6">
-                    <div class="lightbox-item p-item">
-                        <img src="{{URL::to('assets')}}/media/gallery/thumbs/4.jpg" alt="" />
-                    </div>
-                </div>
-
-                <div data-src="{{URL::to('assets')}}/media/gallery/5.jpg" class="col-md-2 col-sm-4 col-xs-6">
-                    <div class="lightbox-item p-item">
-                        <img src="{{URL::to('assets')}}/media/gallery/thumbs/5.jpg" alt="" />
-                    </div>
-                </div>
-                <div data-src="{{URL::to('assets')}}/media/gallery/6.jpg" class="col-md-2 col-sm-4 col-xs-6">
-                    <div class="lightbox-item p-item">
-                        <img src="{{URL::to('assets')}}/media/gallery/thumbs/6.jpg" alt="" />
-                    </div>
-                </div>
-                <div data-src="{{URL::to('assets')}}/media/gallery/7.jpg" class="col-md-2 col-sm-4 col-xs-6">
-                    <div class="lightbox-item p-item">
-                        <img src="{{URL::to('assets')}}/media/gallery/thumbs/7.jpg" alt="" />
-                    </div>
-                </div>
-                <div data-src="{{URL::to('assets')}}/media/gallery/8.jpg" class="col-md-2 col-sm-4 col-xs-6">
-                    <div class="lightbox-item p-item">
-                        <img src="{{URL::to('assets')}}/media/gallery/thumbs/8.jpg" alt="" />
-                    </div>
-                </div>
-                <div data-src="{{URL::to('assets')}}/media/gallery/9.jpg" class="col-md-2 col-sm-4 col-xs-6">
-                    <div class="lightbox-item p-item">
-                        <img src="{{URL::to('assets')}}/media/gallery/thumbs/9.jpg" alt="" />
-                    </div>
-                </div>
-             <div data-src="{{URL::to('assets')}}/media/gallery/1.jpg" class="col-md-2 col-sm-4 col-xs-6">
-                    <div class="lightbox-item p-item">
-                        <img src="{{URL::to('assets')}}/media/gallery/thumbs/1.jpg" alt="" />
-                    </div>
-                </div>
-
-                <div data-src="{{URL::to('assets')}}/media/gallery/2.jpg" class="col-md-2 col-sm-4 col-xs-6">
-                    <div class="lightbox-item p-item">
-                        <img src="{{URL::to('assets')}}/media/gallery/thumbs/2.jpg" alt="" />
-                    </div>
-                </div>
--->
 
                 @foreach($galery as $g)
 
@@ -154,24 +105,26 @@
 
 
 
-            </div>
+            </div></div>
+
+@if($flag==0)
+    <div class="row">
+            <ul class="actions">
+                <li style="margin-top:1.5em;"><a href="{{ url('galery')}}/{{$user->cid}}" class="button big alt">move to gallery</a></li>
+            </ul>
 </div>
+            </div>
 
     </section>
 
-    <section id="zero" class="wrapper special">
-        <div class="inner">
-            <ul class="actions">
-                <li style="margin-top:1.5em;"><a href="{{ url('galery')}}/{{$user->cid}}" class="button big alt">move to gallery</a></li>
-            </ul></div>
-</section>
-                <!-- Galery>
+@endif
+                <!-- end Galery>
     <! Three -->
     <section id="three" class="wrapper style3 special">
         <div class="inner">
             <header class="major narrow	">
                 <h2>personal details of company</h2>
-                <p>{{$user->address}} <br> {{$user->phone}} </p>
+                <p>Address {{$user->martial_status}} <br>Contact {{$user->phone}} </p>
             </header>
             <ul class="actions">
                 <li><a href="#" class="button big alt">some other details</a></li>

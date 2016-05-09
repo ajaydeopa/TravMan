@@ -1,29 +1,27 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
+use Request;
+use App\Feed;
 use Requests;
 use DB;
 use Illuminate\Http\RedirectResponse;
-use Session;
 use Redirect;
 use View;
 
 class MicroController extends Controller
 {
 
-    public function feedbacks()
+    public function feedbacks($id)
     {
     $input = Request::all();
     $feed= new Feed;
    $feed->name= $input['name'];
    $feed->email= $input['email'];
     $feed->message= $input['message'];
-//$feed->cid= $id;
-    redirect ('micro/1');
-
-
-}
+    $feed->cid= $id;
+     return redirect('micro/1');
+  }
 
     public function detail($id)
     {

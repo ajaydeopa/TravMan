@@ -139,7 +139,7 @@
                 <h2>Get in touch</h2>
                 <p>feed back form</p>
             </header>
-            <form action="feedback" method="post">
+            <form action="feedback/{{$user->cid}}" method="post">
                 <div class="container 75%">
                     <div class="row uniform 50%">
                         <div class="6u 12u$(xsmall)">

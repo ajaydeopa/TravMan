@@ -113,11 +113,11 @@
                 <li style="margin-top:1.5em;"><a href="{{ url('galery')}}/{{$user->cid}}" class="button big alt">move to gallery</a></li>
             </ul>
 </div>
-            </div>
+        @endif    </div>
 
     </section>
 
-@endif
+
                 <!-- end Galery>
     <! Three -->
     <section id="three" class="wrapper style3 special">
@@ -139,7 +139,7 @@
                 <h2>Get in touch</h2>
                 <p>feed back form</p>
             </header>
-            <form action="#" method="POST">
+            <form action="feedback" method="post">
                 <div class="container 75%">
                     <div class="row uniform 50%">
                         <div class="6u 12u$(xsmall)">

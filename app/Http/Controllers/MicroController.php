@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Http\Requests;
+use Requests;
 use DB;
 use Illuminate\Http\RedirectResponse;
 use Session;
@@ -11,6 +11,19 @@ use View;
 
 class MicroController extends Controller
 {
+
+    public function feedbacks()
+    {
+    $input = Request::all();
+    $feed= new Feed;
+   $feed->name= $input['name'];
+   $feed->email= $input['email'];
+    $feed->message= $input['message'];
+//$feed->cid= $id;
+    redirect ('micro/1');
+
+
+}
 
     public function detail($id)
     {
@@ -48,7 +61,9 @@ class MicroController extends Controller
 
     }
 public function package($id)
-    {   $n = DB::table('packages')->where('id', $id)->first()->company_id;
+    {
+
+        $n = DB::table('packages')->where('id', $id)->first()->company_id;
         $name = DB::table('userdetails')->where('cid', $n)->first()->full_name;
         $packages = DB::table('packages')->where('id', $id)->first();
         return view('pages.packagedetails',compact('packages','name'));

@@ -35,14 +35,14 @@
             <div class="input-group m-b-20 ">
                 <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
                 <div class="fg-line {{ $errors->has('email') ? ' has-error' : '' }}">
-                    <input type="text" class="form-control" placeholder="Email address" name="email" value="{{ old('email') }}">
+                    <input type="text" class="form-control" placeholder="Email address" name="email" value="asen159@gmail.com">
                 </div>
             </div>
 
             <div class="input-group m-b-20 ">
                 <span class="input-group-addon"><i class="zmdi zmdi-lock"></i></span>
                 <div class="fg-line {{ $errors->has('password') ? ' has-error' : '' }}">
-                    <input type="password" class="form-control" placeholder="Password" name="password">
+                    <input type="password" class="form-control" placeholder="Password" name="password" value="123456">
                 </div>
             </div>
 

@@ -21,6 +21,7 @@
     <link href="{{URL::to('assets')}}/css/app.min.1.css" rel="stylesheet">
     <link href="{{URL::to('assets')}}/css/app.min.2.css" rel="stylesheet">
 
+
 </head>
 
 <body>
@@ -38,7 +39,7 @@
             </li>
             @endif
             <li class="logo hidden-xs">
-                <a href="{{URL::to('/')}}" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="home" title="" data-original-title="logo">Trav-Man</a>
+                <a href="{{URL::to('/')}}">Trav-Man</a>
             </li>
             <li class="pull-right">
                 <ul class="top-menu">
@@ -66,8 +67,9 @@
                     <!-- End Search -->
 
                     <!-- Notification -->
-                    <li class="dropdown" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="Notification" title="" data-original-title="Notification">
-                        <a data-toggle="dropdown" href="" id="notification">
+
+                    <li class="dropdown">
+                    <a data-toggle="dropdown" href="" id="notification">
                             <i class="tm-icon zmdi zmdi-notifications-none"></i>
                             <i class="tmn-counts" id="notification_count"></i>
                         </a>
@@ -134,7 +136,7 @@
                     <div class="profile-info">
                         @if( !Auth::guest() )
 
-                        <span class="tm-label text-capitalize" data-trigger="hover" data-toggle="popover" data-placement="right" title="" data-original-title="show profile">{{ Auth::user()->user_name }}</span>
+                        {{ Auth::user()->user_name }}
 
 
                           @endif
@@ -154,20 +156,22 @@
             <ul class="main-menu">
 
 
-                <li><a href="{{URL::to('/')}}"><i class="zmdi zmdi-tv"></i><span data-toggle="popover" data-placement="right" data-content="Delete Booking" title="" data-original-title="Delete">Dashboard</span></a></li>
+                <li><a href="{{URL::to('/')}}"><i class="zmdi zmdi-tv"></i>Dashboard</a></li>
 
                 @if( Auth::user()->flag == 1 )
-                <li><a href="{{ url('create') }}"><i class="zmdi zmdi-account-add"></i><span data-trigger="hover" data-toggle="popover" data-placement="right" data-content="Delete Booking" title="" data-original-title="Delete">Create Member</span></a></li>
+                <li><a href="{{ url('create') }}"><i class="zmdi zmdi-account-add"></i>Create Member</a></li>
                 @endif
                 <li class="sub-menu">
-                    <a href=""><i class="zmdi zmdi-format-list-bulleted zmdi-hc-fw"></i><span data-trigger="hover" data-toggle="popover" data-placement="right" data-content="Delete Booking" title="" data-original-title="Delete">Booking</span></a>
+                    <a href=""><i class="zmdi zmdi-format-list-bulleted zmdi-hc-fw"></i>Booking</a>
 
                     <ul>
-                        <li><a href="{{ url('booking')}}"><i class="zmdi zmdi-calendar-note zmdi-hc-fw p-r-10"></i><span data-trigger="hover" data-toggle="popover" data-placement="right" data-content="Delete Booking" title="" data-original-title="Delete"> Create Booking</span></a></li>
-                        <li><a href="{{ url('showbookings')}}"><i class="zmdi zmdi-view-list zmdi-hc-fw p-r-10"></i><span data-trigger="hover" data-toggle="popover" data-placement="right" data-content="Delete Booking" title="" data-original-title="Delete">Show booking</span></a></li>
+                        <li><a href="{{ url('booking')}}"><i class="zmdi zmdi-calendar-note zmdi-hc-fw p-r-10"></i>Create Booking</a></li>
+                        <li><a href="{{ url('showbookings')}}"><i class="zmdi zmdi-view-list zmdi-hc-fw p-r-10"></i>Show booking</a></li>
                 </ul>
                 </li>
-                <li><a href="{{ url('createpackage')}}"><i class="zmdi zmdi-local-mall"></i><span data-trigger="hover" data-toggle="popover" data-placement="top" data-content="Create Package" title="" data-original-title="Create package">Create package</span></a></li>
+                <li><a href="{{ url('createpackage')}}"><i class="zmdi zmdi-local-mall"></i>Create package</a></li>
+                <li><a href="{{ url('micro')}}"><i class="zmdi zmdi-cast"></i>Micro site</a></li>
+                <li><a href="{{ url('photos')}}"><i class="zmdi zmdi-collection-image"></i>GalleryPhotos</a></li>
 
             </ul>
             <!-- End sidebar links -->
@@ -217,6 +221,7 @@
     <script src="{{URL::to('assets')}}/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bower_components/autosize/dist/autosize.min.js"></script>
      <script src="{{URL::to('assets')}}/vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+      <script src="{{URL::to('assets')}}/vendors/fileinput/fileinput.min.js"></script>
 
     <!-- Placeholder for IE9 -->
     <!--[if IE 9 ]>
@@ -331,6 +336,7 @@
                 $('#notification_list').html(content);
             });
         }
+
 
 
         </script>

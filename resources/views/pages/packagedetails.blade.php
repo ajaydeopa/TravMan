@@ -1,4 +1,4 @@
-@extends('layouts.app2')
+@extends('layouts.app2',['fullname'=> $name])
         <link rel="stylesheet" href="{{URL::to('assets')}}/micro/css/main2.css" />
          @section('content')
          <!-- Main -->

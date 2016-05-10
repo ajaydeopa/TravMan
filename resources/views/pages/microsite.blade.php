@@ -13,14 +13,16 @@
 
 {{-- */ $flag = 0; /*  --}}
 
-@if(!$packages)
+
  <section id="one" class="wrapper style1">
-            <header class="major narrow">
+@if(!$packages)
+     <header class="major narrow">
+
                 <h2 style="text-align: center">No Package</h2>
 
                 </header>
 
-{{-- */ $flag = 1; /*  --}}
+         {{-- */ $flag = 1; /*  --}}
 
                         @else     <!-- One -->
 {{-- */ $count = 1; /*  --}}

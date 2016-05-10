@@ -13,7 +13,7 @@
 
 {{-- */ $flag = 0; /*  --}}
 
-
+ <!-- 2 packages->
  <section id="one" class="wrapper style1">
  <div class="inner">
 @if(!$packages)            <header class="major narrow">
@@ -124,6 +124,7 @@
 
                 <!-- end Galery>
     <! Three -->
+    <!-- details-->
     <section id="three" class="wrapper style3 special">
         <div class="inner">
             <header class="major narrow	">
@@ -137,6 +138,7 @@
     </section>
 
     <!-- Four -->
+     <!-- feedback-->
     <section id="four" class="wrapper style2 special">
         <div class="inner">
             <header class="major narrow">

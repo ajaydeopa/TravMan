@@ -15,6 +15,7 @@ class CreateUserDetailTable extends Migration
         Schema::create('userdetails', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('cid');
+            $table->string('company_id');
             $table->string('full_name');
             $table->string('company_name');
             $table->string('gender');

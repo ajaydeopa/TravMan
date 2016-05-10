@@ -11,11 +11,19 @@
 */
 //Route::get('micro','MicroController@micro') ;
 //Route::get('micro', array('as' => 'micro', 'uses' => 'MicroController@micro'));
-Route::post('micro/feedback/{id}', 'MicroController@feedbacks');
-Route::get('micro/{id}','MicroController@detail') ;
-Route::get('morepackage/{id}','MicroController@more' );
-Route::get('packagedetails/{id}','MicroController@package');
-Route::get('galery/{id}', 'MicroController@galery');
+        Route::get('validateSubmit', 'MicroController@feedbacks');
+
+        Route::get('savefeed', 'MicroController@storeFeed');
+
+        Route::get('micro/{id}','MicroController@detail') ;
+
+        Route::get('morepackage/{id}','MicroController@more' );
+
+        Route::get('packagedetails/{id}','MicroController@package');
+
+        Route::get('galery/{id}', 'MicroController@galery');
+
+
 
 
 
@@ -32,6 +40,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('createpackage', function(){
             return view('pages.createpackage');
         });
+
 
         Route::get('create', function(){
             return view('pages.memberRegister');

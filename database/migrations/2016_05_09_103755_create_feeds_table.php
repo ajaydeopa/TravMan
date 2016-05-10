@@ -12,7 +12,13 @@ class CreateFeedsTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('feeds', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('company_id');
+            $table->string('name');
+            $table->string('email');
+            $table->string('message');
+        });
     }
 
     /**

@@ -139,32 +139,89 @@
                 <h2>Get in touch</h2>
                 <p>feed back form</p>
             </header>
-            <form action="feedback/{{$user->cid}}" method="post">
-                <div class="container 75%">
-                    <div class="row uniform 50%">
+              <form method="POST" id="feed_form" onsubmit="return false;">
+                  <div class="container 75%">
+                  <div><strong id="message"></strong></div>
+                     <div class="row uniform 50%">
                         <div class="6u 12u$(xsmall)">
-                            <input name="name" placeholder="Name" type="text" />
-                        </div>
-                        <div class="6u$ 12u$(xsmall)">
-                            <input name="email" placeholder="Email" type="email" />
-                        </div>
-                        <div class="12u$">
-                            <textarea name="message" placeholder="Message" rows="4"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <ul class="actions">
+                      <input type="text" name="name" placeholder="Name">
+                       <div><strong id="error_names"></strong></div>
+                         </div>
+                         <div class="6u$ 12u$(xsmall)">
+                      <input type="text" name="email" placeholder="Email">
+                        <div><strong id="error_emails"></strong></div>
+                         </div>
+                         <div class="12u$">
+                      <input type="text" name="message" placeholder="Message"></div>
+               <div><strong id="error_messages"></strong></div>
+                      </div>
+                  </div>
+
+
+                   <ul class="actions">
                     <li>
-                        <input type="submit" class="special" value="Submit" />
+                        <input type="submit"  id="submit" onclick="f();" class="special" value="Submit" />
                     </li>
                     <li>
                         <input type="reset" class="alt" value="Reset" />
                     </li>
                 </ul>
+
+
             </form>
         </div>
     </section>
 
     @endsection
 			 @section('footer')
-			@endsection
+
+<script type="text/javascript">
+    function f(){
+
+        $('#submit').val('Submiting').focus();
+        validateSubmit();
+    }
+
+	function validateSubmit() {
+        var url = '{{ url("validateSubmit") }}';
+        var data = $('#feed_form').serializeArray();
+        $.get(url, data, function(data) {
+            var d = data;
+            if (d['names'] != 'no') {
+                $('#error_names').html('');
+
+                $('#error_names').html(d['names']);
+                $('#submit').val('Submit');
+            }
+
+            else if (d['emails'] != 'no') {
+                $('#error_emails').html('');
+                $('#error_emails').html(d['emails']);
+                $('#submit').val('Submit');
+            }
+
+            else if (d['messages'] != 'no') {
+                $('#error_messages').html('');
+                $('#error_messages').html(d['messages']);
+                $('#submit').val('Submit');
+            }
+     else {
+                store();
+            }
+        });
+    }
+
+    	function store(){
+		var data = $('#feed_form').serializeArray();
+
+
+            var url = '{{ url("savefeed") }}';
+
+		$.get(url, data, function(data){
+			$('#message').fadeIn().html('feed has been successfully recorded !!').fadeOut(2000);
+			$(':input').val('');
+			$('#submit').val('Submit');
+		});
+	}
+</script>
+@endsection

@@ -1,28 +1,64 @@
 <?php
 
 namespace App\Http\Controllers;
-use Request;
+
 use App\Feed;
+use Illuminate\Http\Request;
 use Requests;
 use DB;
 use Illuminate\Http\RedirectResponse;
 use Redirect;
 use View;
+use Validator;
 
 class MicroController extends Controller
 {
 
-    public function feedbacks($id)
+    public function feedbacks(Request $request)
     {
-    $input = Request::all();
-    $feed= new Feed;
-   $feed->name= $input['name'];
-   $feed->email= $input['email'];
-    $feed->message= $input['message'];
-    $feed->cid= $id;
-     return redirect('micro/1');
-  }
 
+        $validator = Validator::make($request->all(), [
+            'name'  => 'required|max:20',
+            'email' => 'required|email',
+            'message' => 'required|max:50'
+                    ]);
+
+        //var_dump($validator->errors()->all()); die();
+
+        if( $validator->errors()->has('name') )
+            $d['names'] = $validator->errors()->first('name');
+        else
+        {   $d['names'] = 'no';
+
+
+                if( $validator->errors()->has('email') )
+                    $d['emails'] = $validator->errors()->first('email');
+                else
+                {   $d['emails'] = 'no';
+
+                    if( $validator->errors()->has('message') )
+                        $d['messages'] = $validator->errors()->first('message');
+                    else
+                    {   $d['messages'] = 'no';
+
+                    }
+                }
+            }
+
+
+        return $d;
+
+    }
+
+    public function storeFeed(Request $request){
+		$store = new Feed;
+        $store->company_id = '1';
+    	$store->name = $request->name;
+    	$store->email = $request->email;
+    	$store->message = $request->message;
+    	$store->save();
+    	return $request->name;
+	}
     public function detail($id)
     {
         $user = DB::table('userdetails')->where('cid', $id)->first();

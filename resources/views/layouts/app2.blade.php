@@ -89,6 +89,7 @@
     <script src="{{URL::to('assets')}}/js/functions.js"></script>
 
 
+
 </body>
 
 </html>

@@ -27,17 +27,6 @@ Route::group(['middleware' => 'web'], function () {
             return view('pages.memberRegister');
         });
 
-        Route::get('itenary', function(){
-            return view('pages.itenary');
-        });
-
-        //Route for PackageController
-        Route::post('savepackage', 'PackageController@save');
-
-        Route::get('getduration', 'PackageController@getduration');
-
-        Route::post('validatePackage', 'PackageController@validatePackage');
-
         //Route for ProfileController
         Route::get('profile', 'ProfileController@show');
 
@@ -93,5 +82,27 @@ Route::group(['middleware' => 'web'], function () {
         Route::post('savefeedback', 'FeedbackController@savefeedback');*/
 
         Route::get('savefeed', 'FeedbackController@savefeed');
+
+        //Route for PackageController
+        Route::post('savepackage', 'PackageController@save');
+
+        Route::get('getduration', 'PackageController@getduration');
+
+        Route::post('validatePackage', 'PackageController@validatePackage');
+
+        Route::get('show+package', 'PackageController@showPackage');
+
+        Route::get('delete+package', 'PackageController@deletePackage');
+
+        //Route for ItenaryController
+        Route::get('itinerary/{id}', 'ItenaryController@show');
+
+        Route::get('saveday', 'ItenaryController@saveDay');
+
+        Route::get('show+events', 'ItenaryController@showEvents');
+
+        Route::post('save+event', 'ItenaryController@saveEvent');
+
+        Route::get('show+itinerary/{rand_id}', 'ItenaryController@showItinerary');
     });
 });

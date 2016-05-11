@@ -14,12 +14,16 @@ class CreateNotificationsTable extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('cid');
+            $table->integer('cid')->unsigned();
             $table->string('company_id');
             $table->string('email_of_booker');
             $table->timestamp('notified_at');
             $table->string('seen_status'); // seen or unseen
             $table->string('booking_status'); // booked or cancelled
+
+            $table  ->foreign('cid')
+                    ->references('id')->on('users')
+                    ->onDelete('cascade');
         });
     }
 

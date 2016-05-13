@@ -12,21 +12,24 @@
                         <div id="error" style="text-align:center">
                             <h4 id="message"></h4>
                         </div>
-
-                        <form method="POST" id="photo_form" onsubmit="return false;">
-                            {!! csrf_field() !!}
-
-
+                        <form type="POST" onsubmit="return false;" id="photo_form">
                            <!-- package photo-->
-                      <input type="text" name="user_name">
+                     <div class="form-group">
+								 {{ Form::file('file',null,array('class'=>'form-control')) }}
+                         {!! csrf_field() !!}
+                        <label for="sample3">{{ trans('subjects.File') }}</label>
+                    @if ($errors->has('file'))<span class="text-warning">{{ $errors->first('file') }}</span>@endif
+
 
                             <!-- button -->
                             <div class="input-group m-b-20 ">
                                 <button class="btn bgm-lightblue waves-effect" type="submit" name="book" id="submit">Add Photos</button>
 
                             </div>
-                        </form>
+
                     </div>
+                    </form>
+                    <!--{{ Form::close() }}-->
                 </div>
 
             </div>
@@ -41,14 +44,17 @@ $('#submit').click(function(){
 		addphotos();
 	});
     function addphotos(){
-        var url = '{{ url("savephotos") }}';
-		var data = $('#photo_form').serializeArray();
-		$.post(url, data, function(data){
-			$('#message').fadeIn().html('photos has been successfully created !!').fadeOut(2000);
-			$('#submit').val('Add Photos');
-              $(':input').val('');
-            alert(data);
-		});
+       var myform = document.getElementById("photo_form");
+    var fd = new FormData(myform);
+    $.ajax({
+        url: "{{url('savephotos')}}",
+        data: fd,
+        cache: false,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+
+    });
 	}
 </script>
 @endsection

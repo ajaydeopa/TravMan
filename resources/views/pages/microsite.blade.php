@@ -13,7 +13,7 @@
 
 {{-- */ $flag = 0; /*  --}}
 
- <!-- 2 packages->
+
  <section id="one" class="wrapper style1">
  <div class="inner">
 @if(!$packages)            <header class="major narrow">

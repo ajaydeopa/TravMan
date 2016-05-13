@@ -46,6 +46,13 @@ Route::group(['middleware' => 'web'], function () {
             return view('pages.memberRegister');
         });
 
+        //Route for addPhotos
+         Route::get('addphotos', function(){
+            return view('pages.addphotos');
+        });
+        Route::post('savephotos', 'PhotosController@save');
+
+
         //Route for PackageController
         Route::post('savepackage', 'PackageController@save');
 
@@ -86,6 +93,8 @@ Route::group(['middleware' => 'web'], function () {
         
         Route::post('make_booking', 'BookingController@makeBooking');
         
+
+
         //Route for CalendarTodoController
         Route::get('eventsave', 'CalendarTodoController@eventsave');
 

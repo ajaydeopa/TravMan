@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\DayItenary;
 use App\Package;
 use Validator;
 use Auth;
@@ -84,6 +85,12 @@ class PackageController extends Controller
         $url=$destinationPath.'/'. $filename;
         $store->pic= $url;
     	$store->save();
+
+        $day = new DayItenary;
+        $day->pack_id = $store->id;
+        $day->day_no = 'Day 1';
+        $day->save();
+
     	return $request->package_name;
 	}
 
@@ -93,5 +100,23 @@ class PackageController extends Controller
 
         $data = Package::find($id);
         return $data->pack_duration;
+    }
+
+    //show all packages
+    public function showPackage(){
+        $data = Package::where('company_id', Auth::user()->company_id)->get();
+
+        return view('pages.allpackages', compact('data'));
+    }
+
+    //delete package
+    public function deletePackage(Request $request){
+        $id = $request->id;
+
+        Package::find($id)->delete();
+
+        $data = Package::where('company_id', Auth::user()->company_id)->get();
+
+        return $data;
     }
 }

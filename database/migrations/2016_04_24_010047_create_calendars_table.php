@@ -14,12 +14,16 @@ class CreateCalendarsTable extends Migration
     {
         Schema::create('calendars', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('cid');
+            $table->integer('cid')->unsigned();
             $table->string('event_name');
             $table->string('color');
             $table->string('month');
             $table->string('year');
             $table->string('day');
+
+            $table  ->foreign('cid')
+                    ->references('id')->on('users')
+                    ->onDelete('cascade');
         });
     }
 

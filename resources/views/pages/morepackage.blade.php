@@ -1,61 +1,55 @@
 @extends('layouts.app2',['fullname'=> $name])
-        <link rel="stylesheet" href="{{URL::to('assets')}}/micro/css/main2.css" />
-         @section('content')
-         <section id="one" class="wrapper style1">
-        <div class="inner">
-           @foreach($packages as $i)
-            <article class="feature left">
-                <span class="image"><img src="{{URL::to('assets')}}/micro/images/pic01.jpg" alt="" /></span>
-                <div class="content">
-                    <h2>Package 1</h2>
 
-                    <p>Description</p>
+<link rel="stylesheet" href="{{URL::to('assets')}}/micro/css/main2.css" /> @section('content') {{-- */ $count = 1; /* --}}
+<section id="one" class="wrapper style1">
 
-                    <ul class="actions">
+    @foreach($packages as $i)
 
-                        <li>
+    <div class="inner">
+        @if($count==1)
 
-                            <a href='{{URL::to("packagedetails")}}/{{ $i->id }}' class="button alt">other details of package</a>
+        <article class="feature left">
+            <span class="image"> <img src="{{URL::to('')}}{{$i->thumb}}" alt="" /></span>
+            <div class="content">
+                <h2>{{$i->pack_name}}</h2>
+                <h3>{{$i->pack_duration}}</h3>
+                <p>{{$i->pack_desc}}</p>
 
-                        </li>
+                <ul class="actions">
 
-                    </ul>
+                    <li>
+                        <a href='{{URL::to("packagedetails")}}/{{ $i->id }}' class="button alt">other details of package</a>
+                    </li>
 
-                </div>
+                </ul>
 
-            </article>
+            </div>
 
-            <article class="feature right">
+        </article>
 
-                <span class="image"><img src="{{URL::to('assets')}}/micro/images/pic02.jpg" alt="" /></span>
+        {{-- */ $count = 0; /* --}} @elseif($count==0)
+        <article class="feature right">
+            <span class="image"><img src="{{URL::to('')}}{{$i->thumb}}" alt="" /></span>
+            <div class="content">
+                <h2>{{$i->pack_name}}</h2>
+                <h3>{{$i->pack_duration}}</h3>
+                <p>{{$i->pack_desc}}</p>
 
-                <div class="content">
+                <ul class="actions">
 
-                    <h2>Package 2</h2>
+                    <li>
+                        <a href='{{URL::to("packagedetails")}}/{{ $i->id }}' class="button alt">other details of package</a>
+                    </li>
 
-                    <p>Description</p>
+                </ul>
 
-                    <ul class="actions">
+            </div>
 
-                        <li>
+        </article>
+    </div>
+    {{-- */ $count = 1; /* --}} @endif @endforeach
 
-                            <a href='{{URL::to("packagedetails")}}/{{ $i->id }}' class="button alt">other details of package </a>
-
-                        </li>
-
-                    </ul>
-
-                </div>
-
-            </article>
-		 @endforeach
-        </div>
-
-    </section>
+</section>
 
 
-        @endsection
-
-           @section('footer')
-
-            @endsection
+@endsection @section('footer') @endsection

@@ -1,5 +1,6 @@
 @extends('layouts.app',['link' => 'Add URL'])
  @section('content')
+
 <div class="container">
         <div class="mini-charts">
         <div class="row">

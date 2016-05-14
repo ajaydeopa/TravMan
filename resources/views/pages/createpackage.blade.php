@@ -113,7 +113,7 @@
                                         <span class="btn btn-primary btn-file m-r-10">
                                             <span class="fileinput-new">Select file</span>
                                         <span class="fileinput-exists">Change</span>
-                                        <input type="file" name="...">
+                                        <input type="file" name="file">
                                         </span>
                                     </div>
                                 </div>
@@ -189,15 +189,20 @@
         });
     }
 
-	function createPackage(){
-		var data = $('#package_form').serializeArray();
-		var url = '{{ url("savepackage") }}';
+	function createPackage()
+    {
+       var myform = document.getElementById("package_form");
+    var fd = new FormData(myform);
+    $.ajax({
+        url: "{{url('savepackage')}}",
+        data: fd,
+        cache: false,
+        processData: false,
+        contentType: false,
+        type: 'POST',
 
-		$.post(url, data, function(data){
-			$('#message').fadeIn().html('Package has been successfully created !!').fadeOut(2000);
-			$(':input').val('');
-			$('#submit').val('Create Package');
-		});
+    });
+        $('#message').fadeIn().text('Package has being successfully added !!').fadeOut(3000);
 	}
 </script>
 @endsection

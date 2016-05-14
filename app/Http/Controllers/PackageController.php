@@ -68,12 +68,21 @@ class PackageController extends Controller
     public function save(Request $request){
 		$store = new Package;
         $store->company_id = Auth::user()->company_id;
+        $store->cid = Auth::user()->id;
     	$store->pack_name = $request->package_name;
     	$store->pack_duration = $request->days.' days / '. $request->nights .' nights';
     	$store->pack_desc = $request->description;
     	$store->pack_include = $request->package_include;
     	$store->cost_include = $request->cost_include;
     	$store->notes = $request->notes;
+         $destinationPath= "/assets/images/packages/pics";
+        $extension = $request->file->getClientOriginalExtension();
+        $str = str_random(4);
+        $filename = Auth::user()->company_id.$str.".{$extension}";
+        //$size = $file->getSize();
+        $upload_success = $request->file->move(public_path().'/'.$destinationPath, $filename);
+        $url=$destinationPath.'/'. $filename;
+        $store->pic= $url;
     	$store->save();
     	return $request->package_name;
 	}

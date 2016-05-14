@@ -8,6 +8,7 @@
         @section('contents')
         <i class="icon fa-diamond"></i>
         <h2>{{ $user->company_name }}</h2>
+
         <p>Welcome to ! {{ $user->company_name }} </p>
          @endsection
 
@@ -29,9 +30,8 @@
 @foreach($packages as $i)
 @if($count==1)
 
-
-            <article class="feature left">
-                <span class="image"><img src="$i->thumb" alt="" /></span>
+ <article class="feature left">
+                <span class="image"><img src="{{URL::to('')}}{{$i->thumb}}" alt="" /></span>
                 <div class="content">
                     <h2>{{$i->pack_name}}</h2>
                     <h3>{{$i->pack_duration}}</h3>
@@ -48,7 +48,7 @@
 
     @elseif($count==0)
             <article class="feature right">
-                <span class="image"><img src="$i->thumb" alt="" /></span>
+                <span class="image"><img src="{{URL::to('')}}{{$i->thumb}}" alt="" /></span>
                 <div class="content">
                         <h2>{{$i->pack_name}}</h2>
                     <h3>{{$i->pack_duration}}</h3>
@@ -62,6 +62,8 @@
                 </div>
             </article>
 
+        </div>
+
 {{-- */ $count = 1; /*  --}}
         @endif
         @endforeach
@@ -69,10 +71,12 @@
         @if($flag ==0)<center>
          <ul class="actions">
                         <li>
+
                             <a href='{{URL::to("morepackage")}}/{{$user->cid}}'  class="button big alt">More Packages</a>
                         </li>
                     </ul></center>@endif
-     </div>
+
+
     </section>
 
     <!-- Two -->
@@ -87,6 +91,7 @@
             {{-- */ $flag = 0; /*  --}}
 
 @if(!$galery)
+
        <h2 style="text-align: center">No Photos</h2>
 
 {{-- */ $flag = 1; /*  --}}
@@ -98,9 +103,9 @@
 
                 @foreach($galery as $g)
 
-                <div data-src="{{$g->pic}}" class="col-md-2 col-sm-4 col-xs-6">
+                <div data-src="{{URL::to('')}}{{$g->pic}}" class="col-md-2 col-sm-4 col-xs-6">
                     <div class="lightbox-item p-item">
-                        <img src="{{$g->thumb}}" alt="" />
+                        <img src="{{URL::to('')}}{{$g->thumb}}" alt="" />
                     </div>
                 </div>
 
@@ -112,11 +117,14 @@
             </div></div>
 
 @if($flag==0)
-    <div class="row">
+
+           <center>
             <ul class="actions">
-                <li style="margin-top:1.5em;"><a href="{{ url('galery')}}/{{$user->cid}}" class="button big alt">move to gallery</a></li>
+              <li style="margin-top:1.5em;"><a href="{{ url('galery')}}/{{$user->cid}}" class="button big alt">move to gallery</a></li>
+
             </ul>
-</div>
+        </center>
+
         @endif    </div>
 
     </section>
@@ -124,12 +132,17 @@
 
                 <!-- end Galery>
     <! Three -->
+
     <!-- details-->
+
+
     <section id="three" class="wrapper style3 special">
         <div class="inner">
             <header class="major narrow	">
                 <h2>personal details of company</h2>
+
                 <p>  Name {{$user->full_name}} <br>Address {{$user->martial_status}} <br>Contact {{$user->phone}} </p>
+
             </header>
             <ul class="actions">
                 <li><a href="#" class="button big alt">some other details</a></li>

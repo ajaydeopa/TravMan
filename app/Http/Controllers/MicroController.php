@@ -63,8 +63,8 @@ class MicroController extends Controller
     {
         $user = DB::table('userdetails')->where('cid', $id)->first();
         $name = DB::table('userdetails')->where('cid', $id)->first()->full_name;
-        $galery = DB::table('galleries')->where('company_id', $id)->take(12)->get();
-        $packages = DB::table('packages')->where('company_id', $id)->take(2)->get();
+        $galery = DB::table('galleries')->where('cid', $id)->take(12)->get();
+        $packages = DB::table('packages')->where('cid', $id)->take(2)->get();
 
         //$name = $this->name;
 
@@ -79,17 +79,19 @@ class MicroController extends Controller
     }*/
 
     public function more($id)
-    {   $name = DB::table('userdetails')->where('cid', $id)->first()->company_name;
-                $packages = DB::table('packages')->where('company_id', $id)->get();
+    {   $name = DB::table('userdetails')->where('cid', $id)->first()->full_name;
+
+                $packages = DB::table('packages')->where('cid', $id)->get();
         return view('pages.morepackage',compact('packages','name'));
 
 
     }
     public function galery($id)
-    {   $name = DB::table('userdetails')->where('cid', $id)->first()->company_name;
+
+    {   $name = DB::table('userdetails')->where('cid', $id)->first()->full_name;
 
 
-        $galery = DB::table('galleries')->where('company_id', $id)->get();
+        $galery = DB::table('galleries')->where('cid', $id)->get();
         return view('pages.galery',compact('galery','name'));
 
 
@@ -98,7 +100,7 @@ public function package($id)
     {
 
         $n = DB::table('packages')->where('id', $id)->first()->company_id;
-        $name = DB::table('userdetails')->where('cid', $n)->first()->company_name;
+        $name = DB::table('userdetails')->where('company_id', $n)->first()->full_name;
         $packages = DB::table('packages')->where('id', $id)->first();
         return view('pages.packagedetails',compact('packages','name'));
 

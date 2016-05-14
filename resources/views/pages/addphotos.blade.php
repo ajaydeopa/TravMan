@@ -13,19 +13,24 @@
                             <h4 id="message"></h4>
                         </div>
                         <form type="POST" onsubmit="return false;" id="photo_form">
+                           {!! csrf_field() !!}
                            <!-- package photo-->
-                     <div class="form-group">
-								 {{ Form::file('file',null,array('class'=>'form-control')) }}
-                         {!! csrf_field() !!}
-                        <label for="sample3">{{ trans('subjects.File') }}</label>
-                    @if ($errors->has('file'))<span class="text-warning">{{ $errors->first('file') }}</span>@endif
-
-
+             <div class="fileinput fileinput-new" data-provides="fileinput">
+                <div class="fileinput-preview thumbnail" data-trigger="fileinput"></div>
+                                <div>
+                                    <span class="btn btn-success btn-file">
+                                        <span class="fileinput-new m-b-20 ">Select image</span>
+                                        <span class="fileinput-exists m-b-20">Change</span>
+                                        <input type="file" name="file">
+                                    </span>
+                                    <a href="#" class="btn btn-danger fileinput-exists m-b-20 m-t-20" data-dismiss="fileinput">Remove</a>
+                                </div>
+                            </div>
                             <!-- button -->
-                            <div class="input-group m-b-20 ">
+                            <div class="input-group m-b-20 m-t-30 ">
                                 <button class="btn bgm-lightblue waves-effect" type="submit" name="book" id="submit">Add Photos</button>
 
-                            </div>
+
 
                     </div>
                     </form>
@@ -55,6 +60,7 @@ $('#submit').click(function(){
         type: 'POST',
 
     });
+        $('#message').fadeIn().text('photo has being successfully added !!').fadeOut(3000);
 	}
 </script>
 @endsection

@@ -27,9 +27,9 @@
     <!-- Header -->
     <header id="header" class="alt">
 
-        <h1><a href="{{ url('micro')}}">{{$fullname}}</a></h1>
-        <a href="">signup</a>
-        <a href="">login</a>
+        <h1><a href="index.html">{{ $fullname }}</a></h1>
+       <!-- <a href="">signup</a>
+        <a href="">login</a>-->
         <a href="#nav">Menu</a>
 
     </header>
@@ -87,6 +87,7 @@
     <script src="{{URL::to('assets')}}/vendors/bower_components/Waves/dist/waves.min.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bower_components/lightgallery/light-gallery/js/lightGallery.min.js"></script>
     <script src="{{URL::to('assets')}}/js/functions.js"></script>
+
 
 
 </body>

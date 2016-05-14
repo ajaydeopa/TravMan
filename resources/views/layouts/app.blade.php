@@ -65,10 +65,17 @@
                         <a href=""><i class="tm-icon zmdi zmdi-search"></i></a>
                     </li>-->
                     <!-- End Search -->
-
+                     <!-- Feedback-->
+                 <li id="feedback" data-trigger="#chat">
+                  <a data-toggle="tooltip" data-placement="bottom" title="Feedback"><i class="tm-icon zmdi zmdi-comment-alt-text"></i></a>
+                        </li>
+                        <!-- microsite-->
+                        <li>
+                             <a href="{{url('micro')}}<?php echo "/"; echo Auth::user()->id; ?>" data-toggle="tooltip" data-placement="bottom" title="Microsite"><i class="tm-icon zmdi zmdi-trending-up"></i></a>
+                        </li>
                     <!-- Notification -->
 
-                    <li class="dropdown">
+                    <li class="dropdown" data-toggle="tooltip" data-placement="bottom" title="Notification">
                     <a data-toggle="dropdown" href="" id="notification">
                             <i class="tm-icon zmdi zmdi-notifications-none"></i>
                             <i class="tmn-counts" id="notification_count"></i>
@@ -97,9 +104,7 @@
                                 <span class="tm-label text-uppercase">{{ Auth::user()->user_name }}<span class="caret"></span> </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-sm pull-right">
-                                <div class="listview">
-                                    <a class="lv-item" id="feedback"> Feedback</a>
-                                </div>
+
                                 <div class="listview">
                                     <a class="lv-item" href="{{ url('/logout') }}" id="logout"> Logout</a>
                                 </div>
@@ -136,7 +141,7 @@
                     <div class="profile-info">
                         @if( !Auth::guest() )
 
-                        {{ Auth::user()->user_name }}
+                       <span class="tm-label text-capitalize">{{ Auth::user()->user_name }}</span>
 
 
                           @endif
@@ -170,8 +175,8 @@
                 </ul>
                 </li>
                 <li><a href="{{ url('createpackage')}}"><i class="zmdi zmdi-local-mall"></i>Create package</a></li>
-                <li><a href="{{ url('micro')}}"><i class="zmdi zmdi-cast"></i>Micro site</a></li>
-                <li><a href="{{ url('photos')}}"><i class="zmdi zmdi-collection-image"></i>GalleryPhotos</a></li>
+                <li><a href="{{url('micro')}}<?php echo "/"; echo Auth::user()->id; ?>"><i class="zmdi zmdi-cast"></i>Micro site</a></li>
+                <li><a href="{{ url('addphotos')}}"><i class="zmdi zmdi-collection-image"></i>GalleryPhotos</a></li>
 
             </ul>
             <!-- End sidebar links -->

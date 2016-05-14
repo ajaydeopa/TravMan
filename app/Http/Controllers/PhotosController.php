@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Galery;
+use App\Gallery;
 use Validator;
 use Auth;
 
@@ -15,9 +15,10 @@ class PhotosController extends Controller
      //save photos
     public function save(Request $request){
 
-        $store = new Galery;
+        $store = new Gallery;
         $store->company_id = Auth::user()->company_id;
-        $destinationPath= "/assets/images/galery";
+        $store->cid = Auth::user()->id;
+        $destinationPath= "/assets/images/gallery/pics";
         $extension = $request->file->getClientOriginalExtension();
         $str = str_random(4);
         $filename = Auth::user()->company_id.$str.".{$extension}";

@@ -17,7 +17,7 @@ class PhotosController extends Controller
 
         $store = new Gallery;
         $store->company_id = Auth::user()->company_id;
-        $store->cid = Auth::user()->id;
+
         $destinationPath= "/assets/images/gallery/pics";
         $extension = $request->file->getClientOriginalExtension();
         $str = str_random(4);

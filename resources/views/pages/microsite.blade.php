@@ -72,7 +72,7 @@
          <ul class="actions">
                         <li>
 
-                            <a href='{{URL::to("morepackage")}}/{{$user->cid}}'  class="button big alt">More Packages</a>
+                            <a href='{{URL::to("morepackage")}}/{{$user->company_id}}'  class="button big alt">More Packages</a>
                         </li>
                     </ul></center>@endif
 
@@ -120,7 +120,7 @@
 
            <center>
             <ul class="actions">
-              <li style="margin-top:1.5em;"><a href="{{ url('galery')}}/{{$user->cid}}" class="button big alt">move to gallery</a></li>
+              <li style="margin-top:1.5em;"><a href="{{ url('galery')}}/{{$user->company_id}}" class="button big alt">move to gallery</a></li>
 
             </ul>
         </center>

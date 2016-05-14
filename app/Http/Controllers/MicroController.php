@@ -61,37 +61,29 @@ class MicroController extends Controller
 	}
     public function detail($id)
     {
-        $user = DB::table('userdetails')->where('cid', $id)->first();
-        $name = DB::table('userdetails')->where('cid', $id)->first()->full_name;
-        $galery = DB::table('galleries')->where('cid', $id)->take(12)->get();
-        $packages = DB::table('packages')->where('cid', $id)->take(2)->get();
+        $user = DB::table('userdetails')->where('company_id', $id)->first();
+        $name = DB::table('userdetails')->where('company_id', $id)->first()->full_name;
+        $galery = DB::table('galleries')->where('company_id', $id)->take(12)->get();
+        $packages = DB::table('packages')->where('company_id', $id)->take(2)->get();
 
-        //$name = $this->name;
 
         return view('pages.microsite',compact('user','packages','galery','name'));
-  //      return Redirect::route( 'micro' )->with('id', 'gjhghj');
 
     }
-/*    public function micro()
-    {
-        $h = Session::get('id');
-        return $h;
-    }*/
-
     public function more($id)
-    {   $name = DB::table('userdetails')->where('cid', $id)->first()->full_name;
+    {   $name = DB::table('userdetails')->where('company_id', $id)->first()->company_name;
 
-                $packages = DB::table('packages')->where('cid', $id)->get();
+                $packages = DB::table('packages')->where('company_id', $id)->get();
         return view('pages.morepackage',compact('packages','name'));
 
 
     }
     public function galery($id)
 
-    {   $name = DB::table('userdetails')->where('cid', $id)->first()->full_name;
+    {   $name = DB::table('userdetails')->where('company_id', $id)->first()->company_name;
 
 
-        $galery = DB::table('galleries')->where('cid', $id)->get();
+        $galery = DB::table('galleries')->where('company_id', $id)->get();
         return view('pages.galery',compact('galery','name'));
 
 

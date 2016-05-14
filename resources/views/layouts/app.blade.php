@@ -71,7 +71,7 @@
                         </li>
                         <!-- microsite-->
                         <li>
-                             <a href="{{url('micro')}}<?php echo "/"; echo Auth::user()->id; ?>" data-toggle="tooltip" data-placement="bottom" title="Microsite"><i class="tm-icon zmdi zmdi-trending-up"></i></a>
+                             <a href="{{url('micro')}}<?php echo "/"; echo Auth::user()->company_id; ?>" data-toggle="tooltip" data-placement="bottom" title="Microsite"><i class="tm-icon zmdi zmdi-trending-up"></i></a>
                         </li>
                     <!-- Notification -->
 
@@ -148,52 +148,39 @@
 
                     </div>
                 </a>
+                <ul class="main-menu">
+                <li><a href="{{ url('profile')}}"><i class="zmdi zmdi-account"></i> View Profile</a></li>
+                </ul>
             </div>
 
 <!--Start sidebar links -->
             <ul class="main-menu">
-<<<<<<< HEAD
-
-=======
-                <li><a href="{{ url('profile')}}"><i class="zmdi zmdi-account"></i> View Profile</a></li>
->>>>>>> origin/itenary
-
                 <li><a href="{{URL::to('/')}}"><i class="zmdi zmdi-tv"></i>Dashboard</a></li>
-
                 @if( Auth::user()->flag == 1 )
                 <li><a href="{{ url('create') }}"><i class="zmdi zmdi-account-add"></i>Create Member</a></li>
                 @endif
-
                 <li class="sub-menu">
                     <a href=""><i class="zmdi zmdi-format-list-bulleted zmdi-hc-fw"></i>Booking</a>
-<<<<<<< HEAD
-=======
+
                     <ul>
                         <li><a href="{{ url('booking')}}"><i class="zmdi zmdi-calendar-note zmdi-hc-fw p-r-10"></i> Create Booking</a></li>
                         <li><a href="{{ url('showbookings')}}"><i class="zmdi zmdi-view-list zmdi-hc-fw p-r-10"></i>Show booking</a></li>
                     </ul>
                 </li>
->>>>>>> origin/itenary
 
                 <li class="sub-menu">
                     <a href=""><i class="zmdi zmdi-format-list-bulleted zmdi-hc-fw"></i>Packages</a>
                     <ul>
-<<<<<<< HEAD
-                        <li><a href="{{ url('booking')}}"><i class="zmdi zmdi-calendar-note zmdi-hc-fw p-r-10"></i>Create Booking</a></li>
-                        <li><a href="{{ url('showbookings')}}"><i class="zmdi zmdi-view-list zmdi-hc-fw p-r-10"></i>Show booking</a></li>
+                        <li><a href="{{ url('createpackage')}}"><i class="zmdi zmdi-calendar-note zmdi-hc-fw p-r-10"></i>Create package</a></li>
+                        <li><a href="{{ url('show+package')}}"><i class="zmdi zmdi-view-list zmdi-hc-fw p-r-10"></i>Show package</a></li>
                 </ul>
                 </li>
-                <li><a href="{{ url('createpackage')}}"><i class="zmdi zmdi-local-mall"></i>Create package</a></li>
-                <li><a href="{{url('micro')}}<?php echo "/"; echo Auth::user()->id; ?>"><i class="zmdi zmdi-cast"></i>Micro site</a></li>
-                <li><a href="{{ url('addphotos')}}"><i class="zmdi zmdi-collection-image"></i>GalleryPhotos</a></li>
-=======
-                        <li><a href="{{ url('createpackage')}}"><i class="zmdi zmdi-local-mall"></i> Create package</a></li>
-                        <li><a href="{{ url('show+package')}}"><i class="zmdi zmdi-view-list zmdi-hc-fw p-r-10"></i>Show package</a></li>
-                    </ul>
-                </li>
->>>>>>> origin/itenary
 
-            </ul>
+                <li><a href="{{url('micro')}}<?php echo "/"; echo Auth::user()->company_id; ?>"><i class="zmdi zmdi-cast"></i>Micro site</a></li>
+                <li><a href="{{ url('addphotos')}}"><i class="zmdi zmdi-collection-image"></i>GalleryPhotos</a></li>
+
+                    </ul>
+
             <!-- End sidebar links -->
         </aside>
 

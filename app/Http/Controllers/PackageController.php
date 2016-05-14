@@ -69,7 +69,7 @@ class PackageController extends Controller
     public function save(Request $request){
 		$store = new Package;
         $store->company_id = Auth::user()->company_id;
-        $store->cid = Auth::user()->id;
+
     	$store->pack_name = $request->package_name;
     	$store->pack_duration = $request->days.' days / '. $request->nights .' nights';
     	$store->pack_desc = $request->description;

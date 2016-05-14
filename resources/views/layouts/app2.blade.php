@@ -27,7 +27,7 @@
     <!-- Header -->
     <header id="header" class="alt">
 
-        <h1><a href="index.html">{{ $fullname }}</a></h1>
+        <h1><a href="#">{{ $fullname }}</a></h1>
        <!-- <a href="">signup</a>
         <a href="">login</a>-->
         <a href="#nav">Menu</a>
@@ -40,9 +40,9 @@
     <!-- Nav -->
     <nav id="nav">
         <ul class="links">
-            <li><a href="{{ url('micro')}}">Home</a></li>
+         <!--   <li><a href="#">Home</a></li>
            <li><a href="{{ url('morepackage')}}">More package</a></li>
-        </ul>
+        --></ul>
     </nav>
 
 

@@ -134,7 +134,7 @@
                     </div>
                     <div class="profile-info">
                         @if( !Auth::guest() )
-                        <span class="tm-label text-uppercase">{{ Auth::user()->user_name }}</span>
+                        <span class="tm-label text-capitalize">{{ Auth::user()->user_name }}</span>
                           @endif
 
                     </div>
@@ -149,7 +149,9 @@
             </div>
 
 <!--Start sidebar links -->
+           <div class="text-capitalize">
             <ul class="main-menu">
+
                 <li><a href="{{URL::to('/')}}"><i class="zmdi zmdi-tv"></i>Dashboard</a></li>
                 @if( Auth::user()->flag == 1 )
                     <li><a href="{{ url('create') }}"><i class="zmdi zmdi-account-add"></i>Create Member</a></li>
@@ -165,6 +167,7 @@
                 <li><a href="{{ url('createpackage')}}"><i class="zmdi zmdi-local-mall"></i>Create package</a></li>
 
             </ul>
+            </div>
             <!-- End sidebar links -->
         </aside>
 

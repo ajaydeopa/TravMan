@@ -6,8 +6,8 @@
             <!-- Start profile pic-->
             <div class="pmo-pic">
                 <div class="p-relative">
-                    <a href="">
-                        <img class="img-responsive" src="" alt="">
+                    <a>
+                        <img class="img-responsive" src="{{URL::to('assets')}}/img/profile-pics/profile-pic-2.jpg" alt="">
                     </a>
                     <a class="pmop-edit">
                         <i class="zmdi zmdi-camera"></i> <span class="hidden-xs">Update Profile Picture</span>
@@ -43,7 +43,7 @@
 
 
             <ul class="tab-nav tn-justified">
-                <li class="active waves-effect"><a href="profile-about.html">About</a></li>
+                <li class="active waves-effect"><a>About</a></li>
             </ul>
 
             <!--summary-->
@@ -68,7 +68,7 @@
                 </div>
                 <div class="pmbb-body p-l-30">
                     <div class="pmbb-view" id="org_summary">
-                        {{ $data->summary }}
+                        <div class="text-capitalize"> {{ $data->summary }}</div>
                     </div>
 
                     <div class="pmbb-edit">
@@ -110,7 +110,9 @@
                     <div class="pmbb-view">
                         <dl class="dl-horizontal">
                             <dt>Full Name</dt>
-                            <dd id="show_name">{{ $data->full_name }}</dd>
+                            <dd id="show_name">
+                                <div class="text-capitalize">{{ $data->full_name }}</div>
+                            </dd>
                         </dl>
                         <dl class="dl-horizontal">
                             <dt>Gender</dt>
@@ -219,7 +221,8 @@
                                 <dt class="p-t-10">Mobile Phone</dt>
                                 <dd>
                                     <div class="fg-line">
-                                        <input type="text" class="form-control" placeholder="eg. 00971 12345678 9" name="phone">
+                                        <input type="text" class="form-control input-mask" data-mask="000-000-0000" placeholder="eg.9711234567" maxlength="14" name="phone">
+
                                     </div>
                                 </dd>
                             </dl>
@@ -283,6 +286,5 @@
             $('#show_phone').html(data[1].value);
         });
     }
-
 </script>
 @endsection

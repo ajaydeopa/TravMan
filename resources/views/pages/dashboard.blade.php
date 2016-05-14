@@ -247,6 +247,18 @@
             editTodo(data);
         });
 
+        $('#calendar').on('click', '.fc-title', function(){
+
+             swal({
+                    title: "Are you sure?",
+                    text: "You will not be able to recover this",
+                    showCancelButton: true,
+                    confirmButtonText: "Yes, delete it!",
+                    closeOnConfirm: false
+                });
+
+        });
+
         $('#cancel').click(function(){
             $('#editt').css('display', 'none');
             $('#save').css('display', 'inline-block');
@@ -305,6 +317,7 @@
                 $('#getEnd').val(end);
             }
         });
+
 
         //Create and ddd Action button with dropdown in Calendar header.
         var actionMenu = '<ul class="actions actions-alt" id="fc-actions">' +

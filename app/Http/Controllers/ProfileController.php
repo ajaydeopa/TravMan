@@ -33,8 +33,9 @@ class ProfileController extends Controller
         $gender = $request->gender;
         $birth = $request->birthday;
         $status = $request->martial_status;
+        $company = $request->company_name;
 
-        Userdetail::where('cid', $id)->update(['full_name' => $name, 'gender' => $gender, 'birthday' => $birth, 'martial_status' => $status]);
+        Userdetail::where('cid', $id)->update(['full_name' => $name, 'gender' => $gender, 'birthday' => $birth, 'martial_status' => $status, 'company_name' => $company]);
     }
 
     //save contact info

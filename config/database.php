@@ -55,7 +55,9 @@ return [
         'mysql' => [
             'driver'    => 'mysql',
             'host'      => env('DB_HOST', 'localhost'),
+
             'database'  => env('DB_DATABASE', 'travo'),
+
             'username'  => env('DB_USERNAME', 'root'),
             'password'  => env('DB_PASSWORD', 'root'),
             'charset'   => 'utf8',
@@ -63,7 +65,9 @@ return [
             'prefix'    => '',
             'strict'    => false,
             'engine'    => null,
-            'port'      =>'8889',
+
+            'port'      => 8889,
+
         ],
 
         'pgsql' => [

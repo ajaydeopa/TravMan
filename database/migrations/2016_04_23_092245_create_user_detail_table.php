@@ -14,13 +14,19 @@ class CreateUserDetailTable extends Migration
     {
         Schema::create('userdetails', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('cid');
+            $table->string('company_id');
+            $table->integer('cid')->unsigned();
             $table->string('full_name');
+            $table->string('company_name');
             $table->string('gender');
             $table->string('birthday');
             $table->string('martial_status');
             $table->string('phone');
             $table->string('summary', 1000);
+
+            $table  ->foreign('cid')
+                    ->references('id')->on('users')
+                    ->onDelete('cascade');
         });
     }
 

@@ -50,7 +50,7 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'user_name' => 'required|max:20|alpa',
+            'user_name' => 'required|max:20|alpha',
             'email'     => 'required|email|max:255|unique:users',
             'password'  => 'required|confirmed|min:6',
 
@@ -71,12 +71,13 @@ class AuthController extends Controller
         $user->password = bcrypt($data['password']);
         $user->flag = 1;
         $user->save();
-
         $id = $user->id;
-
-        $store = new Userdetail;
+        $cid=$user->company_id;
+     $store = new Userdetail;
         $store->cid = $id;
-        $store->save();
+   $store->company_id = $cid;
+     $store->save();
+
 
         return User::find($id);
     }

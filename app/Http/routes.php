@@ -9,6 +9,24 @@
 | kernel and includes session state, CSRF protection, and more.
 |
 */
+//Route::get('micro','MicroController@micro') ;
+//Route::get('micro', array('as' => 'micro', 'uses' => 'MicroController@micro'));
+        Route::get('validateSubmit', 'MicroController@feedbacks');
+
+        Route::get('savefeed', 'MicroController@storeFeed');
+
+        Route::get('micro/{id}','MicroController@detail') ;
+
+        Route::get('morepackage/{id}','MicroController@more' );
+
+        Route::get('packagedetails/{id}','MicroController@package');
+
+        Route::get('galery/{id}', 'MicroController@galery');
+
+
+
+
+
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
     
@@ -23,9 +41,18 @@ Route::group(['middleware' => 'web'], function () {
             return view('pages.createpackage');
         });
 
+
         Route::get('create', function(){
             return view('pages.memberRegister');
         });
+
+
+        //Route for addPhotos
+         Route::get('addphotos', function(){
+            return view('pages.addphotos');
+        });
+        Route::post('savephotos', 'PhotosController@save');
+
 
         //Route for PackageController
         Route::post('savepackage', 'PackageController@save');
@@ -33,6 +60,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('getduration', 'PackageController@getduration');
 
         Route::post('validatePackage', 'PackageController@validatePackage');
+
 
         //Route for ProfileController
         Route::get('profile', 'ProfileController@show');
@@ -54,7 +82,6 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('showNotifications', 'NotificationController@show');
 
         Route::get('notificationdetail', 'NotificationController@details');
-
         //Route for BookingController
         Route::get('booking', 'BookingController@show');
 
@@ -68,6 +95,8 @@ Route::group(['middleware' => 'web'], function () {
         
         Route::post('make_booking', 'BookingController@makeBooking');
         
+
+
         //Route for CalendarTodoController
         Route::get('eventsave', 'CalendarTodoController@eventsave');
 
@@ -78,5 +107,41 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('deletetodo', 'CalendarTodoController@deletetodo');
 
         Route::get('edittodo', 'CalendarTodoController@edittodo');
+
+
+        Route::get('deleteEvent', 'CalendarTodoController@deleteEvent');
+
+        //Route for FeedbackController
+        Route::get('travo/feedback', 'FeedbackController@show');
+
+        /*Route::post('validatefeedback', 'FeedbackController@validatefeedback');
+
+        Route::post('savefeedback', 'FeedbackController@savefeedback');*/
+
+        Route::get('savefeed', 'FeedbackController@savefeed');
+
+        //Route for PackageController
+        Route::post('savepackage', 'PackageController@save');
+
+        Route::get('getduration', 'PackageController@getduration');
+
+        Route::post('validatePackage', 'PackageController@validatePackage');
+
+        Route::get('show+package', 'PackageController@showPackage');
+
+        Route::get('delete+package', 'PackageController@deletePackage');
+
+        //Route for ItenaryController
+        Route::get('itinerary/{id}', 'ItenaryController@show');
+
+        Route::get('saveday', 'ItenaryController@saveDay');
+
+        Route::get('show+events', 'ItenaryController@showEvents');
+
+        Route::post('save+event', 'ItenaryController@saveEvent');
+
+        Route::get('show+itinerary/{rand_id}', 'ItenaryController@showItinerary');
+
     });
 });
+

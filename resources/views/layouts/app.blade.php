@@ -10,7 +10,7 @@
     <!-- Vendor CSS -->
     <link href="{{URL::to('assets')}}/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
     <link href="{{URL::to('assets')}}/vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
-    <link href="{{URL::to('assets')}}/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
+    <link href="{{URL::to('assets')}}/vendors/bower_components/bootstrap-sweetalert/lib/sweetalert.css" rel="stylesheet">
     <link href="{{URL::to('assets')}}/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
      <link href="{{URL::to('assets')}}/vendors/bower_components/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet">
       <link href="{{URL::to('assets')}}/vendors/bower_components/chosen/chosen.min.css" rel="stylesheet">
@@ -20,6 +20,7 @@
     <!-- CSS -->
     <link href="{{URL::to('assets')}}/css/app.min.1.css" rel="stylesheet">
     <link href="{{URL::to('assets')}}/css/app.min.2.css" rel="stylesheet">
+
 
 </head>
 
@@ -40,7 +41,6 @@
             <li class="logo hidden-xs">
                 <a href="{{URL::to('/')}}">Trav-Man</a>
             </li>
-
             <li class="pull-right">
                 <ul class="top-menu">
                     @if( Auth::guest() )
@@ -51,6 +51,7 @@
                         <a href="{{ url('/register') }}"><span class="tm-label">Register</span></a>
                     </li>
                     @else
+
                     <!-- toggle-->
                    <!-- <li id="toggle-width">
                         <div class="toggle-switch">
@@ -64,10 +65,18 @@
                         <a href=""><i class="tm-icon zmdi zmdi-search"></i></a>
                     </li>-->
                     <!-- End Search -->
-
+                     <!-- Feedback-->
+                 <li id="feedback" data-trigger="#chat">
+                  <a data-toggle="tooltip" data-placement="bottom" title="Feedback"><i class="tm-icon zmdi zmdi-comment-alt-text"></i></a>
+                        </li>
+                        <!-- microsite-->
+                        <li>
+                             <a href="{{url('micro')}}<?php echo "/"; echo Auth::user()->company_id; ?>" data-toggle="tooltip" data-placement="bottom" title="Microsite"><i class="tm-icon zmdi zmdi-trending-up"></i></a>
+                        </li>
                     <!-- Notification -->
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" href="" id="notification">
+
+                    <li class="dropdown" data-toggle="tooltip" data-placement="bottom" title="Notification">
+                    <a data-toggle="dropdown" href="" id="notification">
                             <i class="tm-icon zmdi zmdi-notifications-none"></i>
                             <i class="tmn-counts" id="notification_count"></i>
                         </a>
@@ -81,29 +90,26 @@
                                <div class="pm-overview c-overflow" style=" height:200px;">
                                 <div class="lv-body" id="notification_list">
 
-                                </div>
+                                    </div>
+                                    </div>
+
                                 </div>
 
                             </div>
-
-                        </div>
-
+                        </li>
                         <!-- End Notification -->
 
-                    </li>
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" href="">
+                                <span class="tm-label text-uppercase">{{ Auth::user()->user_name }}<span class="caret"></span> </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-sm pull-right">
 
-
-
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" href="">
-                            <span class="tm-label text-uppercase">{{ Auth::user()->user_name }}<span class="caret"></span> </span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-sm pull-right">
-                            <div class="listview">
-                                <a class="lv-item" href="{{ url('/logout') }}" id="logout"> Logout</a>
+                                <div class="listview">
+                                    <a class="lv-item" href="{{ url('/logout') }}" id="logout"> Logout</a>
+                                </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
                     @endif
 
                 </ul>
@@ -134,40 +140,47 @@
                     </div>
                     <div class="profile-info">
                         @if( !Auth::guest() )
-                        <span class="tm-label text-capitalize">{{ Auth::user()->user_name }}</span>
+
+                       <span class="tm-label text-capitalize">{{ Auth::user()->user_name }}</span>
+
+
                           @endif
 
                     </div>
                 </a>
-
                 <ul class="main-menu">
-                    <li>
-                        <a href="{{ url('profile')}}"><i class="zmdi zmdi-account"></i> View Profile</a>
-                    </li>
-
+                <li><a href="{{ url('profile')}}"><i class="zmdi zmdi-account"></i> View Profile</a></li>
                 </ul>
             </div>
 
 <!--Start sidebar links -->
-           <div class="text-capitalize">
             <ul class="main-menu">
-
                 <li><a href="{{URL::to('/')}}"><i class="zmdi zmdi-tv"></i>Dashboard</a></li>
                 @if( Auth::user()->flag == 1 )
-                    <li><a href="{{ url('create') }}"><i class="zmdi zmdi-account-add"></i>Create Member</a></li>
+                <li><a href="{{ url('create') }}"><i class="zmdi zmdi-account-add"></i>Create Member</a></li>
                 @endif
                 <li class="sub-menu">
-                <a href=""><i class="zmdi zmdi-format-list-bulleted zmdi-hc-fw"></i>Booking</a>
+                    <a href=""><i class="zmdi zmdi-format-list-bulleted zmdi-hc-fw"></i>Booking</a>
 
                     <ul>
-                <li><a href="{{ url('booking')}}"><i class="zmdi zmdi-calendar-note zmdi-hc-fw p-r-10"></i> Create Booking</a></li>
-                <li><a href="{{ url('showbookings')}}"><i class="zmdi zmdi-view-list zmdi-hc-fw p-r-10"></i>Show booking</a></li>
+                        <li><a href="{{ url('booking')}}"><i class="zmdi zmdi-calendar-note zmdi-hc-fw p-r-10"></i> Create Booking</a></li>
+                        <li><a href="{{ url('showbookings')}}"><i class="zmdi zmdi-view-list zmdi-hc-fw p-r-10"></i>Show booking</a></li>
+                    </ul>
+                </li>
+
+                <li class="sub-menu">
+                    <a href=""><i class="zmdi zmdi-format-list-bulleted zmdi-hc-fw"></i>Packages</a>
+                    <ul>
+                        <li><a href="{{ url('createpackage')}}"><i class="zmdi zmdi-calendar-note zmdi-hc-fw p-r-10"></i>Create package</a></li>
+                        <li><a href="{{ url('show+package')}}"><i class="zmdi zmdi-view-list zmdi-hc-fw p-r-10"></i>Show package</a></li>
                 </ul>
                 </li>
-                <li><a href="{{ url('createpackage')}}"><i class="zmdi zmdi-local-mall"></i>Create package</a></li>
 
-            </ul>
-            </div>
+                <li><a href="{{url('micro')}}<?php echo "/"; echo Auth::user()->company_id; ?>"><i class="zmdi zmdi-cast"></i>Micro site</a></li>
+                <li><a href="{{ url('addphotos')}}"><i class="zmdi zmdi-collection-image"></i>GalleryPhotos</a></li>
+
+                    </ul>
+
             <!-- End sidebar links -->
         </aside>
 
@@ -205,7 +218,7 @@
     <script src="{{URL::to('assets')}}/vendors/bower_components/flot.curvedlines/curvedLines.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
-    <script src="{{URL::to('assets')}}/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
+    <script src="{{URL::to('assets')}}/vendors/bower_components/bootstrap-sweetalert/lib/sweetalert.min.js"></script>
     <script src="{{URL::to('assets')}}/vendors/sparklines/jquery.sparkline.min.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bower_components/moment/min/moment.min.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bower_components/fullcalendar/dist/fullcalendar.min.js "></script>
@@ -215,6 +228,7 @@
     <script src="{{URL::to('assets')}}/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bower_components/autosize/dist/autosize.min.js"></script>
      <script src="{{URL::to('assets')}}/vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+      <script src="{{URL::to('assets')}}/vendors/fileinput/fileinput.min.js"></script>
 
     <!-- Placeholder for IE9 -->
     <!--[if IE 9 ]>
@@ -230,6 +244,39 @@
     <script src="{{URL::to('assets')}}/js/demo.js"></script>
     @if( !Auth::guest() )
         <script>
+        $('#feedback').click(function(){
+            swal(   {  title: "Write your feedback !!",
+                    //text: "Enter the keyword :",
+                    type: "input",
+                    showCancelButton: true,
+                    closeOnConfirm: false,
+                    animation: "slide-from-top",
+                    text:'Email : {{Auth::user()->email}}<br/>',
+                    html: true,
+                },
+                function(inputValue){
+                    if (inputValue === false)
+                        return false;
+                    else if (inputValue === "") {
+                        swal.showInputError("You need to write something!");
+                        return false
+                    }
+
+                    else{
+                        var url = '{{ url("savefeed") }}';
+
+                        $.get(url, {'feedback': inputValue}, function(){
+                            swal({  title: "Feedback saved",
+                                text: "Thanx for giving us your feedback.",
+                                timer: 2000,
+                                showConfirmButton: false
+                            });
+                        });
+                    }
+                }
+            );
+        });
+
         $('#notification_list').on('click', '#note', function(){
             var id = $(this).attr('data-id');
             $(this).css('background-color', 'white');
@@ -296,6 +343,9 @@
                 $('#notification_list').html(content);
             });
         }
+
+
+
         </script>
     @endif
 @yield('footer')

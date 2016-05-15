@@ -25,6 +25,7 @@
                                     </span>
                                     <a href="#" class="btn btn-danger fileinput-exists m-b-20 m-t-20" data-dismiss="fileinput">Remove</a>
                                 </div>
+                 <div><strong id="error_file"></strong></div>
                             </div>
                             <!-- button -->
                             <div class="input-group m-b-20 m-t-30 ">
@@ -46,8 +47,26 @@
 <script type="text/javascript">
 $('#submit').click(function(){
 		$('#submit').val('Adding...').focus();
-		addphotos();
+		   validatePhoto();
 	});
+
+    function  validatePhoto() {
+        var url = '{{ url("validatePhoto") }}';
+        var data = $('#photo_form').serializeArray();
+        $.post(url, data, function(data) {
+            var data= $('.fileinput-preview').find('img').attr('src');
+            //alert(data);
+                if( data == null )
+                    $('#error_file').html('Picture is required!!');
+                else{
+                    $('#error_file').html('');
+                    addphotos();
+                }
+
+        });
+    }
+
+
     function addphotos(){
        var myform = document.getElementById("photo_form");
     var fd = new FormData(myform);

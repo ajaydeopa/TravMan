@@ -136,7 +136,7 @@
             <div class="profile-menu">
                 <a href="">
                     <div class="profile-pic">
-                        <img src="{{URL::to('assets')}}/img/profile-pics/2.jpg" alt="">
+                        <img src="{{URL::to('')}}{{ App\Userdetail::where('cid', Auth::user()->id)->first()->pic }}" alt="">
                     </div>
                     <div class="profile-info">
                         @if( !Auth::guest() )

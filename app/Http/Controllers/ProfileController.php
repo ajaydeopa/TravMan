@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Userdetail;
 use Auth;
+use DB;
 
 class ProfileController extends Controller
 {
@@ -15,7 +16,8 @@ class ProfileController extends Controller
     	$id = Auth::user()->id;
 
     	$data = Userdetail::where('cid', $id)->first();
-    	return view('pages.profile', compact('data'));
+
+        return view('pages.profile', compact('data'));
     }
 
     //save summary
@@ -45,4 +47,24 @@ class ProfileController extends Controller
 
         Userdetail::where('cid', $id)->update(['phone' => $phone]);
     }
+
+     public function profilephotosave(Request $request){
+        $id = Auth::user()->id;
+        $phone = $request->feedback;
+         Userdetail::where('cid', $id)->update(['pic' => $phone]);
+    }
+
+     public function updatephoto(Request $request){
+        $id = Auth::user()->id;
+        $cid = Auth::user()->company_id;
+        $destinationPath= "/assets/images/profile";
+        $extension = $request->file->getClientOriginalExtension();
+        $str = str_random(4);
+        $filename = Auth::user()->company_id.$str.".{$extension}";
+        //$size = $file->getSize();
+        $upload_success = $request->file->move(public_path().'/'.$destinationPath, $filename);
+        $url=$destinationPath.'/'. $filename;
+         Userdetail::where('cid', $id)->update(['pic' => $url]);
+    }
+
 }

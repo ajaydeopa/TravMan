@@ -53,6 +53,8 @@ Route::group(['middleware' => 'web'], function () {
         });
         Route::post('savephotos', 'PhotosController@save');
 
+         Route::post('validatePhoto', 'PhotosController@validatePhoto');
+
 
         //Route for PackageController
         Route::post('savepackage', 'PackageController@save');
@@ -71,6 +73,7 @@ Route::group(['middleware' => 'web'], function () {
 
         Route::post('contactinfosave', 'ProfileController@contactinfosave');
         
+         Route::post('updatephoto', 'ProfileController@updatephoto');
         //Route for MemberController
         Route::post('create_member', 'MemberController@createMember');
 

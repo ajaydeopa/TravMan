@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTodoListsTable extends Migration
+class CreateDayItenariesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,13 @@ class CreateTodoListsTable extends Migration
      */
     public function up()
     {
-        Schema::create('todo_lists', function (Blueprint $table) {
+        Schema::create('day_itenaries', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('cid')->unsigned();
-            $table->string('todo');
-            $table->timestamp('updated_at');
+            $table->integer('pack_id')->unsigned();
+            $table->string('day_no');
 
-            $table  ->foreign('cid')
-                    ->references('id')->on('users')
+            $table  ->foreign('pack_id')
+                    ->references('id')->on('packages')
                     ->onDelete('cascade');
         });
     }
@@ -31,6 +30,6 @@ class CreateTodoListsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('todo_lists');
+        Schema::drop('day_itenaries');
     }
 }

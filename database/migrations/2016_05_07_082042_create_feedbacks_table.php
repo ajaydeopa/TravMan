@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserDetailTable extends Migration
+class CreateFeedbacksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,12 @@ class CreateUserDetailTable extends Migration
      */
     public function up()
     {
-        Schema::create('userdetails', function (Blueprint $table) {
+        Schema::create('feedbacks', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('cid')->unsigned();
-            $table->string('full_name');
-            $table->string('gender');
-            $table->string('birthday');
-            $table->string('martial_status');
-            $table->string('phone');
-            $table->string('summary', 1000);
+            $table->string('email');
+            $table->string('feedback');
+            $table->timestamp('at');
 
             $table  ->foreign('cid')
                     ->references('id')->on('users')
@@ -35,6 +32,6 @@ class CreateUserDetailTable extends Migration
      */
     public function down()
     {
-        Schema::drop('userdetails');
+        Schema::drop('feedbacks');
     }
 }

@@ -30,7 +30,7 @@
                                         <td>{{ $count }}</td>
                                         <td><a href='booking/{{ rand(100, 999) }}{{ $i->id }}{{ rand(100,999) }}'>{{ $i->email }}</a></td>
                                         <td>{{ $i->departure_date }} </td>
-                                        <td>{{ $i->booked_at }} </td>
+                                        <td>{{ Carbon\Carbon::parse($i->booked_at)->diffForHumans() }}</td>
                                         <td>
                                             <a class="btn btn-danger waves-effect delete-button" data-method="delete" id="{{ $i->id }}"><i class="zmdi zmdi-close"></i></a>
                                         </td>

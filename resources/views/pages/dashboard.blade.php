@@ -248,16 +248,34 @@
         });
 
         $('#calendar').on('click', '.fc-title', function(){
-
-             swal({
+            var data = $(this).text();
+            //$(this).css('display', 'none');
+            swal({
                     title: "Are you sure?",
-                    text: "You will not be able to recover this",
+                    text: "Booking will be deleted permanently !!",
+                    type: "warning",
                     showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
                     confirmButtonText: "Yes, delete it!",
-                    closeOnConfirm: false
-                });
-
+                    cancelButtonText: "No, cancel plx!",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                }, function(isConfirm) {
+                    if (isConfirm) {
+                        deleteEvent(data);
+                    } else {
+                        swal("Cancelled", "Deletion aborted !!", "error");
+                    }
+            });
         });
+
+        function deleteEvent(data){
+            var url = '{{ url("deleteEvent") }}';
+
+            $.get(url, {'data': data}, function(){
+                window.location.href = '{{ url("dashboard") }}';
+            });
+        }
 
         $('#cancel').click(function(){
             $('#editt').css('display', 'none');
@@ -299,10 +317,10 @@
                 @if( count($events) != 0 )
                     @foreach( $events as $e )
                         {
-                            title: '{{ $e->event_name }}',
+                            title: '{{ $e->event_name }} , {{ $e->id}}',
                             start: new Date( {{$e->year}}, {{$e->month}}, {{$e->day}} ),
                             allDay: true,
-                            className: '{{ $e->color }}'
+                            className: '{{ $e->color }}',
                         },
                     @endforeach
                 @endif

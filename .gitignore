@@ -4,4 +4,4 @@
 Homestead.yaml
 Homestead.json
 .env
-/resources/views/auth/login.blade.php
+/config/database.php

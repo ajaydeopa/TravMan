@@ -17,7 +17,9 @@ class PhotosController extends Controller
    	public function save(Request $request)
 	{
         $image 			= 	$request->file('file');
-        $resizedImage 	= 	$this->resize($image, '500');//set size for thumb
+
+        $resizedImage 	= 	$this->resize($image, '600');//set size for thumb
+
 
         if(!$resizedImage)
         {

@@ -1,6 +1,5 @@
 @extends('layouts.app',['link' => 'Add URL'])
  @section('content')
-
 <div class="container">
         <div class="mini-charts">
         <div class="row">
@@ -66,7 +65,7 @@
                 <div class="clearfix"></div>
 
                 <div class="tl-body">
-                    <div id="add-tl-item" data-trigger="hover" data-toggle="popover" data-placement="top"  title="" data-original-title="Add todo">
+                    <div id="add-tl-item">
                         <i class="add-new-item zmdi zmdi-plus"></i>
 
                         <form method="POST" id="todo_form">
@@ -89,7 +88,7 @@
                         @foreach( $todo as $t )
                             <div class="checkbox media">
                                 <div class="pull-right ">
-                                    <ul class="actions actions-alt" data-trigger="hover" data-toggle="popover" data-placement="right"  title="" data-original-title="edit/delete">
+                                    <ul class="actions actions-alt">
                                         <li class="dropdown " id="dropdown{{ $t->id }}" >
                                             <a href="" data-toggle="dropdown">
                                                 <i class="zmdi zmdi-more-vert"></i>
@@ -249,16 +248,34 @@
         });
 
         $('#calendar').on('click', '.fc-title', function(){
-
-             swal({
+            var data = $(this).text();
+            //$(this).css('display', 'none');
+            swal({
                     title: "Are you sure?",
-                    text: "You will not be able to recover this",
+                    text: "Booking will be deleted permanently !!",
+                    type: "warning",
                     showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
                     confirmButtonText: "Yes, delete it!",
-                    closeOnConfirm: false
-                });
-
+                    cancelButtonText: "No, cancel plx!",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                }, function(isConfirm) {
+                    if (isConfirm) {
+                        deleteEvent(data);
+                    } else {
+                        swal("Cancelled", "Deletion aborted !!", "error");
+                    }
+            });
         });
+
+        function deleteEvent(data){
+            var url = '{{ url("deleteEvent") }}';
+
+            $.get(url, {'data': data}, function(){
+                window.location.href = '{{ url("dashboard") }}';
+            });
+        }
 
         $('#cancel').click(function(){
             $('#editt').css('display', 'none');
@@ -300,12 +317,10 @@
                 @if( count($events) != 0 )
                     @foreach( $events as $e )
                         {
-
-                            title: '{{ $e->event_name }},{{ $e->id }}',
-
+                            title: '{{ $e->event_name }}',
                             start: new Date( {{$e->year}}, {{$e->month}}, {{$e->day}} ),
                             allDay: true,
-                            className: '{{ $e->color }}'
+                            className: '{{ $e->color }}',
                         },
                     @endforeach
                 @endif
@@ -395,10 +410,6 @@
             $(this).parent().addClass('active');
             cId.fullCalendar('changeView', dataView);
         });
-
-
-
-
     });
 
 

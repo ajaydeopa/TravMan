@@ -163,7 +163,7 @@
 			$('#error-event').html('Invalid time entry!!');
 		}
 		else{
-			alert('hjh');
+			//alert('hjh');
 			$(this).attr('data-dismiss', 'modal');
 			$('#error-event').html('');
 			saveEvent();
@@ -201,6 +201,7 @@
 			$('#event-body').append(content);
 
 			$(':input[type!="button"]').val('');
+            window.location.href = '{{ url("itinerary") }}/{{$id}}';
 		});
 	}
 </script>

@@ -4,82 +4,82 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
 
-            	<div class="card">
-		            <div class="card-header bgm-blue">
-		                <h2>Create Package<small>Fill Details</small></h2>
-		            </div>
-		            <div class="card-body card-padding">
-		                <div id="error" style="text-align:center">
-		                    <h4 id="message"></h4>
-		                </div>
+                <div class="card">
+                    <div class="card-header bgm-blue">
+                        <h2>Create Package<small>Fill Details</small></h2>
+                    </div>
+                    <div class="card-body card-padding">
+                        <div id="error" style="text-align:center">
+                            <h4 id="message"></h4>
+                        </div>
 
-		                <form method="POST" id="package_form" onsubmit="return false;">
-		                    {!! csrf_field() !!}
-		                    <!-- package name -->
-		                    <div class="input-group m-b-20 ">
-		                        <span class="input-group-addon"><i class="zmdi zmdi-receipt"></i></span>
-		                        <div class="fg-line {{ $errors->has('package_name') ? ' has-error' : '' }}">
-		                            <input type="text" class="form-control" placeholder="Package name" name="package_name" value="{{ old('package_name') }}">
-		                        </div>
-		                        <div><strong id="error_name"></strong></div>
-		                    </div>
-
-
-		                    <!-- duration -->
-		                    <div class="row m-b-10 ">
-		                    <div class="col-sm-4">
-		                    <div class="input-group">
-		                    	  <span class="input-group-addon"><i class="zmdi zmdi-time"></i></span>
-                                    <div class="fg-line fg-toggled">
-                                            <input type="text" class="form-control" value="Duration"  placeholder="Duration" disabled="">
-                                        </div>
-                               </div>
-                                </div>
-			                 <div class="col-sm-4">
-	                                    <div class="input-group">
-	                                        <span class="input-group-addon"><i class="zmdi zmdi-sun"></i></span>
-	                                        <div class="fg-line">
-                                       <input type="text" class="form-control input-mask" data-mask="00" placeholder="Number of Days" name="days" value="{{ old('days') }}" maxlength="2" autocomplete="off">
-                                           </div>
-	                                    </div>
-	                            	</div>
-	                           <div class="col-sm-4">
-	                                    <div class="input-group">
-	                                        <span class="input-group-addon"><i class="zmdi zmdi-time-interval"></i></span>
-	                                        <div class="fg-line">
-                                                 <input type="text" class="form-control input-mask" data-mask="00" placeholder="Number of Nights" name="nights" value="{{ old('nights') }}" maxlength="2" autocomplete="off">
-                                            </div>
-	                                    </div>
-	                            	</div>
-	                            	 <div><strong id="error_duration" style="padding-left: 40px"></strong></div>
-	                            </div>
-
-
-<!-- description -->
+                        <form method="POST" id="package_form" onsubmit="return false;">
+                            {!! csrf_field() !!}
+                            <!-- package name -->
                             <div class="input-group m-b-20 ">
-		                        <span class="input-group-addon"><i class="zmdi zmdi-widgets"></i></span>
+                                <span class="input-group-addon"><i class="zmdi zmdi-receipt"></i></span>
+                                <div class="fg-line {{ $errors->has('package_name') ? ' has-error' : '' }}">
+                                    <input type="text" class="form-control" placeholder="Package name" name="package_name" value="{{ old('package_name') }}">
+                                </div>
+                                <div><strong id="error_name"></strong></div>
+                            </div>
+
+
+                            <!-- duration -->
+                            <div class="row m-b-10 ">
+                                <div class="col-sm-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="zmdi zmdi-time"></i></span>
+                                        <div class="fg-line fg-toggled">
+                                            <input type="text" class="form-control" value="Duration" placeholder="Duration" disabled="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="zmdi zmdi-sun"></i></span>
+                                        <div class="fg-line">
+                                            <input type="text" class="form-control input-mask" data-mask="00" placeholder="Number of Days" name="days" value="{{ old('days') }}" maxlength="2" autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="zmdi zmdi-time-interval"></i></span>
+                                        <div class="fg-line">
+                                            <input type="text" class="form-control input-mask" data-mask="00" placeholder="Number of Nights" name="nights" value="{{ old('nights') }}" maxlength="2" autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div><strong id="error_duration" style="padding-left: 40px"></strong></div>
+                            </div>
+
+
+                            <!-- description -->
+                            <div class="input-group m-b-20 ">
+                                <span class="input-group-addon"><i class="zmdi zmdi-widgets"></i></span>
                                 <div class="fg-line {{ $errors->has('description') ? ' has-error' : '' }}">
                                     <textarea class="form-control auto-size" placeholder="Description" name="description" value="{{ old('description') }}" data-autosize-on="true" style="overflow: hidden; word-wrap: break-word; height: 41px;"></textarea>
                                 </div>
                                 <div><strong id="error_description"></strong></div>
                             </div>
 
-<!-- include -->
+                            <!-- include -->
 
 
-                        <div class="input-group m-b-20 ">
-		                        <span class="input-group-addon"><i class="zmdi zmdi-layers"></i></span>
-                                 <div class="fg-line {{ $errors->has('package_include') ? ' has-error' : '' }}">
+                            <div class="input-group m-b-20 ">
+                                <span class="input-group-addon"><i class="zmdi zmdi-layers"></i></span>
+                                <div class="fg-line {{ $errors->has('package_include') ? ' has-error' : '' }}">
                                     <textarea class="form-control auto-size" placeholder="Package include" name="package_include" value="{{ old('package_include') }}" data-autosize-on="true" style="overflow: hidden; word-wrap: break-word; height: 41px;"></textarea>
                                 </div>
                                 <div><strong id="error_pack_include"></strong></div>
                             </div>
 
-<!-- cost include -->
+                            <!-- cost include -->
 
 
-                        <div class="input-group m-b-20 ">
-		                        <span class="input-group-addon"><i class="zmdi zmdi-money"></i></span>
+                            <div class="input-group m-b-20 ">
+                                <span class="input-group-addon"><i class="zmdi zmdi-money"></i></span>
                                 <div class="fg-line {{ $errors->has('cost_include') ? ' has-error' : '' }}">
                                     <textarea class="form-control auto-size" placeholder="Cost include" name="cost_include" value="{{ old('cost_include') }}" data-autosize-on="true" style="overflow: hidden; word-wrap: break-word; height: 41px;"></textarea>
                                 </div>
@@ -87,25 +87,48 @@
                             </div>
 
 
-<!-- notes -->
+                            <!-- notes -->
 
-                        <div class="input-group m-b-20 ">
-		                        <span class="input-group-addon"><i class="zmdi zmdi-assignment"></i></span>
+                            <div class="input-group m-b-20 ">
+                                <span class="input-group-addon"><i class="zmdi zmdi-assignment"></i></span>
                                 <div class="fg-line {{ $errors->has('notes') ? ' has-error' : '' }}">
                                     <textarea class="form-control auto-size" placeholder="Notes" name="notes" value="{{ old('notes') }}" data-autosize-on="true" style="overflow: hidden; word-wrap: break-word; height: 41px;"></textarea>
                                 </div>
-                                  <div><strong id="error_notes"></strong></div>
+                                <div><strong id="error_notes"></strong></div>
+                            </div>
+
+                            <!-- package photo-->
+                            <div class="row m-b-20">
+                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                    <div class="col-sm-10">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="zmdi zmdi-image"></i></span>
+                                            <div class="fg-line fg-toggled">
+                                                <span class="fileinput-filename"><input type="text" class="form-control" placeholder="Add photo" ></span>
+                                            </div>
+                                        </div>
+                                        <a href="#" class="close fileinput-exists" data-dismiss="fileinput">&times;</a>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <span class="btn btn-primary btn-file m-r-10">
+                                            <span class="fileinput-new">Select file</span>
+                                        <span class="fileinput-exists">Change</span>
+                                        <input type="file" name="file">
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
 
 
-<!-- button -->
-		                    <div class="input-group m-b-20 ">
-		                       <button class="btn bgm-lightblue waves-effect" type="submit" name="book" id="submit">Create Package</button>
 
-		                    </div>
-		                </form>
-		            </div>
-		        </div>
+                            <!-- button -->
+                            <div class="input-group m-b-20 ">
+                                <button class="btn bgm-lightblue waves-effect" type="submit" name="book" id="submit">Create Package</button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -166,15 +189,20 @@
         });
     }
 
-	function createPackage(){
-		var data = $('#package_form').serializeArray();
-		var url = '{{ url("savepackage") }}';
+	function createPackage()
+    {
+       var myform = document.getElementById("package_form");
+    var fd = new FormData(myform);
+    $.ajax({
+        url: "{{url('savepackage')}}",
+        data: fd,
+        cache: false,
+        processData: false,
+        contentType: false,
+        type: 'POST',
 
-		$.post(url, data, function(data){
-			$('#message').fadeIn().html('Package has been successfully created !!').fadeOut(2000);
-			$(':input').val('');
-			$('#submit').val('Create Package');
-		});
+    });
+        $('#message').fadeIn().text('Package has being successfully added !!').fadeOut(3000);
 	}
 </script>
 @endsection

@@ -71,12 +71,13 @@ class AuthController extends Controller
         $user->password = bcrypt($data['password']);
         $user->flag = 1;
         $user->save();
-
         $id = $user->id;
-
-        $store = new Userdetail;
+        $cid=$user->company_id;
+     $store = new Userdetail;
         $store->cid = $id;
-        $store->save();
+   $store->company_id = $cid;
+     $store->save();
+
 
         return User::find($id);
     }

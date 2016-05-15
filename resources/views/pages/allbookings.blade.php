@@ -9,7 +9,7 @@
                 <div class="card-body" id="boking_list">
                     <div class="table-responsive">
                         @if($data->count() == 0)
-                            <p style="text-align: center">No bookings</p>
+                        <p style="text-align: center">No bookings</p>
                         @else
                         <table class="table table-hover">
                             <thead id="thead">
@@ -24,6 +24,19 @@
                             </thead>
 
                             <tbody id="tbody">
+<<<<<<< HEAD
+                                {{-- */ $count = 1; /* --}} @foreach($data as $i)
+                                <tr>
+                                    <td>{{ $count }}</td>
+                                    <td><a href='booking/{{ rand(100, 999) }}{{ $i->id }}{{ rand(100,999) }}' data-toggle="tooltip" data-placement="top" title="Click to check details">{{ $i->email }}</a></td>
+                                    <td>{{ $i->departure_date }} </td>
+                                    <td>{{ $i->booked_at }} </td>
+                                    <td>
+                                        <a class="btn btn-danger waves-effect delete-button" data-method="delete" id="{{ $i->id }}" data-toggle="tooltip" data-placement="top" title="Delete Booking"><i class="zmdi zmdi-close"></i></a>
+                                    </td>
+                                </tr>
+                                {{-- */ $count++; /* --}} @endforeach
+=======
                                 {{-- */ $count = 1; /*  --}}
                                 @foreach($data as $i)
                                     <tr>
@@ -37,6 +50,7 @@
                                     </tr>
                                     {{-- */ $count++; /* --}}
                                 @endforeach
+>>>>>>> origin/itenary
                             </tbody>
                         </table>
                         @endif
@@ -46,6 +60,7 @@
             </table>
         </div>
     </div>
+
 </div>
 
 
@@ -87,11 +102,10 @@
         }, function(data) {
             var d = data;
             var content = '';
-            if (d.length == 0){
+            if (d.length == 0) {
                 content += '<p style="text-align:center">No bookings</p>';
                 $('#thead').css('display', 'none');
-            }
-            else {
+            } else {
                 var count = 1;
                 $('#thead').removeAttr('display');
                 for (i = 0; i < d.length; i++) {

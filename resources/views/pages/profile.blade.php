@@ -26,9 +26,7 @@
                     <li>
                         <i class="zmdi zmdi-pin"></i>
                         <address class="m-b-0 ng-binding">
-                                            44-46 Morningside Road,<br>
-                                            Edinburgh,<br>
-                                            Scotland
+                                            {{$data->martial_status}}
                                         </address>
 
                     </li>
@@ -123,8 +121,12 @@
                             <dd id="show_birthday">{{$data->birthday}}</dd>
                         </dl>
                         <dl class="dl-horizontal">
-                            <dt>Martial Status</dt>
+                            <dt>Address</dt>
                             <dd id="show_status">{{$data->martial_status}}</dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt>Company Name</dt>
+                            <dd id="show_status">{{$data->company_name}}</dd>
                         </dl>
                     </div>
 
@@ -161,15 +163,21 @@
                                 </dd>
                             </dl>
                             <dl class="dl-horizontal">
-                                <dt class="p-t-10">Martial Status</dt>
-                                <dd>
+                                <dt class="p-t-10">Address</dt>
+                               <dd>
                                     <div class="fg-line">
-                                        <select class="form-control" name="martial_status">
-                                            <option>Single</option>
-                                            <option>Married</option>
-                                            <option>Other</option>
-                                        </select>
+                                        <input type="text" class="form-control" value="{{ $data->martial_status }}" name="martial_status">
                                     </div>
+
+                                </dd>
+                            </dl>
+                             <dl class="dl-horizontal">
+                                <dt class="p-t-10">Company Name</dt>
+                               <dd>
+                                    <div class="fg-line">
+                                        <input type="text" class="form-control" value="{{ $data->company_name }}" name="company_name">
+                                    </div>
+
                                 </dd>
                             </dl>
 

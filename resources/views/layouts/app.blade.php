@@ -21,6 +21,7 @@
     <link href="{{URL::to('assets')}}/css/app.min.1.css" rel="stylesheet">
     <link href="{{URL::to('assets')}}/css/app.min.2.css" rel="stylesheet">
 
+
 </head>
 
 <body>
@@ -40,7 +41,6 @@
             <li class="logo hidden-xs">
                 <a href="{{URL::to('/')}}">Trav-Man</a>
             </li>
-
             <li class="pull-right">
                 <ul class="top-menu">
                     @if( Auth::guest() )
@@ -52,21 +52,43 @@
                     </li>
                     @else
 
-                        <!-- Notification -->
-                        <li class="dropdown">
-                            <a data-toggle="dropdown" href="" id="notification">
-                                <i class="tm-icon zmdi zmdi-notifications-none"></i>
-                                <i class="tmn-counts" id="notification_count"></i>
-                            </a>
+                    <!-- toggle-->
+                   <!-- <li id="toggle-width">
+                        <div class="toggle-switch">
+                            <input id="tw-switch" type="checkbox" hidden="hidden">
+                            <label for="tw-switch" class="ts-helper"></label>
+                        </div>
+                    </li>-->
+                    <!-- toggle-->
+                    <!-- Search -->
+                    <!--      <li id="top-search">
+                        <a href=""><i class="tm-icon zmdi zmdi-search"></i></a>
+                    </li>-->
+                    <!-- End Search -->
+                     <!-- Feedback-->
+                 <li id="feedback" data-trigger="#chat">
+                  <a data-toggle="tooltip" data-placement="bottom" title="Feedback"><i class="tm-icon zmdi zmdi-comment-alt-text"></i></a>
+                        </li>
+                        <!-- microsite-->
+                        <li>
+                             <a href="{{url('micro')}}<?php echo "/"; echo Auth::user()->company_id; ?>" data-toggle="tooltip" data-placement="bottom" title="Microsite"><i class="tm-icon zmdi zmdi-trending-up"></i></a>
+                        </li>
+                    <!-- Notification -->
 
-                            <div class="dropdown-menu dropdown-menu-lg pull-right">
-                                <div class="listview" id="notifications">
+                    <li class="dropdown" data-toggle="tooltip" data-placement="bottom" title="Notification">
+                    <a data-toggle="dropdown" href="" id="notification">
+                            <i class="tm-icon zmdi zmdi-notifications-none"></i>
+                            <i class="tmn-counts" id="notification_count"></i>
+                        </a>
 
-                                    <div class="lv-header">
-                                        Notification
-                                    </div>
-                                   <div class="pm-overview c-overflow" style=" height:200px;">
-                                    <div class="lv-body" id="notification_list">
+                        <div class="dropdown-menu dropdown-menu-lg pull-right">
+                            <div class="listview" id="notifications">
+
+                                <div class="lv-header">
+                                    Notification
+                                </div>
+                               <div class="pm-overview c-overflow" style=" height:200px;">
+                                <div class="lv-body" id="notification_list">
 
                                     </div>
                                     </div>
@@ -82,9 +104,7 @@
                                 <span class="tm-label text-uppercase">{{ Auth::user()->user_name }}<span class="caret"></span> </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-sm pull-right">
-                                <div class="listview">
-                                    <a class="lv-item" id="feedback"> Feedback</a>
-                                </div>
+
                                 <div class="listview">
                                     <a class="lv-item" href="{{ url('/logout') }}" id="logout"> Logout</a>
                                 </div>
@@ -120,25 +140,28 @@
                     </div>
                     <div class="profile-info">
                         @if( !Auth::guest() )
-                        <span class="tm-label text-uppercase">{{ Auth::user()->user_name }}</span>
+
+                       <span class="tm-label text-capitalize">{{ Auth::user()->user_name }}</span>
+
+
                           @endif
 
                     </div>
                 </a>
+                <ul class="main-menu">
+                <li><a href="{{ url('profile')}}"><i class="zmdi zmdi-account"></i> View Profile</a></li>
+                </ul>
             </div>
 
 <!--Start sidebar links -->
             <ul class="main-menu">
-                <li><a href="{{ url('profile')}}"><i class="zmdi zmdi-account"></i> View Profile</a></li>
-
                 <li><a href="{{URL::to('/')}}"><i class="zmdi zmdi-tv"></i>Dashboard</a></li>
-
                 @if( Auth::user()->flag == 1 )
-                    <li><a href="{{ url('create') }}"><i class="zmdi zmdi-account-add"></i>Create Member</a></li>
+                <li><a href="{{ url('create') }}"><i class="zmdi zmdi-account-add"></i>Create Member</a></li>
                 @endif
-
                 <li class="sub-menu">
                     <a href=""><i class="zmdi zmdi-format-list-bulleted zmdi-hc-fw"></i>Booking</a>
+
                     <ul>
                         <li><a href="{{ url('booking')}}"><i class="zmdi zmdi-calendar-note zmdi-hc-fw p-r-10"></i> Create Booking</a></li>
                         <li><a href="{{ url('showbookings')}}"><i class="zmdi zmdi-view-list zmdi-hc-fw p-r-10"></i>Show booking</a></li>
@@ -148,12 +171,16 @@
                 <li class="sub-menu">
                     <a href=""><i class="zmdi zmdi-format-list-bulleted zmdi-hc-fw"></i>Packages</a>
                     <ul>
-                        <li><a href="{{ url('createpackage')}}"><i class="zmdi zmdi-local-mall"></i> Create package</a></li>
+                        <li><a href="{{ url('createpackage')}}"><i class="zmdi zmdi-calendar-note zmdi-hc-fw p-r-10"></i>Create package</a></li>
                         <li><a href="{{ url('show+package')}}"><i class="zmdi zmdi-view-list zmdi-hc-fw p-r-10"></i>Show package</a></li>
-                    </ul>
+                </ul>
                 </li>
 
-            </ul>
+                <li><a href="{{url('micro')}}<?php echo "/"; echo Auth::user()->company_id; ?>"><i class="zmdi zmdi-cast"></i>Micro site</a></li>
+                <li><a href="{{ url('addphotos')}}"><i class="zmdi zmdi-collection-image"></i>GalleryPhotos</a></li>
+
+                    </ul>
+
             <!-- End sidebar links -->
         </aside>
 
@@ -201,6 +228,7 @@
     <script src="{{URL::to('assets')}}/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="{{URL::to('assets')}}/vendors/bower_components/autosize/dist/autosize.min.js"></script>
      <script src="{{URL::to('assets')}}/vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+      <script src="{{URL::to('assets')}}/vendors/fileinput/fileinput.min.js"></script>
 
     <!-- Placeholder for IE9 -->
     <!--[if IE 9 ]>
@@ -315,6 +343,9 @@
                 $('#notification_list').html(content);
             });
         }
+
+
+
         </script>
     @endif
 @yield('footer')

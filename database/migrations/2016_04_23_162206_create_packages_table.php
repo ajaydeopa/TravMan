@@ -21,6 +21,8 @@ class CreatePackagesTable extends Migration
             $table->string('pack_include');
             $table->string('cost_include');
             $table->string('notes');
+            $table->string('thumb');
+            $table->string('pic');
         });
     }
 

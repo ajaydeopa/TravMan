@@ -14,7 +14,7 @@ class CreateFeedbacksTable extends Migration
     {
         Schema::create('feedbacks', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('cid')->unsigned();
+    $table->integer('cid')->unsigned();
             $table->string('email');
             $table->string('feedback');
             $table->timestamp('at');
@@ -22,6 +22,7 @@ class CreateFeedbacksTable extends Migration
             $table  ->foreign('cid')
                     ->references('id')->on('users')
                     ->onDelete('cascade');
+
         });
     }
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Intervention\Image\Facades\Image;
 use App\Http\Requests;
 use App\DayItenary;
 use App\Package;
@@ -69,13 +69,35 @@ class PackageController extends Controller
     public function save(Request $request){
 		$store = new Package;
         $store->company_id = Auth::user()->company_id;
+
     	$store->pack_name = $request->package_name;
     	$store->pack_duration = $request->days.' days / '. $request->nights .' nights';
     	$store->pack_desc = $request->description;
     	$store->pack_include = $request->package_include;
     	$store->cost_include = $request->cost_include;
     	$store->notes = $request->notes;
-    	$store->save();
+     $image = $request->file('file');
+          $destinationPath1= "/assets/images/packages/pics/";
+            $destinationPath2= "/assets/images/packages/thumbs/";
+    		$extension 		= 	$image->getClientOriginalExtension();
+    		$imageRealPath 	= 	$image->getRealPath();
+    		$thumbName 		= 	'thumb_'. $image->getClientOriginalName();
+            $picName 		= 	'pic_'. $image->getClientOriginalName();
+	    	     	$size='150';
+            $img = Image::make($imageRealPath); // use this if you want facade style code
+	   $img->save(public_path().'/'.$destinationPath1. $picName);
+
+            $img->resize(intval($size), null, function($constraint) {
+	    		 $constraint->aspectRatio();
+	    	});
+	    	 $img->save(public_path().'/'.$destinationPath2. $thumbName);
+    	 $store->company_id = Auth::user()->company_id;
+
+           $store->thumb= $destinationPath2. $thumbName;
+           $store->pic= $destinationPath1. $picName;
+
+
+         	$store->save();
 
         $day = new DayItenary;
         $day->pack_id = $store->id;

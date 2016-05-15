@@ -17,7 +17,7 @@
 
                 <div data-src="{{URL::to('')}}{{$g->pic}}" class="col-md-2 col-sm-4 col-xs-6">
                     <div class="lightbox-item p-item">
-                        <img src="{{URL::to('')}}{{$g->thumb}}" alt="" />
+                        <img src="{{URL::to('')}}{{$g->thumb}}" />
                     </div>
                 </div>
 @endforeach

@@ -31,7 +31,7 @@
 @if($count==1)
 
  <article class="feature left">
-                <span class="image"><img src="{{URL::to('')}}{{$i->thumb}}" alt="" /></span>
+                <span class="image"><img src="{{URL::to('')}}{{$i->thumb}}" alt="" height="40%" /></span>
                 <div class="content">
                     <h2>{{$i->pack_name}}</h2>
                     <h3>{{$i->pack_duration}}</h3>
@@ -48,7 +48,7 @@
 
     @elseif($count==0)
             <article class="feature right">
-                <span class="image"><img src="{{URL::to('')}}{{$i->thumb}}" alt="" /></span>
+                <span class="image"><img src="{{URL::to('')}}{{$i->thumb}}" alt="" height="40%"/></span>
                 <div class="content">
                         <h2>{{$i->pack_name}}</h2>
                     <h3>{{$i->pack_duration}}</h3>
@@ -105,7 +105,7 @@
 
                 <div data-src="{{URL::to('')}}{{$g->pic}}" class="col-md-2 col-sm-4 col-xs-6">
                     <div class="lightbox-item p-item">
-                        <img src="{{URL::to('')}}{{$g->thumb}}" alt="" />
+                        <img src="{{URL::to('')}}{{$g->thumb}}" alt=""  />
                     </div>
                 </div>
 

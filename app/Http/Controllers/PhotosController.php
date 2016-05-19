@@ -17,7 +17,9 @@ class PhotosController extends Controller
    	public function save(Request $request)
 	{
         $image 			= 	$request->file('file');
+
         $resizedImage 	= 	$this->resize($image, '600');//set size for thumb
+
 
         if(!$resizedImage)
         {
@@ -36,20 +38,21 @@ class PhotosController extends Controller
             $destinationPath2= "/assets/images/gallery/thumbs/";
     		$extension 		= 	$image->getClientOriginalExtension();
     		$imageRealPath 	= 	$image->getRealPath();
+            $str=str_random('4');
     		$thumbName 		= 	'thumb_'. $image->getClientOriginalName();
             $picName 		= 	'pic_'. $image->getClientOriginalName();
 
             $img = Image::make($imageRealPath); // use this if you want facade style code
-	   $img->save(public_path().'/'.$destinationPath1. $picName);
+	   $img->save(public_path().'/'.$destinationPath1.$str.$picName);
 
             $img->resize(intval($size), null, function($constraint) {
 	    		 $constraint->aspectRatio();
 	    	});
-	    	 $img->save(public_path().'/'.$destinationPath2. $thumbName);
+	    	 $img->save(public_path().'/'.$destinationPath2.$str.$thumbName);
     	 $store->company_id = Auth::user()->company_id;
 
-           $store->thumb= $destinationPath2. $thumbName;
-           $store->pic= $destinationPath1. $picName;
+           $store->thumb= $destinationPath2.$str.$thumbName;
+           $store->pic= $destinationPath1.$str.$picName;
 
 
             $store->save();
@@ -62,7 +65,11 @@ class PhotosController extends Controller
     	}
 
     }
+        public function validatePhoto(Request $request){
+        $validator = Validator::make($request->all(), [
+            'file'  => 'required',
+            ]);
 
-
-
+ return ("no");
+        }
 }

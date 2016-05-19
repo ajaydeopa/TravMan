@@ -84,17 +84,18 @@ class PackageController extends Controller
     		$thumbName 		= 	'thumb_'. $image->getClientOriginalName();
             $picName 		= 	'pic_'. $image->getClientOriginalName();
 	    	     	$size='150';
+          $str=str_random('4');
             $img = Image::make($imageRealPath); // use this if you want facade style code
-	   $img->save(public_path().'/'.$destinationPath1. $picName);
+	   $img->save(public_path().'/'.$destinationPath1.$str.$picName);
 
             $img->resize(intval($size), null, function($constraint) {
 	    		 $constraint->aspectRatio();
 	    	});
-	    	 $img->save(public_path().'/'.$destinationPath2. $thumbName);
+	    	 $img->save(public_path().'/'.$destinationPath2.$str.$thumbName);
     	 $store->company_id = Auth::user()->company_id;
 
-           $store->thumb= $destinationPath2. $thumbName;
-           $store->pic= $destinationPath1. $picName;
+           $store->thumb= $destinationPath2.$str.$thumbName;
+           $store->pic= $destinationPath1.$str.$picName;
 
 
          	$store->save();

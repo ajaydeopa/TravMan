@@ -117,6 +117,7 @@
                                         </span>
                                     </div>
                                 </div>
+                                <div><strong id="error_file"></strong></div>
                             </div>
 
 
@@ -139,7 +140,7 @@
 <script type="text/javascript">
 	$('#submit').click(function(){
 		$('#submit').val('Creating Package...').focus();
-		validatePackage();
+        validatePackage();
 	});
 
 	function validatePackage() {
@@ -184,7 +185,13 @@
 
             else {
                 $('#error_notes').html('');
-                createPackage();
+                var data= $('.fileinput-filename').text();
+                if( data == "" )
+                    $('#error_file').html('Picture is required!!');
+                else{
+                    $('#error_file').html('');
+                    createPackage();
+                }
             }
         });
     }

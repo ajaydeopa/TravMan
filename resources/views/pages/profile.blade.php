@@ -6,14 +6,31 @@
             <!-- Start profile pic-->
             <div class="pmo-pic">
                 <div class="p-relative">
+
+
                     <a>
-                        <img class="img-responsive" src="{{URL::to('assets')}}/img/profile-pics/profile-pic-2.jpg" alt="">
+                        <img class="img-responsive" src="{{URL::to('')}}{{ $data->pic}}" alt="">
                     </a>
-                    <a class="pmop-edit">
+
+                    <a class="pmop-edit" id="edit">
                         <i class="zmdi zmdi-camera"></i> <span class="hidden-xs">Update Profile Picture</span>
-                    </a>
+                      </a>
                 </div>
             </div>
+            <strong><span id="message"></span></strong>
+            <span id="show"><form type="POST" onsubmit="return false;" id="photo">
+                           {!! csrf_field() !!}
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                        <span class="btn btn bgm-deeporange waves-effect btn-xs btn-file m-l-10 m-b-10">
+                                            <span class="fileinput-new">Select file</span>
+                                            <span class="fileinput-exists">Change</span>
+                                            <input type="file" name="file">
+                                        </span>
+                                        <span class="fileinput-filename"></span>
+                                        <a href="#" class="close fileinput-exists" data-dismiss="fileinput">&times;</a>
+                                    </div>
+                              <button class="btn btn-primary btn-xs waves-effect m-t-10 m-l-10 " type="submit" name="book" id="submit"> Update</button>
+                            </form></span>
             <!-- End profile pic-->
 
             <!-- Start contact -->
@@ -294,5 +311,35 @@
             $('#show_phone').html(data[1].value);
         });
     }
+    $("#show").hide();
+$('#edit').click(function(){
+    $("#show").toggle();
+            });
+
+     $(document).ready(function() {
+        $('#submit').click(function() {
+            $('#submit').val('Creating Member...').focus();
+
+            updatephoto();
+        });
+    });
+
+     function updatephoto() {
+          var myform = document.getElementById("photo");
+    var fd = new FormData(myform);
+
+    $.ajax({
+        url: "{{url('updatephoto')}}",
+        data: fd,
+        cache: false,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+
+    });
+        $('#message').fadeIn().text('Profilepic Uploaded!!').fadeOut(3000);
+	}
+
+
 </script>
 @endsection

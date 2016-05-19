@@ -274,12 +274,15 @@
         var url = '{{ url("make_booking") }}';
         var data = $('#booking_form').serializeArray();
 
-        $.post(url, data, function() {
+        $.post(url, data, function(data) {
+
             $('#message').fadeIn().html('Congratulations, your booking has being made !!').fadeOut(2000);
             $(':input[type="text"]').val('');
             $('#package').val('default');
             $('#pack_duration').attr('placeholder', 'Package Duration');
             $('#submit').val('Make Booking');
+            var mailurl = '{{ url("send+mail") }}';
+            $.get(mailurl, {'id' : data}, function(){});
         });
     }
 </script>

@@ -84,27 +84,30 @@
     });
 
     function cancelBooking(id) {
-        var url = '{{ url("cancel") }}';
-        $.get(url, {
-            'id': id
-        }, function(data) {
-            var d = data;
-            var content = '';
+        var url1 = '{{ url("send+mail") }}';
+        $.get(url1, {'id' : id}, function(){
+           var url = '{{ url("cancel") }}';
+            $.get(url, {
+                'id': id
+            }, function(data) {
+                var d = data;
+                var content = '';
 
-            if (d.length == 0) {
+                if (d.length == 0) {
 
-                content += '<p style="text-align:center">No bookings</p>';
-                $('#thead').css('display', 'none');
-            } else {
-                var count = 1;
-                $('#thead').removeAttr('display');
-                for (i = 0; i < d.length; i++) {
-                    content += '<tr><td>' + count + '</td><td><a href="booking/{{rand(100, 999)}}' + d[i]["id"] + '{{rand(100, 999)}}">' + d[i]['email'] + '</a></td><td>' + d[i]['departure_date'] + '</td><td>' + d[i]['booked_at'] + '</td><td><a class="btn btn-danger waves-effect delete-button" data-method="delete" id="' + d[i]["id"] + '"><i class="zmdi zmdi-close"></i></a></td></tr>';
-                    count++;
+                    content += '<p style="text-align:center">No bookings</p>';
+                    $('#thead').css('display', 'none');
+                } else {
+                    var count = 1;
+                    $('#thead').removeAttr('display');
+                    for (i = 0; i < d.length; i++) {
+                        content += '<tr><td>' + count + '</td><td><a href="booking/{{rand(100, 999)}}' + d[i]["id"] + '{{rand(100, 999)}}">' + d[i]['email'] + '</a></td><td>' + d[i]['departure_date'] + '</td><td>' + d[i]['booked_at'] + '</td><td><a class="btn btn-danger waves-effect delete-button" data-method="delete" id="' + d[i]["id"] + '"><i class="zmdi zmdi-close"></i></a></td></tr>';
+                        count++;
+                    }
                 }
-            }
-            $('#tbody').html(content);
+                $('#tbody').html(content);
 
+            });
         });
     }
 

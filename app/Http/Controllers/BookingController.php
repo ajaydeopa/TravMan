@@ -13,6 +13,7 @@ use App\User;
 use Carbon\Carbon;
 use Validator;
 use Auth;
+use Mail;
 
 class BookingController extends Controller
 {
@@ -88,6 +89,7 @@ class BookingController extends Controller
     //save booking details sfter validation
     public function makeBooking(Request $request){
         $id = $request->pack_id;
+
         $package = Package::find($id);
 
         $ddate = $request->departure_date;
@@ -109,9 +111,25 @@ class BookingController extends Controller
         $store->payment_id  = $request->payment_id;
         $store->phone_no    = $request->phone_no;
         $store->save();
-        
+
         //make new notification in notification table
         $this->bookingNotification($request->email, 'booked');
+
+        return $store->id;
+        //mail to customer
+
+    }
+
+    public function sendmail(Request $request){
+        $user = Booking::find($request->id);
+
+            Mail::send('auth.emails.confirm', ['user' => $user], function ($m) use ($user) {
+
+            $m->from('prashushitech@gmail.com', 'PrashushiTech');
+
+            $m->to($user->email, $user->name)->subject('verify mail');
+
+        });
     }
 
     //open page having list of all bookings
@@ -124,7 +142,6 @@ class BookingController extends Controller
     //cancel booking
     public function cancel(Request $request){
         $id = $request->id;
-
         $this->bookingNotification(Booking::find($id)['email'], 'cancelled');
         Booking::find($id)->delete();
         $data = Booking::where('company_id', Auth::user()->company_id)->get();
@@ -154,4 +171,5 @@ class BookingController extends Controller
             $notification->save();
         }
     }
+
 }

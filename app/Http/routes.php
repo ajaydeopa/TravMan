@@ -89,6 +89,8 @@ Route::group(['middleware' => 'web'], function () {
 
         Route::get('cancel', 'BookingController@cancel');
 
+        Route::get('send+mail', 'BookingController@sendmail');
+
         Route::get('booking/{id}', 'BookingController@showbooking');
         
         Route::post('checkbooking', 'BookingController@checkBooking');
